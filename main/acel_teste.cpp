@@ -126,7 +126,7 @@ int main(){
             pitch.push_back(3+atan(yAccel[contador%10]/(sqrt(xAccel[contador%10]*xAccel[contador%10]+zAccel[contador%10]*zAccel[contador%10])))*180/PI);
 
             cout<<xAccel[contador%10]<<" "<<yAccel[contador%10]<<" "<<zAccel[contador%10]<<" "<<S1[contador%10]<<" "<<S2[contador%10]<<" "<<S3[contador%10]<<" "<<S4[contador%10]<<" "<<roll[contador%10]<<" "<<pitch[contador%10]<<endl;
-            arq3<<xAccel[contador%10]<<" "<<yAccel[contador%10]<<" "<<zAccel[contador%10]<<" "<<S1[contador%10]<<" "<<S2[contador%10]<<" "<<S3[contador%10]<<" "<<S4[contador%10]<<" "<<roll[contador%10]<<" "<<pitch[contador%10]<<endl;
+            arq4<<xAccel[contador%10]<<" "<<yAccel[contador%10]<<" "<<zAccel[contador%10]<<" "<<S1[contador%10]<<" "<<S2[contador%10]<<" "<<S3[contador%10]<<" "<<S4[contador%10]<<" "<<roll[contador%10]<<" "<<pitch[contador%10]<<endl;
 
         //cout<<roll[contador%10]<<" "<<lido[0]*0.29<<" "<<abs(roll[contador%10]-lido[0]*0.29)<<endl;
 
