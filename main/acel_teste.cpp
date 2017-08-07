@@ -21,6 +21,7 @@ int main(){
     int n = 0, n_endl, spot = 0, n_written = 0;
     int contador=0;
     int X = 1;
+    int C;
     float temp_val[7];
 
     string temp,temp2;
@@ -74,7 +75,7 @@ int main(){
 
 
     cout << "\n Pressione qualquer tecla para iniciar \n" << endl;
-    cmd.getch();
+    cin >> C;
 
     //Loop
     while(X!=0){
