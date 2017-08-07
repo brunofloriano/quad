@@ -78,7 +78,7 @@ int main(){
     cin >> C;
 
     //Loop
-    while(X!=0){
+    while(contador<100000){
 
             memset(temp_val, 0, sizeof temp_val);
             n=0;
@@ -134,8 +134,8 @@ int main(){
 
 
     contador++; //testar assim, caso nao de certo mudar o contador%10 para contador apenas.
-            cout << "\n Pressione 0 para terminar ou 1 para nova medicao \n" << endl;
-            cin >> X;
+            //cout << "\n Pressione 0 para terminar ou 1 para nova medicao \n" << endl;
+            //cin >> X;
 }
 close(USB);
 return 0;
