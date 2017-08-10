@@ -21,12 +21,13 @@ using namespace std;
     vector<float> S4;
     vector<float> roll;
     vector<float> pitch;
+    int  contador3 = 0;
 
 
 int main(){
     clock_t tsim = 10; //tempo de simulacao em segundos
     clock_t tam = 1000; //tempo de amostragem em microsegundos
-    int contador = 0, contador2 = 0, contador3 = 0;
+    int contador = 0, contador2 = 0;
     float temp_val[7];
     char C;
     clock_t tInicio, tFim, tDecorrido;

@@ -5,6 +5,7 @@
 #include <termios.h>    // POSIX terminal control definitions
 #include <time.h>
 #include "medicao.h"
+#include "acel_tempo6.cpp"
 
 #define PI    3.14159265
 
