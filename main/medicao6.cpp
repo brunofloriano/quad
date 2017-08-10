@@ -10,7 +10,7 @@
 
 using namespace std;
 
-float medicao(){
+float medicao[7](){
 
     command cmd;
     char buf = '\0';
