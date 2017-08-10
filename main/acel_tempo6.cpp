@@ -42,6 +42,7 @@ int main(){
     while(contador < 7){
     temp_val[contador] = medicao(contador);
     contador++;
+    cout << "Loop" << endl;
     }
     xAccel.push_back(temp_val[1]);
     yAccel.push_back(-temp_val[0]);
