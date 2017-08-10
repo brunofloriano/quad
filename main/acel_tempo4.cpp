@@ -9,7 +9,7 @@
 
 using namespace std;
 
-int medicao(){
+int medicao(clock_t tsim, clock_t tam){
 
     command cmd;
     char buf = '\0';
@@ -27,8 +27,6 @@ int medicao(){
 
     clock_t tInicio, tFim, tDecorrido, t;
 
-    clock_t tsim = 10; //tempo de simulacao em segundos
-    clock_t tam = 1000; //tempo de amostragem em microsegundos
     string temp,temp2;
     size_t inic, fim;
 
@@ -155,8 +153,9 @@ return 0;
 }
 
 int main(){
-
-medicao();
+    clock_t tsim1 = 10; //tempo de simulacao em segundos
+    clock_t tam1 = 1000; //tempo de amostragem em microsegundos
+medicao(tsim1,tam1);
 
 return 0;
 }
