@@ -18,7 +18,7 @@
   extern  vector<float> S4;
   extern  vector<float> roll;
   extern  vector<float> pitch;
-  extern  int  contador3 = 0;
+  extern  int  contador3;
 
 int medicao();
 
