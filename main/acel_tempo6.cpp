@@ -24,7 +24,7 @@ using namespace std;
 int main(){
     clock_t tsim = 10; //tempo de simulacao em segundos
     clock_t tam = 1000; //tempo de amostragem em microsegundos
-    int contador2 = 0, contador3 = 0;
+    int contador = 0, contador2 = 0, contador3 = 0;
     float temp_val[7];
     char C;
     clock_t tInicio, tFim, tDecorrido;
@@ -39,9 +39,10 @@ int main(){
     //Loop
     while(tDecorrido<tsim*1000){
 	if(tDecorrido>contador2){
-
-    temp_val = medicao();
-
+    while(contador < 7){
+    temp_val[contador] = medicao(contador);
+    contador++
+    }
     xAccel.push_back(temp_val[1]);
     yAccel.push_back(-temp_val[0]);
     zAccel.push_back(temp_val[2]);

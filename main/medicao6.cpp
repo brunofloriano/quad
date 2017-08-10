@@ -10,7 +10,7 @@
 
 using namespace std;
 
-float medicao[7](){
+float medicao(int contador){
 
     command cmd;
     char buf = '\0';
@@ -106,5 +106,5 @@ float medicao[7](){
 
 
 close(USB);
-return temp_val;
+return temp_val[contador];
 }
