@@ -41,7 +41,7 @@ int main(){
 	if(tDecorrido>contador2){
     while(contador < 7){
     temp_val[contador] = medicao(contador);
-    contador++
+    contador++;
     }
     xAccel.push_back(temp_val[1]);
     yAccel.push_back(-temp_val[0]);
