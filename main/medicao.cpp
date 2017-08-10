@@ -1,13 +1,4 @@
-#include "include/command.h"
-#include <unistd.h>     // UNIX standard function definitions
-#include <fcntl.h>      // File control definitions
-#include <errno.h>      // Error number definitions
-#include <termios.h>    // POSIX terminal control definitions
-#include <time.h>
-
-#define PI    3.14159265
-
-using namespace std;
+#include "medicao.h"
 
 int medicao(clock_t tsim, clock_t tam){
 
@@ -149,14 +140,5 @@ int medicao(clock_t tsim, clock_t tam){
 	tDecorrido = ((tFim - tInicio) / (CLOCKS_PER_SEC / 1000));
 }
 close(USB);
-return 0;
-}
-
-int main(){
-    clock_t tsim1 = 10; //tempo de simulacao em segundos
-    clock_t tam1 = 1000; //tempo de amostragem em microsegundos
-
-    medicao(tsim1,tam1);
-
 return 0;
 }
