@@ -25,7 +25,7 @@ int main(){
     clock_t tsim = 10; //tempo de simulacao em segundos
     clock_t tam = 1000; //tempo de amostragem em microsegundos
     int contador2 = 0, contador3 = 0;
-    float temp_val;
+    float temp_val[7];
     char C;
     clock_t tInicio, tFim, tDecorrido;
     ofstream arq4("valores_acelerometro.txt");
