@@ -140,7 +140,6 @@ int medicao(clock_t tsim, clock_t tam){
 
 
 
-           cout << roll[contador3%10] << " " << pitch[contador3%10] << endl;
           // cout<<xAccel[contador%10]<<" "<<yAccel[contador%10]<<" "<<zAccel[contador%10]<<" "<<S1[contador%10]<<" "<<S2[contador%10]<<" "<<S3[contador%10]<<" "<<S4[contador%10]<<" "<<roll[contador%10]<<" "<<pitch[contador%10]<<endl;
             arq4<< roll[contador3%10]<<" "<<pitch[contador3%10]<<endl;
             contador2 = contador2 + tam;
@@ -159,6 +158,9 @@ int main(){
     clock_t tam1 = 1000; //tempo de amostragem em microsegundos
 
     medicao(tsim1,tam1);
+
+    cout << roll[contador3%10] << " " << pitch[contador3%10] << endl;
+
 
 return 0;
 }
