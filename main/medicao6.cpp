@@ -10,7 +10,7 @@
 
 using namespace std;
 
-float double(int contador){
+double medicao(int contador){
 
     command cmd;
     char buf = '\0';
