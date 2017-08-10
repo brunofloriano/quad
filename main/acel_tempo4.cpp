@@ -9,6 +9,16 @@
 
 using namespace std;
 
+    vector<float> xAccel;
+    vector<float> yAccel;
+    vector<float> zAccel;
+    vector<float> S1;
+    vector<float> S2;
+    vector<float> S3;
+    vector<float> S4;
+    vector<float> roll;
+    vector<float> pitch;
+
 int medicao(clock_t tsim, clock_t tam){
 
     command cmd;
@@ -30,15 +40,7 @@ int medicao(clock_t tsim, clock_t tam){
     string temp,temp2;
     size_t inic, fim;
 
-    vector<float> xAccel;
-    vector<float> yAccel;
-    vector<float> zAccel;
-    vector<float> S1;
-    vector<float> S2;
-    vector<float> S3;
-    vector<float> S4;
-    vector<float> roll;
-    vector<float> pitch;
+
 
     ofstream arq4("valores_acelerometro.txt");
 
@@ -155,7 +157,8 @@ return 0;
 int main(){
     clock_t tsim1 = 10; //tempo de simulacao em segundos
     clock_t tam1 = 1000; //tempo de amostragem em microsegundos
-medicao(tsim1,tam1);
+
+    medicao(tsim1,tam1);
 
 return 0;
 }
