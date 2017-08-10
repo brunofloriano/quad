@@ -11,6 +11,7 @@
 
 using namespace std;
 
+
     vector<float> xAccel;
     vector<float> yAccel;
     vector<float> zAccel;
@@ -20,6 +21,7 @@ using namespace std;
     vector<float> S4;
     vector<float> roll;
     vector<float> pitch;
+
 
 int main(){
     clock_t tsim = 10; //tempo de simulacao em segundos
@@ -39,21 +41,8 @@ int main(){
     //Loop
     while(tDecorrido<tsim*1000){
 	if(tDecorrido>contador2){
-    while(contador < 7){
-    temp_val[contador] = medicao(contador);
-    contador++;
-    cout << "Loop" << endl;
-    }
-    xAccel.push_back(temp_val[1]);
-    yAccel.push_back(-temp_val[0]);
-    zAccel.push_back(temp_val[2]);
-    S1.push_back(temp_val[3]);
-    S2.push_back(temp_val[4]);
-    S3.push_back(temp_val[5]);
-    S4.push_back(temp_val[6]);
-    roll.push_back(atan(-xAccel[contador3%10]/zAccel[contador3%10])*180/PI);
-    pitch.push_back(3+atan(yAccel[contador3%10]/(sqrt(xAccel[contador3%10]*xAccel[contador3%10]+zAccel[contador3%10]*zAccel[contador3%10])))*180/PI);
 
+    medicao();
 
 
     cout << roll[contador3%10] << " " << pitch[contador3%10] << endl;
