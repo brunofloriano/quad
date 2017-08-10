@@ -6,6 +6,10 @@
 #include <time.h>
 #include "medicao.h"
 
+#define PI    3.14159265
+
+using namespace std;
+
 int medicao(clock_t tsim, clock_t tam){
 
     command cmd;
