@@ -9,6 +9,6 @@
 #include <termios.h>    // POSIX terminal control definitions
 #include <time.h>
 
-int medicao();
+int medicao(clock_t tsim, clock_t tam);
 
 #endif
