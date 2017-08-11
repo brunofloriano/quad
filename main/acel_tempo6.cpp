@@ -4,7 +4,6 @@
 #include <errno.h>      // Error number definitions
 #include <termios.h>    // POSIX terminal control definitions
 #include <time.h>
-#include "medicao6.cpp"
 #include "medicao6.h"
 
 #define PI    3.14159265
@@ -12,6 +11,14 @@
 
 using namespace std;
 
+int main(){
+    clock_t tsim = 10; //tempo de simulacao em segundos
+    clock_t tam = 1000; //tempo de amostragem em microsegundos
+    int contador = 0, contador2 = 0, contador3 = 0;
+    float temp_val[7];
+    char C;
+    clock_t tInicio, tFim, tDecorrido;
+    ofstream arq4("valores_acelerometro.txt");
 
     vector<float> xAccel;
     vector<float> yAccel;
@@ -22,17 +29,6 @@ using namespace std;
     vector<float> S4;
     vector<float> roll;
     vector<float> pitch;
-    int  contador3 = 0;
-
-
-int main(){
-    clock_t tsim = 10; //tempo de simulacao em segundos
-    clock_t tam = 1000; //tempo de amostragem em microsegundos
-    int contador = 0, contador2 = 0;
-    float temp_val[7];
-    char C;
-    clock_t tInicio, tFim, tDecorrido;
-    ofstream arq4("valores_acelerometro.txt");
 
     cout << "\n Pressione qualquer tecla para iniciar \n" << endl;
     cin >> C;
@@ -44,8 +40,17 @@ int main(){
     while(tDecorrido<tsim*1000){
 	if(tDecorrido>contador2){
 
-    medicao();
+    medicao(temp_val);
 
+    xAccel.push_back(temp_val[1]);
+    yAccel.push_back(-temp_val[0]);
+    zAccel.push_back(temp_val[2]);
+    //S1.push_back(temp_val[3]);
+    //S2.push_back(temp_val[4]);
+    //S3.push_back(temp_val[5]);
+    //S4.push_back(temp_val[6]);
+    roll.push_back(atan(-xAccel[contador3%10]/zAccel[contador3%10])*180/PI);
+    pitch.push_back(3+atan(yAccel[contador3%10]/(sqrt(xAccel[contador3%10]*xAccel[contador3%10]+zAccel[contador3%10]*zAccel[contador3%10])))*180/PI);
 
     cout << roll[contador3%10] << " " << pitch[contador3%10] << endl;
     // cout<<xAccel[contador%10]<<" "<<yAccel[contador%10]<<" "<<zAccel[contador%10]<<" "<<S1[contador%10]<<" "<<S2[contador%10]<<" "<<S3[contador%10]<<" "<<S4[contador%10]<<" "<<roll[contador%10]<<" "<<pitch[contador%10]<<endl;

@@ -1,18 +1,4 @@
-#include "include/command.h"
-#include <unistd.h>     // UNIX standard function definitions
-#include <fcntl.h>      // File control definitions
-#include <errno.h>      // Error number definitions
-#include <termios.h>    // POSIX terminal control definitions
-#include <time.h>
-#include "medicao6.h"
-
-
-
-#define PI    3.14159265
-
-using namespace std;
-
-int medicao(){
+int medicao(float *temp_val){
 
     command cmd;
     char buf = '\0';
@@ -25,7 +11,6 @@ int medicao(){
     int n = 0, n_endl, spot = 0, n_written = 0;
 
     int X = 1;
-    float temp_val[7];
 
     string temp,temp2;
     size_t inic, fim;
@@ -104,20 +89,6 @@ int medicao(){
                 n_endl++;
             }
             tcflush( USB, TCIFLUSH );
-
-        //cout<<roll[contador%10]<<" "<<lido[0]*0.29<<" "<<abs(roll[contador%10]-lido[0]*0.29)<<endl;
-    xAccel.push_back(temp_val[1]);
-    yAccel.push_back(-temp_val[0]);
-    zAccel.push_back(temp_val[2]);
-    S1.push_back(temp_val[3]);
-    S2.push_back(temp_val[4]);
-    S3.push_back(temp_val[5]);
-    S4.push_back(temp_val[6]);
-    roll.push_back(atan(-xAccel[contador3%10]/zAccel[contador3%10])*180/PI);
-    pitch.push_back(3+atan(yAccel[contador3%10]/(sqrt(xAccel[contador3%10]*xAccel[contador3%10]+zAccel[contador3%10]*zAccel[contador3%10])))*180/PI);
-
-
-
 
 close(USB);
 return 0;
