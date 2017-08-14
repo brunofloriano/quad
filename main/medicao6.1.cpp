@@ -4,6 +4,10 @@
 #include <errno.h>      // Error number definitions
 #include <termios.h>    // POSIX terminal control definitions
 
+#define PI    3.14159265
+
+using namespace std;
+
 int medicao_angulos(float *angulos){
 
     command cmd;
