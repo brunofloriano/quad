@@ -1,3 +1,9 @@
+#include "include/command.h"
+#include <unistd.h>     // UNIX standard function definitions
+#include <fcntl.h>      // File control definitions
+#include <errno.h>      // Error number definitions
+#include <termios.h>    // POSIX terminal control definitions
+
 int medicao_angulos(float *angulos){
 
     command cmd;
