@@ -1,3 +1,6 @@
+#ifndef MEDICAO_H
+#define MEDICAO_H
+
 #include "include/command.h"
 #include <unistd.h>     // UNIX standard function definitions
 #include <fcntl.h>      // File control definitions
@@ -9,3 +12,4 @@
 #endif // PI
 
 int medicao_angulos(float *angulos);
+#endif // MEDICAO

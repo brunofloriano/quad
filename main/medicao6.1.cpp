@@ -1,3 +1,8 @@
+#ifndef MEDICAO_CPP
+#define MEDICAO_CPP
+
+#include "medicao6.1.h"
+
 using namespace std;
 
 int medicao_angulos(float *angulos){
@@ -104,3 +109,5 @@ int medicao_angulos(float *angulos){
 close(USB);
 return 0;
 }
+
+#endif // MEDICAO_CPP
