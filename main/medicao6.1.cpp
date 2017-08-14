@@ -4,7 +4,9 @@
 #include <errno.h>      // Error number definitions
 #include <termios.h>    // POSIX terminal control definitions
 
+#ifndef PI
 #define PI    3.14159265
+#endif // PI
 
 using namespace std;
 
