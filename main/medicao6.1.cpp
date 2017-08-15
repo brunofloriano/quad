@@ -13,7 +13,7 @@
 using namespace std;
 
 int medicao_angulos(float *angulos){
-    cout <<  "Ok!" << endl;
+
     command cmd;
     char buf = '\0';
     char response[1024];
@@ -66,7 +66,7 @@ int medicao_angulos(float *angulos){
         std::cout << "Error " << errno << " from tcsetattr" << std::endl;
     }
 
-
+        cout <<  "Ok!" << endl;
 
             memset(temp_val, 0, sizeof temp_val);
             n=0;
