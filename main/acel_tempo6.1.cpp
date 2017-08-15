@@ -30,8 +30,9 @@ int main(){
     //Loop
     while(tDecorrido<tsim*1000){
 	if(tDecorrido>contador2){
-    cout <<  "Ok!" << endl;
+
     medicao_angulos(angulos);
+        cout <<  "Ok!" << endl;
     roll = angulos[0];
     pitch = angulos[1];
 
