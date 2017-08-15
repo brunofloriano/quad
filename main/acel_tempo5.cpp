@@ -12,7 +12,7 @@ using namespace std;
 
 int main(){
     clock_t tsim1 = 10; //tempo de simulacao em segundos
-    clock_t tam1 = 100; //tempo de amostragem em microsegundos
+    clock_t tam1 = 500; //tempo de amostragem em microsegundos
 
     medicao(tsim1,tam1);
 
