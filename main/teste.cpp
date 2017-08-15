@@ -1,4 +1,4 @@
-#include "medicao6.1.cpp"
+#include "medicao6.1.h"
 
 #ifndef PI
 #define PI    3.14159265
