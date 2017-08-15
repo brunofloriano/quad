@@ -153,7 +153,7 @@ int medicao(clock_t tsim, clock_t tam){
             roll[contador3%10] = filtro(tam, fc, roll[contador3%10]);
             pitch[contador3%10] = filtro(tam, fc, pitch[contador3%10]);
 
-           //cout << roll[contador3%10] << " " << pitch[contador3%10] << endl;
+           cout << roll[contador3%10] << " " << pitch[contador3%10] << endl;
           // cout<<xAccel[contador%10]<<" "<<yAccel[contador%10]<<" "<<zAccel[contador%10]<<" "<<S1[contador%10]<<" "<<S2[contador%10]<<" "<<S3[contador%10]<<" "<<S4[contador%10]<<" "<<roll[contador%10]<<" "<<pitch[contador%10]<<endl;
             arq4<< roll[contador3%10]<<" "<<pitch[contador3%10]<<endl;
             contador2 = contador2 + tam;
