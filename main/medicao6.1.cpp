@@ -1,7 +1,7 @@
 #ifndef MEDICAO_CPP
 #define MEDICAO_CPP
 
-//#include "medicao6.1.h"
+#include "medicao6.1.h"
 
 using namespace std;
 
