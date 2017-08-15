@@ -37,8 +37,8 @@ int main(){
     roll = angulos[0];
     pitch = angulos[1];
 
-    cout << roll << " " << pitch << " \n" <<endl;
-    arq4 << roll <<" "<<pitch << "\n" <<endl;
+    cout << roll << " " << pitch <<endl;
+    arq4 << roll <<" "<<pitch <<endl;
     contador2 = contador2 + tam;
             }
 
