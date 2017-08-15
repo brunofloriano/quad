@@ -5,7 +5,7 @@
 //#include <termios.h>    // POSIX terminal control definitions
 #include <iostream>
 #include <time.h>
-#include "medicao6.1.h"
+#include "medicao_acel.h"
 #include <fstream>
 
 
