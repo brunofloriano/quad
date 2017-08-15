@@ -91,6 +91,7 @@ int medicao_angulos(float *angulos){
             temp=response;
             inic=temp.find('\n');
             fim=inic;
+            cout <<  "Ok!" << endl;
             while(fim!=string::npos)
             {
                 fim=temp.find('\n',inic+1);
@@ -104,7 +105,7 @@ int medicao_angulos(float *angulos){
             }
             tcflush( USB, TCIFLUSH );
 
-cout <<  "Ok!" << endl;
+
 
     xAcel = temp_val[1];
     yAcel = -temp_val[0];
