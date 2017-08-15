@@ -6,6 +6,7 @@
 #include <iostream>
 #include <time.h>
 #include "medicao_acel.h"
+#include "filtro.h"
 #include <fstream>
 
 
@@ -19,6 +20,7 @@ int main(){
     angulos[0] = 0;
     angulos[1] = 0;
     float roll, pitch;
+    float fc; //frequencia de corte do filtro passa baixas
     char C;
     clock_t tInicio, tFim, tDecorrido;
     ofstream arq4("valores_acelerometro.txt");
@@ -36,6 +38,9 @@ int main(){
     medicao_angulos(angulos);
     roll = angulos[0];
     pitch = angulos[1];
+
+    roll = filtro(tam, 1, roll);
+    pitch = filtro(tam, 1, pitch);
 
     cout << roll << " " << pitch <<endl;
     arq4 << roll <<" "<<pitch <<endl;

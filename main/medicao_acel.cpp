@@ -6,7 +6,7 @@
 #include <fcntl.h>      // File control definitions
 #include <errno.h>      // Error number definitions
 #include <termios.h>    // POSIX terminal control definitions
-//#include "medicao6.1.h"
+
 
 #define PI 3.14159265
 
