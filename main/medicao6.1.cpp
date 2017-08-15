@@ -1,6 +1,11 @@
 #ifndef MEDICAO_CPP
 #define MEDICAO_CPP
 
+#include "include/command.h"
+#include <unistd.h>     // UNIX standard function definitions
+#include <fcntl.h>      // File control definitions
+#include <errno.h>      // Error number definitions
+#include <termios.h>    // POSIX terminal control definitions
 //#include "medicao6.1.h"
 
 using namespace std;
