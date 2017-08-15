@@ -66,7 +66,6 @@ int medicao_angulos(float *angulos){
         std::cout << "Error " << errno << " from tcsetattr" << std::endl;
     }
 
-        cout <<  "Ok!" << endl;
 
             memset(temp_val, 0, sizeof temp_val);
             n=0;
@@ -105,6 +104,7 @@ int medicao_angulos(float *angulos){
             }
             tcflush( USB, TCIFLUSH );
 
+cout <<  "Ok!" << endl;
 
     xAcel = temp_val[1];
     yAcel = -temp_val[0];
