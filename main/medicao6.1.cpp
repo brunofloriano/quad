@@ -13,7 +13,7 @@
 using namespace std;
 
 int medicao_angulos(float *angulos){
-
+    cout <<  "Ok!" << endl;
     command cmd;
     char buf = '\0';
     char response[1024];

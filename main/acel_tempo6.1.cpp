@@ -32,7 +32,6 @@ int main(){
 	if(tDecorrido>contador2){
 
     medicao_angulos(angulos);
-        cout <<  "Ok!" << endl;
     roll = angulos[0];
     pitch = angulos[1];
 
