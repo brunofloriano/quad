@@ -12,13 +12,5 @@
 #define PI    3.14159265
 #endif // PI
 
-#ifndef g_used_port_num
-#define g_used_port_num
-#endif // PI
-
-#ifndef g_is_using
-#define g_is_using
-#endif // PI
-
 int medicao_angulos(float *angulos);
 #endif // MEDICAO
