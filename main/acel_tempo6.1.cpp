@@ -6,6 +6,7 @@
 #include <iostream>
 #include <time.h>
 #include "medicao6.1.h"
+#include <fstream>
 
 
 using namespace std;
