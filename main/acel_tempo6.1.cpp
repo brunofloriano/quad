@@ -16,6 +16,8 @@ int main(){
     clock_t tam = 1000; //tempo de amostragem em milisegundos
     int contador2 = 0;
     float angulos[2];
+    angulos[0] = 0;
+    angulos[1] = 0;
     float roll, pitch;
     char C;
     clock_t tInicio, tFim, tDecorrido;
