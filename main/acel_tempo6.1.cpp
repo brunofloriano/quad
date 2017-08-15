@@ -23,6 +23,7 @@ int main(){
 
     cout << "\n Pressione qualquer tecla para iniciar \n" << endl;
     cin >> C;
+    cout <<  "Ok!" << endl;
 
     tInicio = clock();
     tFim = clock();
