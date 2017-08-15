@@ -23,7 +23,6 @@ int main(){
 
     cout << "\n Pressione qualquer tecla para iniciar \n" << endl;
     cin >> C;
-    cout <<  "Ok!" << endl;
 
     tInicio = clock();
     tFim = clock();
@@ -31,7 +30,7 @@ int main(){
     //Loop
     while(tDecorrido<tsim*1000){
 	if(tDecorrido>contador2){
-
+    cout <<  "Ok!" << endl;
     medicao_angulos(angulos);
     roll = angulos[0];
     pitch = angulos[1];
