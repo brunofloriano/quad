@@ -6,7 +6,7 @@
 #include <fcntl.h>      // File control definitions
 #include <errno.h>      // Error number definitions
 #include <termios.h>    // POSIX terminal control definitions
-#include <time.h>
+//#include <time.h>
 
 #ifndef PI
 #define PI    3.14159265
