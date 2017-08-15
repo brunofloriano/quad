@@ -1,8 +1,8 @@
-#include <iostream>
 #include <time.h>
-#include "medicao_acel.h"
+#include <stdio.h>
+#include "medicao_acelc.h"
 //#include "filtro.h"
-#include <fstream>
+//#include <fstream>
 
 
 using namespace std;
@@ -15,13 +15,13 @@ int main(){
     angulos[0] = 0;
     angulos[1] = 0;
     float roll, pitch;
-    float fc; //frequencia de corte do filtro passa baixas
+    float fc = 1; //frequencia de corte do filtro passa baixas
     char C;
     clock_t tInicio, tFim, tDecorrido;
-    ofstream arq4("valores_acelerometro.txt");
+    //ofstream arq4("valores_acelerometro.txt");
 
-    cout << "\n Selecione um tempo de amostragem: \n" << endl;
-    cin >> tam;
+    printf("\n Selecione um tempo de amostragem: \n");
+    scanf("%f",&tam);
 
     tInicio = clock();
     tFim = clock();
@@ -34,11 +34,11 @@ int main(){
     roll = angulos[0];
     pitch = angulos[1];
 
-    //roll = filtro(tam, 1, roll);
-    //pitch = filtro(tam, 1, pitch);
+    //roll = filtro(tam, fc, roll);
+    //pitch = filtro(tam, fc, pitch);
 
-    cout << roll << " " << pitch <<endl;
-    arq4 << roll <<" "<<pitch <<endl;
+    printf("%f %f \n",roll, pitch);
+    //arq4 << roll <<" "<<pitch <<endl;
     contador2 = contador2 + tam;
             }
 

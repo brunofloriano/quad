@@ -1,7 +1,7 @@
-#ifndef MEDICAO_CPP
-#define MEDICAO_CPP
+#ifndef MEDICAO_C
+#define MEDICAO_C
 
-//#include "include/command.h"
+#include "include/command.h"
 #include <unistd.h>     // UNIX standard function definitions
 #include <fcntl.h>      // File control definitions
 #include <errno.h>      // Error number definitions
@@ -14,7 +14,7 @@ using namespace std;
 
 int medicao_angulos(float *angulos){
 
-    //command cmd;
+    command cmd;
     char buf = '\0';
     char response[1024];
 
