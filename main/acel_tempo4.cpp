@@ -9,6 +9,19 @@
 
 using namespace std;
 
+float filtro(clock_t tam, float fc, float ak){
+    float pi = 3.1415926;
+    float T = tam/1000; //tempo de amostragem em segundos
+    float Fc = fc;
+    float Ak = ak;
+    float a1= 1/(1+T*2*pi*Fc), a2 = T*2*pi*Fc/(1+T*2*pi*Fc);
+    static float Afk = 0;
+
+    Afk = a1*Afk + a2*Ak;
+
+return Afk;
+}
+
 int medicao(clock_t tsim, clock_t tam){
 
     command cmd;
@@ -153,21 +166,6 @@ int medicao(clock_t tsim, clock_t tam){
 close(USB);
 return 0;
 }
-
-
-float filtro(clock_t tam, float fc, float ak){
-    float pi = 3.1415926;
-    float T = tam/1000; //tempo de amostragem em segundos
-    float Fc = fc;
-    float Ak = ak;
-    float a1= 1/(1+T*2*pi*Fc), a2 = T*2*pi*Fc/(1+T*2*pi*Fc);
-    static float Afk = 0;
-
-    Afk = a1*Afk + a2*Ak;
-
-return Afk;
-}
-
 
 int main(){
     clock_t tsim1 = 10; //tempo de simulacao em segundos
