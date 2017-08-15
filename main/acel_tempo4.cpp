@@ -24,6 +24,7 @@ int medicao(clock_t tsim, clock_t tam){
     int X = 1;
     char C;
     float temp_val[7];
+    float fc = 1;
 
     clock_t tInicio, tFim, tDecorrido, t;
 
@@ -136,7 +137,8 @@ int medicao(clock_t tsim, clock_t tam){
 
         //cout<<roll[contador%10]<<" "<<lido[0]*0.29<<" "<<abs(roll[contador%10]-lido[0]*0.29)<<endl;
 
-
+            roll[contador3%10] = filtro(tam, fc, roll[contador3%10]);
+            pitch[contador3%10] = filtro(tam, fc, pitch[contador3%10]);
 
            //cout << roll[contador3%10] << " " << pitch[contador3%10] << endl;
           // cout<<xAccel[contador%10]<<" "<<yAccel[contador%10]<<" "<<zAccel[contador%10]<<" "<<S1[contador%10]<<" "<<S2[contador%10]<<" "<<S3[contador%10]<<" "<<S4[contador%10]<<" "<<roll[contador%10]<<" "<<pitch[contador%10]<<endl;
@@ -152,6 +154,21 @@ close(USB);
 return 0;
 }
 
+
+float filtro(clock_t tam, float fc, float ak){
+    float pi = 3.1415926;
+    float T = tam/1000; //tempo de amostragem em segundos
+    float Fc = fc;
+    float Ak = ak;
+    float a1= 1/(1+T*2*pi*Fc), a2 = T*2*pi*Fc/(1+T*2*pi*Fc);
+    static float Afk = 0;
+
+    Afk = a1*Afk + a2*Ak;
+
+return Afk;
+}
+
+
 int main(){
     clock_t tsim1 = 10; //tempo de simulacao em segundos
     clock_t tam1 = 1000; //tempo de amostragem em microsegundos
@@ -160,3 +177,5 @@ int main(){
 
 return 0;
 }
+
+
