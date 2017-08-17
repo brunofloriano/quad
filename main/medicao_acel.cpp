@@ -76,7 +76,7 @@ cout << "Ok1" << endl;
             n_written = write( USB, "1", 1 );
 
             do
-            {cout << "Ok2" << endl;
+            {cout << n << endl;
                 n = read( USB, &buf, 1 );
                 cout << "Ok3" << endl;
             }
