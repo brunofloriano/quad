@@ -9,19 +9,21 @@ using namespace std;
 
 int main(){
     clock_t tsim = 10; //tempo de simulacao em segundos
-    clock_t tam = 500; //tempo de amostragem em milisegundos
+    clock_t tam = 100; //tempo de amostragem em milisegundos
     int contador2 = 0;
     float angulos[2];
     angulos[0] = 0;
     angulos[1] = 0;
     float roll = 0, pitch = 0, roll_medido, pitch_medido;
-    float fc = 1; //frequencia de corte do filtro passa baixas
+    float fc = 10; //frequencia de corte do filtro passa baixas
     char C;
     clock_t tInicio, tFim, tDecorrido;
     ofstream arq4("valores_acelerometro.txt");
 
-    cout << "\n Selecione um tempo de amostragem: \n" << endl;
-    cin >> tam;
+    //cout << "\n Selecione um tempo de amostragem: \n" << endl;
+    //cin >> tam;
+    cout << "\n Pressione qualquer tecla para continuar: \n" << endl;
+    cin >> C;
 
     tInicio = clock();
     tFim = clock();
