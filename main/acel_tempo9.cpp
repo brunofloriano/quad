@@ -22,8 +22,10 @@ int main(){
 
     //cout << "\n Selecione um tempo de amostragem: \n" << endl;
     //cin >> tam;
-    cout << "\n Pressione qualquer tecla para continuar: \n" << endl;
-    cin >> C;
+    //cout << "\n Pressione qualquer tecla para continuar: \n" << endl;
+    //cin >> C;
+    cout << "\n Selecione a frequencia de corte: \n" << endl;
+    cin >> fc;
 
     tInicio = clock();
     tFim = clock();
