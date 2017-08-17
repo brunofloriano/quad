@@ -40,7 +40,7 @@ int medicao_angulos(float *angulos){
     /* Error Handling */
     if ( tcgetattr ( USB, &tty ) != 0 )
     {
-        std::cout << "Error " << errno << " from tcgetattr: " << strerror(errno) << std::endl;
+        printf( "Error %f from tcgetattr: %c", errno, strerror(errno));
     }
 
     /* Save old tty parameters */
@@ -63,7 +63,7 @@ int medicao_angulos(float *angulos){
     //tcflush( USB, TCIFLUSH );
     if ( tcsetattr ( USB, TCSANOW, &tty ) != 0)
     {
-        std::cout << "Error " << errno << " from tcsetattr" << std::endl;
+        printf("Error %f from tcsetattr ", errno);
     }
 
 
