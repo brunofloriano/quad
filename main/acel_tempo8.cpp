@@ -15,13 +15,13 @@ int main(){
     angulos[0] = 0;
     angulos[1] = 0;
     float roll, pitch;
-    float fc; //frequencia de corte do filtro passa baixas
-    //char C;
+    //float fc; //frequencia de corte do filtro passa baixas
+    char C;
     clock_t tInicio, tFim, tDecorrido;
     ofstream arq4("valores_acelerometro.txt");
 
     cout << "\n Selecione um tempo de amostragem: \n" << endl;
-    cin >> tam;
+    cin >> C;
 
     tInicio = clock();
     tFim = clock();
