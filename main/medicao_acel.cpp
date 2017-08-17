@@ -76,18 +76,16 @@ cout << "Ok1" << endl;
             n_written = write( USB, "1", 1 );
 
             do
-            {cout << n << endl;
+            {
                 n = read( USB, &buf, 1 );
-                cout << "Ok3" << endl;
-            }
-            while( buf != '<' && n > 0);
+
+            } while( buf != '<' && n > 0);
             do
             {
                 n = read( USB, &buf, 1 );
                 sprintf(&response[spot],"%c",buf);
                 spot += n;
-            }
-            while( buf != '>' && n > 0);
+            } while( buf != '>' && n > 0);
             temp=response;
             inic=temp.find('\n');
             fim=inic;
