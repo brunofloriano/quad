@@ -65,8 +65,8 @@ int medicao_angulos(float *angulos){
         std::cout << "Error " << errno << " from tcsetattr" << std::endl;
     }
 
-
-             memset(temp_val, 0, sizeof temp_val);
+cout << "Ok1" << endl;
+            memset(temp_val, 0, sizeof temp_val);
             n=0;
             spot=0;
             buf='\0';
@@ -76,8 +76,9 @@ int medicao_angulos(float *angulos){
             n_written = write( USB, "1", 1 );
 
             do
-            {
+            {cout << "Ok2" << endl;
                 n = read( USB, &buf, 1 );
+                cout << "Ok3" << endl;
             }
             while( buf != '<' && n > 0);
             do
