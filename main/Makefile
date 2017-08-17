@@ -1,8 +1,8 @@
-CC=gcc
+CC=g++
 CFLAGS=-W -Wall -ansi -pedantic
 EXEC=executavel
-OBJ=acelerometro.o medicao_acelc.o
-DEPS=medicao_acelc.h
+OBJ=acel_tempo8.o medicao_acel.o
+DEPS=medicao_acel.h
 
 all:	$(EXEC)
 $(EXEC):	$(OBJ)
