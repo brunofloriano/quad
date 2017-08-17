@@ -11,10 +11,10 @@ int main(){
     clock_t tsim = 10; /*tempo de simulacao em segundos*/
     clock_t tam = 500; /*tempo de amostragem em milisegundos*/
     int contador2 = 0;
+    float roll;
     float angulos[2];
     angulos[0] = 0;
     angulos[1] = 0;
-    float roll;
     float pitch;
     /*float fc = 1; frequencia de corte do filtro passa baixas*/
     char C;
