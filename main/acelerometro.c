@@ -14,14 +14,15 @@ int main(){
     float angulos[2];
     angulos[0] = 0;
     angulos[1] = 0;
-    float roll, pitch;
+    float roll
+    float pitch;
     float fc = 1; /*frequencia de corte do filtro passa baixas*/
     char C;
     clock_t tInicio, tFim, tDecorrido;
     /*ofstream arq4("valores_acelerometro.txt");*/
 
-    printf("\n Selecione um tempo de amostragem: \n");
-    scanf("%f",&tam);
+    printf("\n Aperte qualquer teclar para continuar: \n");
+    scanf("%c",&C);
 
     tInicio = clock();
     tFim = clock();
