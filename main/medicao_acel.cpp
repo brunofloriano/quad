@@ -79,13 +79,13 @@ cout << "Ok1" << endl;
             {
                 n = read( USB, &buf, 1 );
 
-            } while( buf != '<' && n > 0);
+            } while( (buf != '<') && (n > 0));
             do
             {
                 n = read( USB, &buf, 1 );
                 sprintf(&response[spot],"%c",buf);
                 spot += n;
-            } while( buf != '>' && n > 0);
+            } while( (buf != '>') && (n > 0));
             temp=response;
             inic=temp.find('\n');
             fim=inic;
