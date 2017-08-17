@@ -39,9 +39,9 @@ int main(){
     pitch_medido = angulos[1];
 
     roll = filtro(tam, fc, roll_medido, roll);
-    //pitch = filtro(tam, fc, pitch_medido, pitch);
+    pitch = filtro(tam, fc, pitch_medido, pitch);
 
-    //cout << roll << " " << pitch <<endl;
+    cout << roll << " " << pitch <<endl;
     arq4 << roll <<" "<<pitch <<endl;
     contador2 = contador2 + tam;
             }
