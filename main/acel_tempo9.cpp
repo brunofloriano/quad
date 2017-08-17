@@ -15,7 +15,7 @@ int main(){
     angulos[0] = 0;
     angulos[1] = 0;
     float roll = 0, pitch = 0, roll_medido, pitch_medido;
-    float fc = 1; //frequencia de corte do filtro passa baixas
+    float fc = 1000; //frequencia de corte do filtro passa baixas
     char C;
     clock_t tInicio, tFim, tDecorrido;
     ofstream arq4("valores_acelerometro.txt");
