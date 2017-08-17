@@ -1,7 +1,7 @@
 CC=g++
 CFLAGS=-W -Wall -ansi -pedantic
 EXEC=executavel
-OBJ=acel_tempo8.o medicao_acel.o
+OBJ=acel_tempo9.o medicao_acel.o
 DEPS=medicao_acel.h
 
 all:	$(EXEC)
