@@ -18,7 +18,9 @@ int main(){
     float pitch;
     /*float fc = 1; frequencia de corte do filtro passa baixas*/
     char C;
-    clock_t tInicio, tFim, tDecorrido;
+    clock_t tInicio;
+    clock_t tFim;
+    clock_t tDecorrido;
     /*ofstream arq4("valores_acelerometro.txt");*/
 
     printf("\n Aperte qualquer teclar para continuar: \n");
