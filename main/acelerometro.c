@@ -10,6 +10,9 @@
 int main(){
     clock_t tsim = 10; /*tempo de simulacao em segundos*/
     clock_t tam = 500; /*tempo de amostragem em milisegundos*/
+    clock_t tInicio;
+    clock_t tFim;
+    clock_t tDecorrido;
     int contador2 = 0;
     float roll;
     float pitch;
@@ -18,9 +21,7 @@ int main(){
     angulos[1] = 0;
     /*float fc = 1; frequencia de corte do filtro passa baixas*/
     char C;
-    clock_t tInicio;
-    clock_t tFim;
-    clock_t tDecorrido;
+
     /*ofstream arq4("valores_acelerometro.txt");*/
 
     printf("\n Aperte qualquer teclar para continuar: \n");
