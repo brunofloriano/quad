@@ -46,5 +46,7 @@ int main(){
 	tDecorrido = ((tFim - tInicio) / (CLOCKS_PER_SEC / 1000));
 }
 
+cout << "\n Fim do Programa! \n" << endl;
+
 return 0;
 }
