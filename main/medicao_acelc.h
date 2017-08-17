@@ -3,4 +3,3 @@
 
 int medicao_angulos(float *angulos);
 #endif // MEDICAO
-
