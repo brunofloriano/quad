@@ -17,10 +17,10 @@ int main(){
     float roll;
     float pitch;
     float angulos[2];
+    char C;
     angulos[0] = 0;
     angulos[1] = 0;
     /*float fc = 1; frequencia de corte do filtro passa baixas*/
-    char C;
 
     /*ofstream arq4("valores_acelerometro.txt");*/
 
