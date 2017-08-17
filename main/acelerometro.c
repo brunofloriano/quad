@@ -5,7 +5,7 @@
 /*#include <fstream>*/
 
 
-using namespace std;
+
 
 int main(){
     clock_t tsim = 10; /*tempo de simulacao em segundos*/
@@ -26,7 +26,7 @@ int main(){
     tInicio = clock();
     tFim = clock();
     tDecorrido = ((tFim - tInicio) / (CLOCKS_PER_SEC / 1000));
-    //Loop
+    /*Loop*/
     while(tDecorrido<tsim*1000){
 	if(tDecorrido>contador2){
 

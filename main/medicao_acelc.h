@@ -2,4 +2,4 @@
 #define MEDICAO_H
 
 int medicao_angulos(float *angulos);
-#endif // MEDICAO
+#endif
