@@ -79,7 +79,6 @@ int medicao_angulos(float *angulos){
             do
             {
                 n = read( USB, &buf, 1 );
-                cout << "Ok!" << endl;
             }
             while( buf != '<' && n > 0);
             do
