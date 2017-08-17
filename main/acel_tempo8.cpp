@@ -21,7 +21,7 @@ int main(){
     ofstream arq4("valores_acelerometro.txt");
 
     cout << "\n Selecione um tempo de amostragem: \n" << endl;
-    cin >> C;
+    cin >> tam;
 
     tInicio = clock();
     tFim = clock();
