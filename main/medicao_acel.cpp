@@ -65,7 +65,7 @@ int medicao_angulos(float *angulos){
         std::cout << "Error " << errno << " from tcsetattr" << std::endl;
     }
 
-cout << "Ok1" << endl;
+
             memset(temp_val, 0, sizeof temp_val);
             n=0;
             spot=0;
