@@ -5,7 +5,7 @@ float filtro(float tam, float fc, float Ak, float Afko){
     float a1 = 1/(1+T*2*pi*fc), a2 = T*2*pi*fc/(1+T*2*pi*fc);
     float Afk = 0;
 
-    Afk = a1*Afko + a2*Ak;
+    Afk = -a1*Afko + a2*Ak;
     printf("\n %f %f %f %f %f %f \n",a1, a2, T,fc,Ak,Afk);
 
 return Afk;
