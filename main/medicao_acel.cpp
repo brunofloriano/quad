@@ -81,6 +81,7 @@ int medicao_angulos(float *angulos){
            //     cout << "Ok2" << endl;
            // }
             //while( buf != '<' && n > 0);
+            cout << "Ok" << endl;
             do
             {
                 n = read( USB, &buf, 1 );
@@ -89,7 +90,7 @@ int medicao_angulos(float *angulos){
             }
 
             while( buf != '>' && n > 0);
-                        cout << "Ok" << endl;
+
             temp=response;
             inic=temp.find('\n');
             fim=inic;
