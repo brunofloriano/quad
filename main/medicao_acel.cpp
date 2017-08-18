@@ -67,7 +67,7 @@ int medicao_angulos(float *angulos){
 
 
             memset(temp_val, 0, sizeof temp_val);
-            n=1;
+            n=0;
             spot=0;
             buf='\0';
             n_endl=0;
@@ -75,22 +75,18 @@ int medicao_angulos(float *angulos){
 
             n_written = write( USB, "1", 1 );
 
-            //do
-            //{
-             //   n = read( USB, &buf, 1 );
-
-            //}
+            do
+            {
+                n = read( USB, &buf, 1 );
+            }
             while( buf != '<' && n > 0);
-            cout << "Ok" << endl;
             do
             {
                 n = read( USB, &buf, 1 );
                 sprintf(&response[spot],"%c",buf);
                 spot += n;
             }
-
             while( buf != '>' && n > 0);
-
             temp=response;
             inic=temp.find('\n');
             fim=inic;
