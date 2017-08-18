@@ -75,11 +75,11 @@ int medicao_angulos(float *angulos){
 
             n_written = write( USB, "1", 1 );
 
-            //do
-            //{
-            //    n = read( USB, &buf, 1 );
-            //}
-            //while( buf != '<' && n > 0);
+            do
+            {   cout << USB << endl;
+               n = read( USB, &buf, 1 );
+            }
+            while( buf != '<' && n > 0);
             do
             {
                 n = read( USB, &buf, 1 );
