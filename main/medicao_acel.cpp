@@ -77,11 +77,11 @@ int medicao_angulos(float *angulos){
 
             do
             {
-                n = read( USB, &buf, 1 );
+                n = read(USB, &buf, 1);
             } while( (buf != '<') && (n > 0));
             do
             {
-                n = read( USB, &buf, 1 );
+                n = read(USB, &buf, 1);
                 sprintf(&response[spot],"%c",buf);
                 spot += n;
             } while( (buf != '>') && (n > 0));
