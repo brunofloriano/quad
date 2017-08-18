@@ -44,7 +44,7 @@ int main(){
     pitch = filtro(tam, fc, pitch_medido, pitch, &out);
     pitch = out;
 
-    cout << roll << " " << pitch <<endl;
+    cout << roll_medido << " " << pitch_medido <<endl;
     arq4 << roll <<" "<<pitch <<endl;
     contador2 = contador2 + tam;
             }
