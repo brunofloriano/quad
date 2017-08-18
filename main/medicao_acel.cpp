@@ -31,7 +31,7 @@ int medicao_angulos(float *angulos){
 
 
 
-    //USB Handling//
+     //USB Handling//
     struct termios tty;
     struct termios tty_old;
     memset (&tty, 0, sizeof tty);
