@@ -18,9 +18,9 @@ int medicao_angulos(float *angulos){
     char buf = '\0';
     char response[1024];
 
-    int USB = open( "/dev/ttyACM0", O_RDWR| O_NOCTTY | O_NONBLOCK);
+    int USB = open( "/dev/ttyACM0", O_RDWR| O_NOCTTY );
     close(USB);
-    USB = open( "/dev/ttyACM0", O_RDWR| O_NOCTTY | O_NONBLOCK);
+    USB = open( "/dev/ttyACM0", O_RDWR| O_NOCTTY );
 
     int n = 0, n_endl, spot = 0, n_written = 0;
     float temp_val[7];
