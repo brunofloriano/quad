@@ -87,8 +87,9 @@ int medicao_angulos(float *angulos){
                 sprintf(&response[spot],"%c",buf);
                 spot += n;
             }
-            cout << "Ok" << endl;
+
             while( buf != '>' && n > 0);
+                        cout << "Ok" << endl;
             temp=response;
             inic=temp.find('\n');
             fim=inic;
