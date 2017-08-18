@@ -66,7 +66,7 @@ int medicao_angulos(float *angulos){
     }
 
 
-            memset(temp_val, 0, sizeof temp_val);
+           memset(temp_val, 0, sizeof temp_val);
             n=0;
             spot=0;
             buf='\0';
