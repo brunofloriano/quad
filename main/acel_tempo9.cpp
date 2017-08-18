@@ -16,6 +16,7 @@ int main(){
     angulos[1] = 0;
     float roll = 0, pitch = 0, roll_medido, pitch_medido;
     float fc = 1; //frequencia de corte do filtro passa baixas
+    float out;
     char C;
     clock_t tInicio, tFim, tDecorrido;
     ofstream arq4("valores_acelerometro.txt");
@@ -38,8 +39,10 @@ int main(){
     roll_medido = angulos[0];
     pitch_medido = angulos[1];
 
-    roll = filtro(tam, fc, roll_medido, roll);
-    pitch = filtro(tam, fc, pitch_medido, pitch);
+    filtro(tam, fc, roll_medido, roll, &out);
+    roll = out;
+    pitch = filtro(tam, fc, pitch_medido, pitch, &out);
+    pitch = out;
 
     cout << roll << " " << pitch <<endl;
     arq4 << roll <<" "<<pitch <<endl;
