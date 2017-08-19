@@ -9,8 +9,8 @@
 using namespace std;
 
 int main(){
-    clock_t tsim = 5; //tempo de simulacao em segundos
-    clock_t tam = 1000; //tempo de amostragem em microsegundos
+    clock_t tsim = 10; //tempo de simulacao em segundos
+    clock_t tam = 100; //tempo de amostragem em microsegundos
     clock_t tInicio, tFim, tDecorrido;
     float angulos[2];
     char X;
