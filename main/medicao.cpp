@@ -1,9 +1,11 @@
+#ifndef MEDICAO_CPP
+#define MEDICAO_CPP
+
 #include "include/command.h"
 #include <unistd.h>     // UNIX standard function definitions
 #include <fcntl.h>      // File control definitions
 #include <errno.h>      // Error number definitions
 #include <termios.h>    // POSIX terminal control definitions
-#include <time.h>
 
 #define PI    3.14159265
 
@@ -116,3 +118,5 @@ int medicao(float *angulos, int USB){
 close(USB);
 return 0;
 }
+
+#endif // MEDICAO_CPP
