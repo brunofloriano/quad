@@ -29,7 +29,7 @@ int main(){
     cout << angulos[0] << " " << angulos[1] << endl;
 
 
-}
+
 
 return 0;
 }
