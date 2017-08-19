@@ -29,7 +29,7 @@ int main(){
     while(tDecorrido<tsim*1000){
 	if(tDecorrido>contador2){
     inicializacao();
-    medicao(angulos, tsim1,tam1,USB);
+    medicao(angulos, tsim,tam,USB);
     cout << angulos[0] << " " << angulos[1] << endl;
     contador2 = contador2 + tam;
     }
