@@ -11,15 +11,18 @@
 using namespace std;
 
 int main(){
-    clock_t tsim1 = 10; //tempo de simulacao em segundos
+    clock_t tsim1 = 5; //tempo de simulacao em segundos
     clock_t tam1 = 500; //tempo de amostragem em microsegundos
     float angulos[2];
     char X;
+    int contador=0;
 
     int USB = inicializacao();
     cout << "\n Pressione qualquer tecla para iniciar \n" << endl;
     cin >> X;
+    while(contador<2){
     medicao(angulos, tsim1,tam1,USB);
-
+    contador++;
+    }
 return 0;
 }
