@@ -53,7 +53,7 @@ int inicializacao(){
 return USB;
 }
 
-int medicao(float *angulos, clock_t tsim, clock_t tam, int USB){
+int medicao(float *angulos, int USB){
 
     command cmd;
     char buf = '\0';
