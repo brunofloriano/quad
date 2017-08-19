@@ -13,7 +13,8 @@ int main(){
     clock_t tam = 100; //tempo de amostragem em microsegundos
     clock_t tInicio, tFim, tDecorrido;
     float angulos[2];
-    float roll_medido, pitch_medido, roll, pitch;
+    float out;
+    float roll_medido, pitch_medido, roll = 0, pitch = 0;
     char X;
     int contador2 = 0;
 
