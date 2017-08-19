@@ -25,12 +25,13 @@ int main(){
     //cin >> tam;
     //cout << "\n Pressione qualquer tecla para continuar: \n" << endl;
     //cin >> C;
-    cout << "\n Selecione a frequencia de corte: \n" << endl;
-    cin >> fc;
+
 
     tInicio = clock();
     tFim = clock();
     tDecorrido = ((tFim - tInicio) / (CLOCKS_PER_SEC / 1000));
+    cout << "\n Selecione a frequencia de corte: \n" << endl;
+    cin >> fc;
     //Loop
     while(tDecorrido<tsim*1000){
 	if(tDecorrido>contador2){
