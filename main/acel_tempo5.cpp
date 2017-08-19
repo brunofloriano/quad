@@ -15,6 +15,8 @@ int main(){
     clock_t tam1 = 500; //tempo de amostragem em microsegundos
     float angulos[2];
 
+    cout << "teste" << endl;
+
     int USB = inicializacao();
     medicao(angulos, tsim1,tam1,USB);
 
