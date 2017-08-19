@@ -4,6 +4,7 @@
 #include <errno.h>      // Error number definitions
 #include <termios.h>    // POSIX terminal control definitions
 #include <time.h>
+#include <iostream>
 #include "medicao.cpp"
 
 #define PI    3.14159265
