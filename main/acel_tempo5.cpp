@@ -20,7 +20,7 @@ int main(){
     int USB = inicializacao();
     cout << "\n Pressione qualquer tecla para iniciar \n" << endl;
     cin >> X;
-    while(contador<2){
+    while(contador<1){
     medicao(angulos, tsim1,tam1,USB);
     contador++;
     }
