@@ -22,11 +22,6 @@ int medicao_angulos(float *angulos){
     close(USB);
     USB = open( "/dev/ttyACM0", O_RDWR| O_NOCTTY );
 
-    int USB1 = open( "/dev/ttyACM0", O_RDWR| O_NOCTTY );
-    close(USB1);
-    USB1 = open( "/dev/ttyACM0", O_RDWR| O_NOCTTY );
-
-
     int n = 0, n_endl, spot = 0, n_written = 0;
     float temp_val[7];
     float xAcel, yAcel, zAcel;
@@ -81,8 +76,8 @@ int medicao_angulos(float *angulos){
             n_written = write( USB, "1", 1 );
 
             do
-            {
-                n = read( USB1, &buf, 1 );
+            { cout << n << " " << buf << endl;
+                n = read( USB, &buf, 1 );
             }
             while( buf != '<' && n > 0);
             do
