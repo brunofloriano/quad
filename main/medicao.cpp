@@ -53,9 +53,8 @@ int inicializacao(){
 return USB;
 }
 
-int medicao(clock_t tsim, clock_t tam){
+int medicao(clock_t tsim, clock_t tam, int USB){
 
-    int USB = inicializacao();
     command cmd;
     char buf = '\0';
     char response[1024];
