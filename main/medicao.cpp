@@ -61,7 +61,6 @@ int medicao(clock_t tsim, clock_t tam, int USB){
 
     int n = 0, n_endl, spot = 0, n_written = 0;
     int contador2 = 0;
-    int X = 1;
     char C;
     float temp_val[7];
     float xAcel, yAcel, zAcel;
