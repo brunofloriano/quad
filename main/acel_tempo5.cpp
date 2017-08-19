@@ -13,6 +13,7 @@ int main(){
     clock_t tam = 100; //tempo de amostragem em microsegundos
     clock_t tInicio, tFim, tDecorrido;
     float angulos[2];
+    float roll_medido, pitch_medido, roll, pitch;
     char X;
     int contador2 = 0;
 
@@ -28,7 +29,9 @@ int main(){
 	if(tDecorrido>contador2){
     inicializacao();
     medicao(angulos, USB);
-    cout << angulos[0] << " " << angulos[1] << endl;
+    roll = angulos[0];
+    pitch = angulos[1];
+    cout << roll << " " << pitch << endl;
     contador2 = contador2 + tam;
     }
 	tFim = clock();
