@@ -37,7 +37,7 @@ int main(){
 
     filtro(tam, fc, roll_medido, roll, &out);
     roll = out;
-    pitch = filtro(tam, fc, pitch_medido, pitch, &out);
+    filtro(tam, fc, pitch_medido, pitch, &out);
     pitch = out;
 
     cout << roll << " " << pitch << endl;
