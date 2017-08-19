@@ -60,7 +60,7 @@ int medicao(clock_t tsim, clock_t tam, int USB){
     char response[1024];
 
     int n = 0, n_endl, spot = 0, n_written = 0;
-    int contador=0, contador2 = 0, contador3 = 0;
+    int contador2 = 0;
     int X = 1;
     char C;
     float temp_val[7];
@@ -134,9 +134,7 @@ int medicao(clock_t tsim, clock_t tam, int USB){
 
            cout << angulos[0] << " " << angulos[1] << endl;
             contador2 = contador2 + tam;
-	    contador3++;
             }
-	contador++;
 	tFim = clock();
 	tDecorrido = ((tFim - tInicio) / (CLOCKS_PER_SEC / 1000));
 }
