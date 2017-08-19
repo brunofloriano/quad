@@ -35,11 +35,12 @@ int main(){
 
     contador2 = contador2 + tam;
     contador3++;
+    cout << angulos[0] << " " << angulos[1] << endl;
             }
 	contador++;
 	tFim = clock();
 	tDecorrido = ((tFim - tInicio) / (CLOCKS_PER_SEC / 1000));
-	cout << angulos[0] << " " << angulos[1] << endl;
+
 }
 
 return 0;
