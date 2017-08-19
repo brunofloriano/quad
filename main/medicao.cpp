@@ -61,6 +61,7 @@ int medicao(float *angulos, clock_t tsim, clock_t tam, int USB){
 
     int n = 0, n_endl, spot = 0, n_written = 0;
     int contador2 = 0;
+    char C;
     float temp_val[7];
     float xAcel, yAcel, zAcel;
 
@@ -68,6 +69,9 @@ int medicao(float *angulos, clock_t tsim, clock_t tam, int USB){
 
     string temp,temp2;
     size_t inic, fim;
+
+    cout << "\n Pressione qualquer tecla para iniciar \n" << endl;
+    cin >> C;
 
     tInicio = clock();
     tFim = clock();
