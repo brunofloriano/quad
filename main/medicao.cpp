@@ -53,7 +53,7 @@ int inicializacao(){
 return USB;
 }
 
-int medicao(clock_t tsim, clock_t tam, int USB){
+int medicao(float angulos, clock_t tsim, clock_t tam, int USB){
 
     command cmd;
     char buf = '\0';
@@ -64,7 +64,6 @@ int medicao(clock_t tsim, clock_t tam, int USB){
     char C;
     float temp_val[7];
     float xAcel, yAcel, zAcel;
-    float angulos[2];
 
     clock_t tInicio, tFim, tDecorrido;
 
