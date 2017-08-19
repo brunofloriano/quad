@@ -26,22 +26,12 @@ int medicao(clock_t tsim, clock_t tam){
     char C;
     float temp_val[7];
     float xAcel, yAcel, zAcel;
-    float angulos;
+    float angulos[2];
 
     clock_t tInicio, tFim, tDecorrido, t;
 
     string temp,temp2;
     size_t inic, fim;
-
-    vector<float> xAccel;
-    vector<float> yAccel;
-    vector<float> zAccel;
-    vector<float> S1;
-    vector<float> S2;
-    vector<float> S3;
-    vector<float> S4;
-    vector<float> roll;
-    vector<float> pitch;
 
     ofstream arq4("valores_acelerometro.txt");
 
@@ -127,23 +117,17 @@ int medicao(clock_t tsim, clock_t tam){
             tcflush( USB, TCIFLUSH );
 
 
-            xAccel.push_back(temp_val[1]);
-            yAccel.push_back(-temp_val[0]);
-            zAccel.push_back(temp_val[2]);
-            S1.push_back(temp_val[3]);
-            S2.push_back(temp_val[4]);
-            S3.push_back(temp_val[5]);
-            S4.push_back(temp_val[6]);
-            roll.push_back(atan(-xAccel[contador3%10]/zAccel[contador3%10])*180/PI);
-            pitch.push_back(3+atan(yAccel[contador3%10]/(sqrt(xAccel[contador3%10]*xAccel[contador3%10]+zAccel[contador3%10]*zAccel[contador3%10])))*180/PI);
+    xAcel = temp_val[1];
+    yAcel = -temp_val[0];
+    zAcel = temp_val[2];
 
-        //cout<<roll[contador%10]<<" "<<lido[0]*0.29<<" "<<abs(roll[contador%10]-lido[0]*0.29)<<endl;
+    angulos[0] = atan(-xAcel/zAcel)*180/PI;   //roll
+    angulos[1] = 3+atan(yAcel/(sqrt(xAcel*xAcel+zAcel*zAcel)))*180/PI; //pitch
 
 
-
-           cout << roll[contador3%10] << " " << pitch[contador3%10] << endl;
+           cout << angulos[0] << " " << angulos[1] << endl;
           // cout<<xAccel[contador%10]<<" "<<yAccel[contador%10]<<" "<<zAccel[contador%10]<<" "<<S1[contador%10]<<" "<<S2[contador%10]<<" "<<S3[contador%10]<<" "<<S4[contador%10]<<" "<<roll[contador%10]<<" "<<pitch[contador%10]<<endl;
-            arq4<< roll[contador3%10]<<" "<<pitch[contador3%10]<<endl;
+            //arq4<< roll[contador3%10]<<" "<<pitch[contador3%10]<<endl;
             contador2 = contador2 + tam;
 	    contador3++;
             }
