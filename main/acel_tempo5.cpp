@@ -15,15 +15,13 @@ int main(){
     clock_t tam1 = 1000; //tempo de amostragem em microsegundos
     float angulos[2];
     char X;
-    int contador=0;
 
     int USB = inicializacao();
     cout << "\n Pressione qualquer tecla para iniciar \n" << endl;
     cin >> X;
-    while(contador<2){
+
     inicializacao();
     medicao(angulos, tsim1,tam1,USB);
-    contador++;
-    }
+
 return 0;
 }
