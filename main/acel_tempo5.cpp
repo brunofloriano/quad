@@ -14,8 +14,10 @@ int main(){
     clock_t tsim1 = 10; //tempo de simulacao em segundos
     clock_t tam1 = 500; //tempo de amostragem em microsegundos
     float angulos[2];
+    char X:
 
     cout << "\n Pressione qualquer tecla para iniciar \n" << endl;
+    cin >> X;
 
     int USB = inicializacao();
     medicao(angulos, tsim1,tam1,USB);
