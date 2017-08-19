@@ -20,6 +20,7 @@ int main(){
     int contador2 = 0;
 
     int USB = inicializacao();
+    ofstream arq4("valores_acelerometro.txt");
     cout << "\n Pressione qualquer tecla para iniciar \n" << endl;
     cin >> X;
 
@@ -40,6 +41,7 @@ int main(){
     pitch = out;
 
     cout << roll << " " << pitch << endl;
+    arq4 << roll <<" "<< pitch <<endl;
     contador2 = contador2 + tam;
     }
 	tFim = clock();
