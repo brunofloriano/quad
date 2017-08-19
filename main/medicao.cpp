@@ -10,30 +10,11 @@
 
 using namespace std;
 
-int medicao(clock_t tsim, clock_t tam){
-
-    command cmd;
-    char buf = '\0';
-    char response[1024];
+int inicializacao(){
 
     int USB = open( "/dev/ttyACM0", O_RDWR| O_NOCTTY );
     close(USB);
     USB = open( "/dev/ttyACM0", O_RDWR| O_NOCTTY );
-
-    int n = 0, n_endl, spot = 0, n_written = 0;
-    int contador=0, contador2 = 0, contador3 = 0;
-    int X = 1;
-    char C;
-    float temp_val[7];
-    float xAcel, yAcel, zAcel;
-    float angulos[2];
-
-    clock_t tInicio, tFim, tDecorrido;
-
-    string temp,temp2;
-    size_t inic, fim;
-
-    ofstream arq4("valores_acelerometro.txt");
 
     //USB Handling//
     struct termios tty;
@@ -68,6 +49,33 @@ int medicao(clock_t tsim, clock_t tam){
     {
         std::cout << "Error " << errno << " from tcsetattr" << std::endl;
     }
+
+return USB;
+}
+
+int medicao(clock_t tsim, clock_t tam){
+
+    int USB = inicializacao();
+    command cmd;
+    char buf = '\0';
+    char response[1024];
+
+    int n = 0, n_endl, spot = 0, n_written = 0;
+    int contador=0, contador2 = 0, contador3 = 0;
+    int X = 1;
+    char C;
+    float temp_val[7];
+    float xAcel, yAcel, zAcel;
+    float angulos[2];
+
+    clock_t tInicio, tFim, tDecorrido;
+
+    string temp,temp2;
+    size_t inic, fim;
+
+    ofstream arq4("valores_acelerometro.txt");
+
+
 
 
     cout << "\n Pressione qualquer tecla para iniciar \n" << endl;
