@@ -23,23 +23,11 @@ int main(){
     cout << "\n Pressione qualquer tecla para iniciar \n" << endl;
     cin >> C;
 
-    tInicio = clock();
-    tFim = clock();
-    tDecorrido = ((tFim - tInicio) / (CLOCKS_PER_SEC / 1000));
-    //Loop
-    while(tDecorrido<tsim*1000){
-	if(tDecorrido>contador2){
-
 
     medicao(angulos);
 
-    contador2 = contador2 + tam;
-    contador3++;
     cout << angulos[0] << " " << angulos[1] << endl;
-            }
-	contador++;
-	tFim = clock();
-	tDecorrido = ((tFim - tInicio) / (CLOCKS_PER_SEC / 1000));
+
 
 }
 
