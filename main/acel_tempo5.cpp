@@ -21,6 +21,7 @@ int main(){
     cout << "\n Pressione qualquer tecla para iniciar \n" << endl;
     cin >> X;
     while(contador<2){
+    inicializacao();
     medicao(angulos, tsim1,tam1,USB);
     contador++;
     }
