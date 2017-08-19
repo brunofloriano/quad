@@ -25,6 +25,8 @@ int medicao(clock_t tsim, clock_t tam){
     int X = 1;
     char C;
     float temp_val[7];
+    float xAcel, yAcel, zAcel;
+    float angulos;
 
     clock_t tInicio, tFim, tDecorrido, t;
 
