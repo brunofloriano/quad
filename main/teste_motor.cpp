@@ -43,11 +43,13 @@ int main(){
     }
 
 
-    cmd.write_torque(portHandler, packetHandler, BROADCASTID, 0);
+
     cmd.config_ram(portHandler, packetHandler);
     cmd.getch();
 
     cmd.write_pos(portHandler, packetHandler, 1, 500);
+    cmd.getch();
+    cmd.write_torque(portHandler, packetHandler, BROADCASTID, 0);
 
 return 0;
 }
