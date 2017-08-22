@@ -1,15 +1,76 @@
-CC=g++
-CFLAGS=-W -Wall -ansi -pedantic
-EXEC=teste
-OBJ=teste_motor.o command.o
-DEPS=/include/command.h
 
-all:	$(EXEC)
-$(EXEC):	$(OBJ)
-	$(CC) -o $(EXEC) $(OBJ)
-%.o:	%.cpp $(DEPS)
-	$(CC) -o $@ -c $< $(CFLAGS)
+#---------------------------------------------------------------------
+# Makefile template for projects using DXL SDK
+#
+# Please make sure to follow these instructions when setting up your
+# own copy of this file:
+#
+#   1- Enter the name of the target (the TARGET variable)
+#   2- Add additional source files to the SOURCES variable
+#   3- Add additional static library objects to the OBJECTS variable
+#      if necessary
+#   4- Ensure that compiler flags, INCLUDES, and LIBRARIES are
+#      appropriate to your needs
+#
+#
+# This makefile will link against several libraries, not all of which
+# are necessarily needed for your project.  Please feel free to
+# remove libaries you do not need.
+#---------------------------------------------------------------------
+
+# *** ENTER THE TARGET NAME HERE ***
+TARGET      = main
+
+# important directories used by assorted rules and other variables
+DIR_DXL    = /quad/main/
+DIR_OBJS   = .objects
+
+# compiler options
+CC          = gcc
+CX          = g++
+CCFLAGS     = -O2 -O3 -DLINUX -D_GNU_SOURCE -Wall $(INCLUDES) $(FORMAT) -g
+CXFLAGS     = -O2 -O3 -DLINUX -D_GNU_SOURCE -Wall $(INCLUDES) $(FORMAT) -g
+LNKCC       = $(CX)
+LNKFLAGS    = $(CXFLAGS) #-Wl,-rpath,$(DIR_THOR)/lib
+FORMAT      =
+
+#---------------------------------------------------------------------
+# Core components (all of these are likely going to be needed)
+#---------------------------------------------------------------------
+INCLUDES   += -I$(DIR_DXL)include/
+LIBRARIES  += -ldxl_x86_cpp
+LIBRARIES  += -lrt
+
+#---------------------------------------------------------------------
+# Files
+#---------------------------------------------------------------------
+SOURCES = teste_motor.cpp command.cpp\
+    # *** OTHER SOURCES GO HERE ***
+
+OBJECTS  = $(addsuffix .o,$(addprefix $(DIR_OBJS)/,$(basename $(notdir $(SOURCES)))))
+#OBJETCS += *** ADDITIONAL STATIC LIBRARIES GO HERE ***
+
+
+#---------------------------------------------------------------------
+# Compiling Rules
+#---------------------------------------------------------------------
+$(TARGET): make_directory $(OBJECTS)
+	$(LNKCC) $(LNKFLAGS) $(OBJECTS) -o $(TARGET) $(LIBRARIES)
+
+all: $(TARGET)
+
 clean:
-	rm -rf *.o
-mrproper:	clear
-	rm -rf $(EXEC)
+	rm -rf $(TARGET) $(DIR_OBJS) core *~ *.a *.so *.lo
+
+make_directory:
+	mkdir -p $(DIR_OBJS)/
+
+$(DIR_OBJS)/%.o: %.c
+	$(CC) $(CCFLAGS) -c $? -o $@
+
+$(DIR_OBJS)/%.o: %.cpp
+	$(CX) $(CXFLAGS) -c $? -o $@
+
+#---------------------------------------------------------------------
+# End of Makefile
+#---------------------------------------------------------------------
