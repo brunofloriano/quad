@@ -47,7 +47,7 @@ int main(){
     cmd.config_ram(portHandler, packetHandler);
     cmd.getch();
 
-    cmd.write_pos(portHandler, packetHandler, 1, 510);
+    cmd.mov_speed(portHandler, packetHandler, 1, 300);
     cmd.getch();
     cmd.write_torque(portHandler, packetHandler, BROADCASTID, 0);
 
