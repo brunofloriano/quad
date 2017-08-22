@@ -47,7 +47,7 @@ int main(){
     cmd.config_ram(portHandler, packetHandler);
     cmd.getch();
 
-    cmd.write_pos(portHandler, packetHandler, BROADCASTID, 500);
+    cmd.write_pos(portHandler, packetHandler, 1, 500);
 
 return 0;
 }
