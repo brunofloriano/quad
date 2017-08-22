@@ -20,6 +20,7 @@
 
 int main(){
 
+    command cmd;
     char *dev_name = (char*)DEVICENAME;
     dynamixel::PacketHandler *packetHandler = dynamixel::PacketHandler::getPacketHandler(1);
     dynamixel::PortHandler *portHandler = dynamixel::PortHandler::getPortHandler(dev_name);
