@@ -45,11 +45,11 @@ int main(){
     dynamixel::PortHandler *portHandler = dynamixel::PortHandler::getPortHandler(dev_name);
     dynamixel::GroupSyncWrite groupSyncWrite(portHandler, packetHandler, 30, 2);
     float v = -2.5;
-    int USB = inicializacao();
     float angulos[2];
+    int USB = inicializacao();
 
 
-        inicializacao();
+    inicializacao();
     medicao(angulos, USB);
 
     printf("%f %f \n", angulos[0], angulos[1]);
