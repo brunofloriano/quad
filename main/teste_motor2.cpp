@@ -54,6 +54,7 @@ int main(){
     float out;
     float angulos[2];
     float roll_medido, pitch_medido, roll = 0, pitch = 0;
+    float velocidade_roll, velocidade_pitch;
     float fc = 1;
     int contador2 = 0;
     int USB = inicializacao();
@@ -90,11 +91,14 @@ int main(){
     pitch_medido = angulos [1];
 
     filtro(tam, fc, roll_medido, roll, &out);
+    velocidade_roll = out - roll;
     roll = out;
     filtro(tam, fc, pitch_medido, pitch, &out);
+    velocidade_pitch = out - pitch;
     pitch = out;
 
-    printf("%f %f \n", roll_medido, pitch_medido);
+
+    printf("%f %f \n", velocidade_roll, velocidade_pitch);
 
     contador2 = contador2 + tam;
     }
