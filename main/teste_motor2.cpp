@@ -56,7 +56,7 @@ int main(){
     float roll_medido, pitch_medido, roll = 0, pitch = 0;
     float velocidade_roll, velocidade_pitch;
     float fc = 1;
-    float K_roll_R = 10, K_roll_L = 5;
+    float K_roll_R = 7, K_roll_L = 5;
     float K_pitch_F = 5, K_pitch_R = 5;
     float K_UP = 2, K_DOWN = -1;
     float K1 = K_roll_L, K4 = K_roll_R, K7 = K_roll_R, K10 = K_roll_L;    //roll gains
@@ -88,6 +88,7 @@ int main(){
         //cmd.write_pos(portHandler, packetHandler, i+1, cmd.read_pos(portHandler, packetHandler, i+1));
          int a = cmd.read_pos(portHandler, packetHandler, i+1);
          printf("%d \n",a);
+         cmd.write_pos(portHandler, packetHandler, i+1, 450);
     }
 
 
