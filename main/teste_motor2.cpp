@@ -50,13 +50,12 @@ int main(){
     clock_t tsim = 10; //tempo de simulacao em segundos
     clock_t tam = 100; //tempo de amostragem em microsegundos
     clock_t tInicio, tFim, tDecorrido;
-    float v = -2.5;
     float out;
     float angulos[2];
     float roll_medido, pitch_medido, roll = 0, pitch = 0;
     float velocidade_roll, velocidade_pitch;
     float fc = 1;
-    float K1 = 1000,K4 = 1, K7 = 1, K10 = 1;    //roll gains
+    float K1 = 5000,K4 = 1, K7 = 1, K10 = 1;    //roll gains
     int contador2 = 0;
     int USB = inicializacao();
 
