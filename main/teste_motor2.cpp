@@ -102,10 +102,10 @@ int main(){
 
 
     printf("%f %f \n", velocidade_roll, velocidade_pitch);
-    //cmd.write_mov_speed(portHandler, packetHandler, 1, velocidade(-K1*velocidade_roll));
+    cmd.write_mov_speed(portHandler, packetHandler, 1, velocidade(-K1*velocidade_roll));
     cmd.write_mov_speed(portHandler, packetHandler, 4, velocidade(-K4*velocidade_roll));
     cmd.write_mov_speed(portHandler, packetHandler, 7, velocidade(-K7*velocidade_roll));
-    //cmd.write_mov_speed(portHandler, packetHandler, 10, velocidade(-K10*velocidade_roll));
+    cmd.write_mov_speed(portHandler, packetHandler, 10, velocidade(-K10*velocidade_roll));
 
     contador2 = contador2 + tam;
     }
