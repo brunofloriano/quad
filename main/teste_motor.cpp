@@ -25,7 +25,6 @@ int main(){
     dynamixel::PacketHandler *packetHandler = dynamixel::PacketHandler::getPacketHandler(1);
     dynamixel::PortHandler *portHandler = dynamixel::PortHandler::getPortHandler(dev_name);
     dynamixel::GroupSyncWrite groupSyncWrite(portHandler, packetHandler, 30, 2);
-    uint8_t param_goal_position[2];
 
 
     if (portHandler->openPort())
@@ -47,7 +46,7 @@ int main(){
     cmd.config_ram(portHandler, packetHandler);
     cmd.getch();
 
-    cmd.mov_speed(portHandler, packetHandler, 1, 500);
+    cmd.write_mov_speed(portHandler, packetHandler, 1, 500);
     cmd.getch();
     cmd.write_torque(portHandler, packetHandler, BROADCASTID, 0);
 
