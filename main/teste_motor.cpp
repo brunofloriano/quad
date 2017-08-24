@@ -23,8 +23,15 @@ using namespace std;
 
 int velocidade(float v){
     int x = MAX_SPEED*v/(6.9);
+    int CCW;
 
-return x;
+    if (v > 0){
+        CCW = 0;
+    }
+    else{CCW = 1024;}
+
+
+return x + CCW;
 
 }
 
@@ -35,7 +42,7 @@ int main(){
     dynamixel::PacketHandler *packetHandler = dynamixel::PacketHandler::getPacketHandler(1);
     dynamixel::PortHandler *portHandler = dynamixel::PortHandler::getPortHandler(dev_name);
     dynamixel::GroupSyncWrite groupSyncWrite(portHandler, packetHandler, 30, 2);
-    float v = 1;
+    float v = -1;
 
 
     if (portHandler->openPort())
