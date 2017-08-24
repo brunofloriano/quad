@@ -22,7 +22,7 @@
 using namespace std;
 
 int velocidade(float v){
-    int x = MAX_SPEED*v/(6.9);
+    int x = MAX_SPEED*abs(v)/(6.9);
     int CCW;
 
     if (v > 0){
