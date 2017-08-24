@@ -123,14 +123,14 @@ int main(){
     cmd.write_mov_speed(portHandler, packetHandler, 7, velocidade(-K7*velocidade_roll));
     cmd.write_mov_speed(portHandler, packetHandler, 10, velocidade(-K10*velocidade_roll));
 
-    cmd.write_mov_speed(portHandler, packetHandler, 2, velocidade(-K2*velocidade_pitch));
-    cmd.write_mov_speed(portHandler, packetHandler, 3, velocidade(-K3*velocidade_pitch));
-    cmd.write_mov_speed(portHandler, packetHandler, 5, velocidade(-K5*velocidade_pitch));
-    cmd.write_mov_speed(portHandler, packetHandler, 6, velocidade(-K6*velocidade_pitch));
-    cmd.write_mov_speed(portHandler, packetHandler, 8, velocidade(-K8*velocidade_pitch));
-    cmd.write_mov_speed(portHandler, packetHandler, 9, velocidade(-K9*velocidade_pitch));
-    cmd.write_mov_speed(portHandler, packetHandler, 11, velocidade(-K11*velocidade_pitch));
-    cmd.write_mov_speed(portHandler, packetHandler, 12, velocidade(-K12*velocidade_pitch));
+    //cmd.write_mov_speed(portHandler, packetHandler, 2, velocidade(-K2*velocidade_pitch));
+    //cmd.write_mov_speed(portHandler, packetHandler, 3, velocidade(-K3*velocidade_pitch));
+    //cmd.write_mov_speed(portHandler, packetHandler, 5, velocidade(-K5*velocidade_pitch));
+    //cmd.write_mov_speed(portHandler, packetHandler, 6, velocidade(-K6*velocidade_pitch));
+    //cmd.write_mov_speed(portHandler, packetHandler, 8, velocidade(-K8*velocidade_pitch));
+    //cmd.write_mov_speed(portHandler, packetHandler, 9, velocidade(-K9*velocidade_pitch));
+    //cmd.write_mov_speed(portHandler, packetHandler, 11, velocidade(-K11*velocidade_pitch));
+    //cmd.write_mov_speed(portHandler, packetHandler, 12, velocidade(-K12*velocidade_pitch));
 
 
 
