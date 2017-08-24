@@ -45,6 +45,8 @@ int main(){
     dynamixel::PortHandler *portHandler = dynamixel::PortHandler::getPortHandler(dev_name);
     dynamixel::GroupSyncWrite groupSyncWrite(portHandler, packetHandler, 30, 2);
     float v = -2.5;
+    int USB = inicializacao();
+    float angulos[2];
 
 
     if (portHandler->openPort())
@@ -61,6 +63,11 @@ int main(){
         return 0;
     }
 
+
+    inicializacao();
+    medicao(angulos, USB);
+
+    printf("%f %f \n", angulos[0], angulos[1]);
 
     cmd.config_ram(portHandler, packetHandler);
     cmd.getch();
