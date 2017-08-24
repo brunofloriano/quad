@@ -101,10 +101,10 @@ int main(){
     pitch_medido = angulos [1];
 
     filtro(tam, fc, roll_medido, roll, &out);
-    velocidade_roll = out - roll;
+    velocidade_roll = (out - roll)/tam;
     roll = out;
     filtro(tam, fc, pitch_medido, pitch, &out);
-    velocidade_pitch = out - pitch;
+    velocidade_pitch = (out - pitch)/tam;
     pitch = out;
 
 
