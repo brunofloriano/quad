@@ -82,7 +82,7 @@ int main(){
 
     for(int i=0; i<12;i++)
     {
-        cmd.write_pos(portHandler, packetHandler, cmd.read_pos(portHandler, packetHandler, i+1));
+        cmd.write_pos(portHandler, packetHandler, i+1, cmd.read_pos(portHandler, packetHandler, i+1));
 
     }
 
