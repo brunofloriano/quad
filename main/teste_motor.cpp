@@ -47,6 +47,7 @@ int main(){
     dynamixel::GroupSyncWrite groupSyncWrite(portHandler, packetHandler, 30, 2);
     float v = -2.5;
     float angulos[2];
+    float roll_medido, pitch_medido;
     int USB = inicializacao();
 
 
@@ -68,8 +69,10 @@ int main(){
 
     inicializacao();
     medicao(angulos, USB);
+    roll_medido = angulos[0];
+    pitch_medido = angulos [1];
 
-    printf("%f %f \n", angulos[0], angulos[1]);
+    printf("%f %f \n", roll_medido, pitch_medido);
 
     cmd.config_ram(portHandler, packetHandler);
     cmd.getch();
