@@ -56,7 +56,7 @@ int main(){
     float roll_medido, pitch_medido, roll = 0, pitch = 0;
     float velocidade_roll, velocidade_pitch;
     float fc = 1;
-    float K1 = 100,K4 = 1, K7 = 1, K10 = 1;    //roll gains
+    float K1 = 500,K4 = 1, K7 = 1, K10 = 1;    //roll gains
     int contador2 = 0;
     int USB = inicializacao();
 
