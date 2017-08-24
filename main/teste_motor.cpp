@@ -3,6 +3,7 @@
 #include <fcntl.h>      // File control definitions
 #include <errno.h>      // Error number definitions
 #include <termios.h>    // POSIX terminal control definitions
+#include "medicao.h"
 
 #define Kp_roll 1
 #define Kd_roll 0
