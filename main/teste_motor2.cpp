@@ -56,7 +56,9 @@ int main(){
     float roll_medido, pitch_medido, roll = 0, pitch = 0;
     float velocidade_roll, velocidade_pitch;
     float fc = 1;
-    float K1 = 7,K4 = 10, K7 = 10, K10 = 7;    //roll gains
+    float K_roll_R = 10, K_pitch_R = 5; //K_roll_L = 5, K_pitch_F = 5
+    float K1 = K_roll_L, K4 = K_roll_R, K7 = K_roll_R, K10 = K_roll_L;    //roll gains
+    float K2 = 5,K3 = 5, K5 = 5, K6 = 5, K8 = 5, K9 = 5, K11 = 5, K12 = 5;    //pitch gains
     int contador2 = 0;
     int USB = inicializacao();
 
@@ -116,6 +118,17 @@ int main(){
     cmd.write_mov_speed(portHandler, packetHandler, 4, velocidade(-K4*velocidade_roll));
     cmd.write_mov_speed(portHandler, packetHandler, 7, velocidade(-K7*velocidade_roll));
     cmd.write_mov_speed(portHandler, packetHandler, 10, velocidade(-K10*velocidade_roll));
+
+    cmd.write_mov_speed(portHandler, packetHandler, 2, velocidade(-K2*velocidade_pitch));
+    cmd.write_mov_speed(portHandler, packetHandler, 3, velocidade(-K3*velocidade_pitch));
+    cmd.write_mov_speed(portHandler, packetHandler, 5, velocidade(-K5*velocidade_pitch));
+    cmd.write_mov_speed(portHandler, packetHandler, 6, velocidade(-K6*velocidade_pitch));
+    cmd.write_mov_speed(portHandler, packetHandler, 8, velocidade(-K8*velocidade_pitch));
+    cmd.write_mov_speed(portHandler, packetHandler, 9, velocidade(-K9*velocidade_pitch));
+    cmd.write_mov_speed(portHandler, packetHandler, 11, velocidade(-K11*velocidade_pitch));
+    cmd.write_mov_speed(portHandler, packetHandler, 12, velocidade(-K12*velocidade_pitch));
+
+
 
     contador2 = contador2 + tam;
     }
