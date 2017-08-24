@@ -50,10 +50,7 @@ int main(){
     int USB = inicializacao();
 
 
-    inicializacao();
-    medicao(angulos, USB);
 
-    printf("%f %f \n", angulos[0], angulos[1]);
 
     if (portHandler->openPort())
     {
@@ -69,7 +66,10 @@ int main(){
         return 0;
     }
 
+    inicializacao();
+    medicao(angulos, USB);
 
+    printf("%f %f \n", angulos[0], angulos[1]);
 
     cmd.config_ram(portHandler, packetHandler);
     cmd.getch();
