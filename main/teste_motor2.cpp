@@ -4,7 +4,7 @@
 #include <errno.h>      // Error number definitions
 #include <termios.h>    // POSIX terminal control definitions
 #include "medicao.h"
-#include "filtro.cpp"
+#include "filtro.h"
 #include <stdio.h>
 
 #define Kp_roll 1
