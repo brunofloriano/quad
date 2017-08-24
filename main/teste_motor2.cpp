@@ -56,7 +56,7 @@ int main(){
     float roll_medido, pitch_medido, roll = 0, pitch = 0;
     float velocidade_roll, velocidade_pitch;
     float fc = 1;
-    float K1 = 1, K10 = 1;
+    float K1 = 1,K4 = 1, K7 = 1, K10 = 1;    //roll gains
     int contador2 = 0;
     int USB = inicializacao();
 
@@ -102,8 +102,10 @@ int main(){
 
 
     printf("%f %f \n", velocidade_roll, velocidade_pitch);
-    cmd.write_mov_speed(portHandler, packetHandler, 1, velocidade(-K1*velocidade_roll));
-    cmd.write_mov_speed(portHandler, packetHandler, 10, velocidade(-K10*velocidade_roll));
+    //cmd.write_mov_speed(portHandler, packetHandler, 1, velocidade(-K1*velocidade_roll));
+    cmd.write_mov_speed(portHandler, packetHandler, 4, velocidade(-K4*velocidade_roll));
+    cmd.write_mov_speed(portHandler, packetHandler, 7, velocidade(-K7*velocidade_roll));
+    //cmd.write_mov_speed(portHandler, packetHandler, 10, velocidade(-K10*velocidade_roll));
 
     contador2 = contador2 + tam;
     }
