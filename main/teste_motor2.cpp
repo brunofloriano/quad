@@ -47,7 +47,7 @@ int main(){
     dynamixel::PortHandler *portHandler = dynamixel::PortHandler::getPortHandler(dev_name);
     dynamixel::GroupSyncWrite groupSyncWrite(portHandler, packetHandler, 30, 2);
 
-    clock_t tsim = 2; //tempo de simulacao em segundos
+    clock_t tsim = 10; //tempo de simulacao em segundos
     clock_t tam = 100; //tempo de amostragem em microsegundos
     clock_t tInicio, tFim, tDecorrido;
     float v = -2.5;
@@ -79,7 +79,13 @@ int main(){
 
     cmd.config_ram(portHandler, packetHandler);
     cmd.getch();
-    cmd.write_torque(portHandler, packetHandler, BROADCASTID, 1);
+
+    for(int i=0; i<12;i++)
+    {
+        cmd.write_pos(portHandler, packetHandler, cmd.read_pos(portHandler, packetHandler, i+1));
+
+    }
+
 
     tInicio = clock();
     tFim = clock();
