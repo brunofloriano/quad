@@ -18,11 +18,12 @@
 #define TORQUE_LIMIT                    1024
 #define V_MAX                           13.3
 #define PI                              3.14159265
+#define MAX_SPEED_RAD_S                 79.4*V_MAX/16*2*PI/60
 
 using namespace std;
 
 int velocidade(float v){
-    int x = MAX_SPEED*abs(v)/(6.9);
+    int x = MAX_SPEED*abs(v)/(MAX_SPEED_RAD_S);
     int CCW;
 
     if (v > 0){
