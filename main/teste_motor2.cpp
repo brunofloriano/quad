@@ -76,6 +76,8 @@ int main(){
         return 0;
     }
 
+    cmd.config_ram(portHandler, packetHandler);
+    cmd.getch();
 
     tInicio = clock();
     tFim = clock();
@@ -99,6 +101,7 @@ int main(){
 
 
     printf("%f %f \n", velocidade_roll, velocidade_pitch);
+    cmd.write_mov_speed(portHandler, packetHandler, 1, velocidade(-velocidade_roll));
 
     contador2 = contador2 + tam;
     }
@@ -106,11 +109,10 @@ int main(){
 	tDecorrido = ((tFim - tInicio) / (CLOCKS_PER_SEC / 1000));
 }
 
-    cmd.config_ram(portHandler, packetHandler);
-    cmd.getch();
 
 
-    cmd.write_mov_speed(portHandler, packetHandler, 1, velocidade(v));
+
+
     cmd.getch();
     cmd.write_torque(portHandler, packetHandler, BROADCASTID, 0);
 
