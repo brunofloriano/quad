@@ -13,13 +13,20 @@
 #define dt			                    0.01
 #define TASK_PERIOD                     dt*1e9
 #define BROADCASTID			            254
-#define MOVING_SPEED                    80
+#define MAX_SPEED                       1023
 #define MAX_TORQUE                      1024
 #define TORQUE_LIMIT                    1024
+#define V_MAX                           13.3
 #define PI                              3.14159265
 
 using namespace std;
 
+int velocidade(float v){
+    int x = MAX_SPEED*v/(6.9);
+
+return x;
+
+}
 
 int main(){
 
@@ -28,7 +35,7 @@ int main(){
     dynamixel::PacketHandler *packetHandler = dynamixel::PacketHandler::getPacketHandler(1);
     dynamixel::PortHandler *portHandler = dynamixel::PortHandler::getPortHandler(dev_name);
     dynamixel::GroupSyncWrite groupSyncWrite(portHandler, packetHandler, 30, 2);
-    uint32_t a;
+    float v = 1;
 
 
     if (portHandler->openPort())
@@ -50,7 +57,7 @@ int main(){
     cmd.getch();
 
 
-    cmd.write_mov_speed(portHandler, packetHandler, 1, (200+1024));
+    cmd.write_mov_speed(portHandler, packetHandler, 1, velocidade(v));
     cmd.getch();
     cmd.write_torque(portHandler, packetHandler, BROADCASTID, 0);
 
