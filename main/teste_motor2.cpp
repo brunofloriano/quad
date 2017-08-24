@@ -58,8 +58,9 @@ int main(){
     float fc = 1;
     float K_roll_R = 10, K_roll_L = 5;
     float K_pitch_F = 5, K_pitch_R = 5;
+    float K_UP = 1, K_DOWN = -1;
     float K1 = K_roll_L, K4 = K_roll_R, K7 = K_roll_R, K10 = K_roll_L;    //roll gains
-    float K2 = K_pitch_R,K3 = -K2, K5 = -K_pitch_R, K6 = -K5, K8 = -K_pitch_F, K9 = -K8, K11 = K_pitch_F, K12 = -K11;    //pitch gains
+    float K2 = K_pitch_R*K_UP,K3 = K_pitch_R*K_DOWN, K5 = -K_pitch_R*K_UP, K6 = -K_pitch_R*K_DOWN, K8 = -K_pitch_F*K_UP, K9 = K_pitch_F*K_DOWN, K11 = K_pitch_F*K_UP, K12 = K_pitch_F*K_DOWN;    //pitch gains
     int contador2 = 0;
     int USB = inicializacao();
 
