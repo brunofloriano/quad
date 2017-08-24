@@ -42,7 +42,7 @@ int main(){
     dynamixel::PacketHandler *packetHandler = dynamixel::PacketHandler::getPacketHandler(1);
     dynamixel::PortHandler *portHandler = dynamixel::PortHandler::getPortHandler(dev_name);
     dynamixel::GroupSyncWrite groupSyncWrite(portHandler, packetHandler, 30, 2);
-    float v = -2.5;
+    float v = 2.5;
 
 
     if (portHandler->openPort())
