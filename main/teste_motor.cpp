@@ -49,6 +49,11 @@ int main(){
     float angulos[2];
 
 
+        inicializacao();
+    medicao(angulos, USB);
+
+    printf("%f %f \n", angulos[0], angulos[1]);
+
     if (portHandler->openPort())
     {
         printf("Succeeded to open the port!\n\n");
@@ -64,10 +69,6 @@ int main(){
     }
 
 
-    inicializacao();
-    medicao(angulos, USB);
-
-    printf("%f %f \n", angulos[0], angulos[1]);
 
     cmd.config_ram(portHandler, packetHandler);
     cmd.getch();
