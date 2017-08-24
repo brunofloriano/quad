@@ -79,6 +79,7 @@ int main(){
 
     cmd.config_ram(portHandler, packetHandler);
     cmd.getch();
+    cmd.write_torque(portHandler, packetHandler, BROADCASTID, 1);
 
     tInicio = clock();
     tFim = clock();
