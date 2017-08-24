@@ -65,7 +65,7 @@ int main(){
     cmd.getch();
 
 
-    cmd.write_mov_speed(portHandler, packetHandler, 10, velocidade(v));
+    cmd.write_mov_speed(portHandler, packetHandler, 7, velocidade(v));
     cmd.getch();
     cmd.write_torque(portHandler, packetHandler, BROADCASTID, 0);
 
