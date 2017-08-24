@@ -45,14 +45,12 @@ int main(){
         return 0;
     }
 
-    cout << "Insira velocidade desejada" << endl;
-    cin >> a;
 
     cmd.config_ram(portHandler, packetHandler);
-    //cmd.getch();
+    cmd.getch();
 
 
-    cmd.write_mov_speed(portHandler, packetHandler, 1, a);
+    cmd.write_mov_speed(portHandler, packetHandler, 1, 200);
     cmd.getch();
     cmd.write_torque(portHandler, packetHandler, BROADCASTID, 0);
 
