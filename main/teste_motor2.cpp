@@ -140,7 +140,7 @@ int main(){
 
 
     v_desejada = -K1*velocidade_roll;
-    v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, 1)
+    v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, 1);
     v_medicao = ler_velocidade(v_medicao_int);
     v_aplicada = v_medicao - v_desejada;
 
