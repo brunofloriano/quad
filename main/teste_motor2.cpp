@@ -173,11 +173,7 @@ int main(){
     }
 	i = 1;
 
-<<<<<<< HEAD
 
-    cmd.write_mov_speed(portHandler, packetHandler, 1, v_aplicada);
-=======
->>>>>>> 4bee7c110668b857aefb289db9a7a1f0478ef664
     //cmd.write_mov_speed(portHandler, packetHandler, 4, velocidade(-K4*velocidade_roll));
     //cmd.write_mov_speed(portHandler, packetHandler, 7, velocidade(-K7*velocidade_roll));
     //cmd.write_mov_speed(portHandler, packetHandler, 10, velocidade(-K10*velocidade_roll));
