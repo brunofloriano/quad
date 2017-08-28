@@ -70,6 +70,7 @@ int main(){
     float tamf = tam;
     float out;
     float angulos[2];
+    float v_medicao, v_desejada, v_aplicada;
     float roll_medido, pitch_medido, roll = 0, pitch = 0;
     float velocidade_roll, velocidade_pitch;
     float fc = 1;
@@ -79,6 +80,7 @@ int main(){
     float K1 = K_roll_L, K4 = K_roll_R, K7 = K_roll_R, K10 = K_roll_L;    //roll gains
     float K2 = K_pitch_R*K_UP,K3 = K_pitch_R*K_DOWN, K5 = -K_pitch_R*K_UP, K6 = -K_pitch_R*K_DOWN, K8 = -K_pitch_F*K_UP, K9 = -K_pitch_F*K_DOWN, K11 = K_pitch_F*K_UP, K12 = K_pitch_F*K_DOWN;    //pitch gains
     int contador2 = 0;
+    int v_medicao_int;
     int USB = inicializacao();
 
 
@@ -134,8 +136,16 @@ int main(){
     pitch = out;
 
 
-    //printf("%f %f \n", velocidade_roll, velocidade_pitch);
-    //cmd.write_mov_speed(portHandler, packetHandler, 1, velocidade(-K1*velocidade_roll));
+    printf("%f %f \n", velocidade_roll, velocidade_pitch);
+
+
+    v_desejada = -K1*velocidade_roll;
+    v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, 1)
+    v_medicao = ler_velocidade(v_medicao_int);
+    v_aplicada = v_medicao - v_desejada;
+
+
+    cmd.write_mov_speed(portHandler, packetHandler, 1, velocidade(v_aplicada));
     //cmd.write_mov_speed(portHandler, packetHandler, 4, velocidade(-K4*velocidade_roll));
     //cmd.write_mov_speed(portHandler, packetHandler, 7, velocidade(-K7*velocidade_roll));
     //cmd.write_mov_speed(portHandler, packetHandler, 10, velocidade(-K10*velocidade_roll));
@@ -149,8 +159,7 @@ int main(){
     //cmd.write_mov_speed(portHandler, packetHandler, 11, velocidade(-K11*velocidade_pitch));
     //cmd.write_mov_speed(portHandler, packetHandler, 12, velocidade(-K12*velocidade_pitch));
 
-    velocidade_pitch = cmd.read_mov_speed(portHandler, packetHandler, 1);
-    velocidade_roll = ler_velocidade(velocidade_pitch);
+
     printf("%f \n", velocidade_roll);
 
 
