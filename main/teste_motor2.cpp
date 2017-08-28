@@ -162,8 +162,8 @@ int main(){
     v_medicao = ler_velocidade(v_medicao_int);
     v_aplicada = v_desejada - v_medicao;
     cmd.write_mov_speed(portHandler, packetHandler, i, v_aplicada);
-    i++;
 	}
+	i++;
     }
 	i = 1;
 
