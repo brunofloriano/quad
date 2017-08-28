@@ -56,9 +56,9 @@ int main(){
     float roll_medido, pitch_medido, roll = 0, pitch = 0;
     float velocidade_roll, velocidade_pitch;
     float fc = 1;
-    float K_roll_R = 3, K_roll_L = 2;
+    float K_roll_R = 4, K_roll_L = 5;
     float K_pitch_F = 5, K_pitch_R = 5;
-    float K_UP = 2, K_DOWN = -1;
+    float K_UP = 1.5, K_DOWN = 0.5;
     float K1 = K_roll_L, K4 = K_roll_R, K7 = K_roll_R, K10 = K_roll_L;    //roll gains
     float K2 = K_pitch_R*K_UP,K3 = K_pitch_R*K_DOWN, K5 = -K_pitch_R*K_UP, K6 = -K_pitch_R*K_DOWN, K8 = -K_pitch_F*K_UP, K9 = -K_pitch_F*K_DOWN, K11 = K_pitch_F*K_UP, K12 = K_pitch_F*K_DOWN;    //pitch gains
     int contador2 = 0;
@@ -118,19 +118,19 @@ int main(){
 
 
     printf("%f %f \n", velocidade_roll, velocidade_pitch);
-    cmd.write_mov_speed(portHandler, packetHandler, 1, velocidade(-K1*velocidade_roll));
-    cmd.write_mov_speed(portHandler, packetHandler, 4, velocidade(-K4*velocidade_roll));
-    cmd.write_mov_speed(portHandler, packetHandler, 7, velocidade(-K7*velocidade_roll));
-    cmd.write_mov_speed(portHandler, packetHandler, 10, velocidade(-K10*velocidade_roll));
+    //cmd.write_mov_speed(portHandler, packetHandler, 1, velocidade(-K1*velocidade_roll));
+    //cmd.write_mov_speed(portHandler, packetHandler, 4, velocidade(-K4*velocidade_roll));
+    //cmd.write_mov_speed(portHandler, packetHandler, 7, velocidade(-K7*velocidade_roll));
+    //cmd.write_mov_speed(portHandler, packetHandler, 10, velocidade(-K10*velocidade_roll));
 
-    //cmd.write_mov_speed(portHandler, packetHandler, 2, velocidade(-K2*velocidade_pitch));
-    //cmd.write_mov_speed(portHandler, packetHandler, 3, velocidade(-K3*velocidade_pitch));
-    //cmd.write_mov_speed(portHandler, packetHandler, 5, velocidade(-K5*velocidade_pitch));
-    //cmd.write_mov_speed(portHandler, packetHandler, 6, velocidade(-K6*velocidade_pitch));
-    //cmd.write_mov_speed(portHandler, packetHandler, 8, velocidade(-K8*velocidade_pitch));
-    //cmd.write_mov_speed(portHandler, packetHandler, 9, velocidade(-K9*velocidade_pitch));
-    //cmd.write_mov_speed(portHandler, packetHandler, 11, velocidade(-K11*velocidade_pitch));
-    //cmd.write_mov_speed(portHandler, packetHandler, 12, velocidade(-K12*velocidade_pitch));
+    cmd.write_mov_speed(portHandler, packetHandler, 2, velocidade(-K2*velocidade_pitch));
+    cmd.write_mov_speed(portHandler, packetHandler, 3, velocidade(-K3*velocidade_pitch));
+    cmd.write_mov_speed(portHandler, packetHandler, 5, velocidade(-K5*velocidade_pitch));
+    cmd.write_mov_speed(portHandler, packetHandler, 6, velocidade(-K6*velocidade_pitch));
+    cmd.write_mov_speed(portHandler, packetHandler, 8, velocidade(-K8*velocidade_pitch));
+    cmd.write_mov_speed(portHandler, packetHandler, 9, velocidade(-K9*velocidade_pitch));
+    cmd.write_mov_speed(portHandler, packetHandler, 11, velocidade(-K11*velocidade_pitch));
+    cmd.write_mov_speed(portHandler, packetHandler, 12, velocidade(-K12*velocidade_pitch));
 
 
 
