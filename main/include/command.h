@@ -18,6 +18,7 @@ public:
     void DelayMicrosecondsNoSleep (int delay_us);
     int read_pos(dynamixel::PortHandler *portHandler, dynamixel::PacketHandler *packetHandler, uint8_t id);
     void write_pos(dynamixel::PortHandler *portHandler, dynamixel::PacketHandler *packetHandler, uint8_t id, uint32_t value);
+    int read_mov_speed(dynamixel::PortHandler *portHandler, dynamixel::PacketHandler *packetHandler, uint8_t id)
     void write_mov_speed(dynamixel::PortHandler *portHandler, dynamixel::PacketHandler *packetHandler, uint8_t id, uint32_t value);
     void write_max_torque(dynamixel::PortHandler *portHandler, dynamixel::PacketHandler *packetHandler, uint8_t id, uint32_t value);
     void write_torque_limit(dynamixel::PortHandler *portHandler, dynamixel::PacketHandler *packetHandler, uint8_t id, uint32_t value);
