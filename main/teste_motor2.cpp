@@ -132,7 +132,7 @@ int main(){
     //cmd.write_mov_speed(portHandler, packetHandler, 11, velocidade(-K11*velocidade_pitch));
     //cmd.write_mov_speed(portHandler, packetHandler, 12, velocidade(-K12*velocidade_pitch));
 
-    velocidade_pitch = cmd.read_pos(portHandler, packetHandler, 1);
+    velocidade_pitch = cmd.read_mov_speed(portHandler, packetHandler, 1);
     printf("%f \n", velocidade_pitch);
 
 
