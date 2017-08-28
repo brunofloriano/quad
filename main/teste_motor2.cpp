@@ -152,7 +152,7 @@ int main(){
     pitch = out;
 
 
-    //printf("%f %f \n", velocidade_roll, velocidade_pitch);
+
 
     //roll
     while(i<10){
@@ -161,8 +161,7 @@ int main(){
     v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, i);
     v_medicao = ler_velocidade(v_medicao_int);
     v_aplicada = v_desejada - v_medicao;
-    printf("%f \n", v_aplicada);
-    cmd.write_mov_speed(portHandler, packetHandler, i, v_aplicada);
+    cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(v_aplicada));
 	}
 	i++;
     }
