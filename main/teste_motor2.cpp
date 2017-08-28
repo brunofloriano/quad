@@ -139,13 +139,13 @@ int main(){
     printf("%f %f \n", velocidade_roll, velocidade_pitch);
 
 
-    v_desejada = -K1*velocidade_roll;
+    v_desejada = 0;
     v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, 1);
     v_medicao = ler_velocidade(v_medicao_int);
     v_aplicada = v_desejada - v_medicao;
 
 
-    cmd.write_mov_speed(portHandler, packetHandler, 1, velocidade(v_aplicada));
+    cmd.write_mov_speed(portHandler, packetHandler, 1, v_aplicada);
     //cmd.write_mov_speed(portHandler, packetHandler, 4, velocidade(-K4*velocidade_roll));
     //cmd.write_mov_speed(portHandler, packetHandler, 7, velocidade(-K7*velocidade_roll));
     //cmd.write_mov_speed(portHandler, packetHandler, 10, velocidade(-K10*velocidade_roll));
