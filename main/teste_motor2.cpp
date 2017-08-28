@@ -154,17 +154,11 @@ int main(){
 
     printf("%f %f \n", velocidade_roll, velocidade_pitch);
 
-<<<<<<< HEAD
-
-    v_desejada = 0;
-    v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, 1);
-=======
     //roll
     while(i<10){
     if(i = 1 || i = 4 || i = 7 || i = 10){
     v_desejada = -K[i]*velocidade_roll;
     v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, i);
->>>>>>> 4bee7c110668b857aefb289db9a7a1f0478ef664
     v_medicao = ler_velocidade(v_medicao_int);
     v_aplicada = v_desejada - v_medicao;
     cmd.write_mov_speed(portHandler, packetHandler, i, v_aplicada);
