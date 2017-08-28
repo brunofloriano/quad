@@ -152,10 +152,10 @@ int main(){
     pitch = out;
 
 
-
+    printf("%f %f \n", velocidade_roll, velocidade_pitch);
 
     //roll
-    while(i<10){
+    while(i<11){
     if(i == 1 || i == 4 || i == 7 || i == 10){
     v_desejada = -K[i]*velocidade_roll;
     v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, i);
