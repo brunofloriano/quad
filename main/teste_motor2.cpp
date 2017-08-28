@@ -167,10 +167,19 @@ int main(){
     }
 	i = 1;
 
+	//roll
+    while(i<13){
+    if(i == 2 || i == 3 || i == 5 || i == 6 || i == 8 || i == 9 || i == 11 || i == 12){
+    v_desejada = -K[i]*velocidade_pitch;
+    v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, i);
+    v_medicao = ler_velocidade(v_medicao_int);
+    v_aplicada = v_desejada - v_medicao;
+    cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(v_aplicada));
+	}
+	i++;
+    }
+	i = 1;
 
-    //cmd.write_mov_speed(portHandler, packetHandler, 4, velocidade(-K4*velocidade_roll));
-    //cmd.write_mov_speed(portHandler, packetHandler, 7, velocidade(-K7*velocidade_roll));
-    //cmd.write_mov_speed(portHandler, packetHandler, 10, velocidade(-K10*velocidade_roll));
 
     //cmd.write_mov_speed(portHandler, packetHandler, 2, velocidade(-K2*velocidade_pitch));
     //cmd.write_mov_speed(portHandler, packetHandler, 3, velocidade(-K3*velocidade_pitch));
