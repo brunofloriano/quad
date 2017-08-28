@@ -77,12 +77,28 @@ int main(){
     float K_roll_R = 4, K_roll_L = 5;
     float K_pitch_F = 5, K_pitch_R = 5;
     float K_UP = 1.5, K_DOWN = 0.5;
-    float K1 = K_roll_L, K4 = K_roll_R, K7 = K_roll_R, K10 = K_roll_L;    //roll gains
-    float K2 = K_pitch_R*K_UP,K3 = K_pitch_R*K_DOWN, K5 = -K_pitch_R*K_UP, K6 = -K_pitch_R*K_DOWN, K8 = -K_pitch_F*K_UP, K9 = -K_pitch_F*K_DOWN, K11 = K_pitch_F*K_UP, K12 = K_pitch_F*K_DOWN;    //pitch gains
+    float K[13];
+
     int contador2 = 0;
+    int i = 1;
     int v_medicao_int;
     int USB = inicializacao();
 
+    K[0] = 0;
+    //roll gains
+    K[1] = K_roll_L;
+    K[4] = K_roll_R;
+    K[7] = K_roll_R;
+    K[10] = K_roll_L;
+    //pitch gains
+    K[2] = K_pitch_R*K_UP;
+    K[3] = K_pitch_R*K_DOWN;
+    K[5] = -K_pitch_R*K_UP;
+    K[6] = -K_pitch_R*K_DOWN;
+    K[8] = -K_pitch_F*K_UP;
+    K[9] = -K_pitch_F*K_DOWN;
+    K[11] = K_pitch_F*K_UP;
+    K[12] = K_pitch_F*K_DOWN;
 
 
 
@@ -138,14 +154,30 @@ int main(){
 
     printf("%f %f \n", velocidade_roll, velocidade_pitch);
 
+<<<<<<< HEAD
 
     v_desejada = 0;
     v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, 1);
+=======
+    //roll
+    while(i<10){
+    if(i = 1 || i = 4 || i = 7 || i = 10){
+    v_desejada = -K[i]*velocidade_roll;
+    v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, i);
+>>>>>>> 4bee7c110668b857aefb289db9a7a1f0478ef664
     v_medicao = ler_velocidade(v_medicao_int);
     v_aplicada = v_desejada - v_medicao;
+    cmd.write_mov_speed(portHandler, packetHandler, i, v_aplicada);
+    i++;
+	}
+    }
+	i = 1;
 
+<<<<<<< HEAD
 
     cmd.write_mov_speed(portHandler, packetHandler, 1, v_aplicada);
+=======
+>>>>>>> 4bee7c110668b857aefb289db9a7a1f0478ef664
     //cmd.write_mov_speed(portHandler, packetHandler, 4, velocidade(-K4*velocidade_roll));
     //cmd.write_mov_speed(portHandler, packetHandler, 7, velocidade(-K7*velocidade_roll));
     //cmd.write_mov_speed(portHandler, packetHandler, 10, velocidade(-K10*velocidade_roll));
