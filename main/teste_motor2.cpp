@@ -39,6 +39,23 @@ return x + CCW;
 
 }
 
+float ler_velocidade(int x){
+    int CCW;
+    float v;
+
+    if (x < 1024){
+        v = x*(MAX_SPEED_RAD_S)/(MAX_SPEED);
+        CCW = 1;
+    }
+    else{
+        v = (x-1024)*(MAX_SPEED_RAD_S)/(MAX_SPEED);
+        CCW = -1;}
+
+
+return v*CCW;
+
+}
+
 int main(){
 
     command cmd;
@@ -133,7 +150,8 @@ int main(){
     //cmd.write_mov_speed(portHandler, packetHandler, 12, velocidade(-K12*velocidade_pitch));
 
     velocidade_pitch = cmd.read_mov_speed(portHandler, packetHandler, 1);
-    printf("%f \n", velocidade_pitch);
+    velocidade_roll = ler_velocidade(velocidade_pitch);
+    printf("%f \n", velocidade_roll);
 
 
 
