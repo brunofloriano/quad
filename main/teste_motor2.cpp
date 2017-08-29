@@ -154,7 +154,7 @@ int main(){
 
     tInicio = clock();
     tFim = clock();
-    tDecorrido = ((tFim - tInicio) / (CLOCKS_PER_SEC));
+    tDecorrido = ((float)(tFim - tInicio) / (CLOCKS_PER_SEC/1000));
     //Loop
     while(tDecorrido<tsim*1000){
 	if(tDecorrido>contador2){
@@ -193,7 +193,7 @@ int main(){
     contador2 = contador2 + tam;
     }
 	tFim = clock();
-	tDecorrido = ((tFim - tInicio) / (CLOCKS_PER_SEC));
+	tDecorrido = ((float)(tFim - tInicio) / (CLOCKS_PER_SEC/1000));
 	cout << tDecorrido << endl;
 }
 
