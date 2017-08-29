@@ -65,10 +65,10 @@ int main(){
     dynamixel::GroupSyncWrite groupSyncWrite(portHandler, packetHandler, 30, 2);
 
 
-    clock_t tInicio, tFim, tDecorrido;
+    clock_t tInicio, tFim;
+    float tDecorrido;
     float tsim = 10; //tempo de simulacao em segundos
     float tam = 100; //tempo de amostragem em milisegundos
-    float tamf = tam;
     float out;
     float angulos[2];
     float v_medicao, v_desejada, v_aplicada;
@@ -79,10 +79,11 @@ int main(){
     float K_pitch_F = 2, K_pitch_R = 2;
     float K_UP = 1, K_DOWN = 0; //-0.5;
     float K[13];
+    float contador2 = 0;
     int read1;
     int read2[12];
 
-    int contador2 = 0;
+
     int i = 1;
     int v_medicao_int;
     int USB = inicializacao();
@@ -165,14 +166,14 @@ int main(){
     pitch_medido = angulos [1];
 
     filtro(tam, fc, roll_medido, roll, &out);
-    velocidade_roll = (out - roll)*(PI/180)/(tamf/1000);  //em rad/s
+    velocidade_roll = (out - roll)*(PI/180)/(tam/1000);  //em rad/s
     roll = out;
     filtro(tam, fc, pitch_medido, pitch, &out);
-    velocidade_pitch = (out - pitch)*(PI/180)/(tamf/1000);  //em rad/s
+    velocidade_pitch = (out - pitch)*(PI/180)/(tam/1000);  //em rad/s
     pitch = out;
 
 
-    printf("%f %f \n", velocidade_roll, velocidade_pitch);
+    //printf("%f %f \n", velocidade_roll, velocidade_pitch);
 
     while(i<13){
     if(i == 1 || i == 4 || i == 7 || i == 10){
@@ -193,6 +194,7 @@ int main(){
     }
 	tFim = clock();
 	tDecorrido = ((tFim - tInicio) / (CLOCKS_PER_SEC / 1000));
+	cout << tDecorrido << endl;
 }
 
 
