@@ -65,7 +65,7 @@ int main(){
     dynamixel::GroupSyncWrite groupSyncWrite(portHandler, packetHandler, 30, 2);
 
     clock_t tsim = 10; //tempo de simulacao em segundos
-    clock_t tam = 100; //tempo de amostragem em microsegundos
+    clock_t tam = 100; //tempo de amostragem em milisegundos
     clock_t tInicio, tFim, tDecorrido;
     float tamf = tam;
     float out;
@@ -139,7 +139,7 @@ int main(){
         //cmd.write_pos(portHandler, packetHandler, i+1, cmd.read_pos(portHandler, packetHandler, i+1));
          //int a = cmd.read_pos(portHandler, packetHandler, i+1);
          //printf("%d \n",a);
-         //cmd.write_mov_speed(portHandler, packetHandler, i+1, 0);
+         cmd.write_mov_speed(portHandler, packetHandler, i+1, 0);
         read1 =  cmd.read_pos(portHandler, packetHandler, i+1);
         printf("%d \n",read1);
         //cmd.write_pos(portHandler, packetHandler, i+1, read2[i]);
@@ -182,7 +182,7 @@ int main(){
     v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, i);
     v_medicao = ler_velocidade(v_medicao_int);
     v_aplicada = v_desejada - v_medicao;
-    cmd.write_mov_speed(portHandler, packetHandler, i, 1.05*velocidade(v_aplicada));
+    cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(v_desejada));
 	i++;
     }
 	i = 1;
