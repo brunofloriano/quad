@@ -76,7 +76,7 @@ int main(){
     float fc = 1;
     float K_roll_R = 4, K_roll_L = 5;
     float K_pitch_F = 5, K_pitch_R = 5;
-    float K_UP = 1, K_DOWN = 0.5;
+    float K_UP = 1, K_DOWN = -0.5;
     float K[13];
 
     int contador2 = 0;
@@ -181,17 +181,6 @@ int main(){
 	i = 1;
 
 
-    //cmd.write_mov_speed(portHandler, packetHandler, 2, velocidade(-K2*velocidade_pitch));
-    //cmd.write_mov_speed(portHandler, packetHandler, 3, velocidade(-K3*velocidade_pitch));
-    //cmd.write_mov_speed(portHandler, packetHandler, 5, velocidade(-K5*velocidade_pitch));
-    //cmd.write_mov_speed(portHandler, packetHandler, 6, velocidade(-K6*velocidade_pitch));
-    //cmd.write_mov_speed(portHandler, packetHandler, 8, velocidade(-K8*velocidade_pitch));
-    //cmd.write_mov_speed(portHandler, packetHandler, 9, velocidade(-K9*velocidade_pitch));
-    //cmd.write_mov_speed(portHandler, packetHandler, 11, velocidade(-K11*velocidade_pitch));
-    //cmd.write_mov_speed(portHandler, packetHandler, 12, velocidade(-K12*velocidade_pitch));
-
-
-    //printf("%f \n", velocidade_roll);
 
 
 
