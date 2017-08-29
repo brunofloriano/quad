@@ -64,9 +64,10 @@ int main(){
     dynamixel::PortHandler *portHandler = dynamixel::PortHandler::getPortHandler(dev_name);
     dynamixel::GroupSyncWrite groupSyncWrite(portHandler, packetHandler, 30, 2);
 
-    clock_t tsim = 10; //tempo de simulacao em segundos
-    clock_t tam = 100; //tempo de amostragem em milisegundos
+
     clock_t tInicio, tFim, tDecorrido;
+    float tsim = 10; //tempo de simulacao em segundos
+    float tam = 100; //tempo de amostragem em milisegundos
     float tamf = tam;
     float out;
     float angulos[2];
