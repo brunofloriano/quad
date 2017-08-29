@@ -182,7 +182,7 @@ int main(){
     v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, i);
     v_medicao = ler_velocidade(v_medicao_int);
     v_aplicada = v_desejada - v_medicao;
-    cmd.write_mov_speed(portHandler, packetHandler, i, 1.1*velocidade(v_aplicada));
+    cmd.write_mov_speed(portHandler, packetHandler, i, 1.05*velocidade(v_aplicada));
 	i++;
     }
 	i = 1;
