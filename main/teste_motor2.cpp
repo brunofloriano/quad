@@ -193,8 +193,9 @@ int main(){
     contador2 = contador2 + tam;
     }
 	tFim = clock();
-	tDecorrido = ((tFim - tInicio) / (CLOCKS_PER_SEC / 1000));
-	cout << tFim << endl;
+	//tDecorrido = ((tFim - tInicio) / (CLOCKS_PER_SEC / 1000));
+	tDecorrido = difftime(tInicio, tFim)*1000;
+	cout << tDecorrido << endl;
 }
 
 
