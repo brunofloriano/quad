@@ -142,7 +142,7 @@ int main(){
          //cmd.write_mov_speed(portHandler, packetHandler, i+1, 0);
         read1 =  cmd.read_pos(portHandler, packetHandler, i+1);
         printf("%d \n",read1);
-        cmd.write_pos(portHandler, packetHandler, i+1, read2[i]);
+        //cmd.write_pos(portHandler, packetHandler, i+1, read2[i]);
     }
 
 
@@ -171,37 +171,21 @@ int main(){
     pitch = out;
 
 
-    //printf("%f %f \n", velocidade_roll, velocidade_pitch);
+    printf("%f %f \n", velocidade_roll, velocidade_pitch);
 
-    //roll
-    while(i<11){
+    while(i<13){
     if(i == 1 || i == 4 || i == 7 || i == 10){
     v_desejada = -K[i]*velocidade_roll;
+    }
+    else{v_desejada = -K[i]*velocidade_pitch;}
+
     v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, i);
     v_medicao = ler_velocidade(v_medicao_int);
     v_aplicada = v_desejada - v_medicao;
     cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(v_aplicada));
-	}
 	i++;
     }
 	i = 1;
-
-	//pitch
-    while(i<13){
-    if(i == 2 || i == 3 || i == 5 || i == 6 || i == 8 || i == 9 || i == 11 || i == 12){
-    v_desejada = -K[i]*velocidade_pitch;
-    v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, i);
-    v_medicao = ler_velocidade(v_medicao_int);
-    v_aplicada = v_desejada - v_medicao;
-    cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(v_aplicada));
-	}
-	i++;
-    }
-	i = 1;
-
-
-
-
 
 
     contador2 = contador2 + tam;
