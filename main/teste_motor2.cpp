@@ -78,6 +78,7 @@ int main(){
     float K_pitch_F = 5, K_pitch_R = 5;
     float K_UP = 1, K_DOWN = -0.5;
     float K[13];
+    int read1;
 
     int contador2 = 0;
     int i = 1;
@@ -123,7 +124,9 @@ int main(){
         //cmd.write_pos(portHandler, packetHandler, i+1, cmd.read_pos(portHandler, packetHandler, i+1));
          //int a = cmd.read_pos(portHandler, packetHandler, i+1);
          //printf("%d \n",a);
-         cmd.write_mov_speed(portHandler, packetHandler, i+1, 0);
+         //cmd.write_mov_speed(portHandler, packetHandler, i+1, 0);
+        read1 =  cmd.read_pos(portHandler, packetHandler, i+1);
+        printf("%d \n",read1);
     }
 
 
@@ -152,7 +155,7 @@ int main(){
     pitch = out;
 
 
-    printf("%f %f \n", velocidade_roll, velocidade_pitch);
+    //printf("%f %f \n", velocidade_roll, velocidade_pitch);
 
     //roll
     while(i<11){
