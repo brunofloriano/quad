@@ -79,11 +79,26 @@ int main(){
     float K_UP = 1, K_DOWN = -0.5;
     float K[13];
     int read1;
+    int read2[12];
 
     int contador2 = 0;
     int i = 1;
     int v_medicao_int;
     int USB = inicializacao();
+
+    read2[0] = 505;
+    read2[1] = 498;
+    read2[2] = 458;
+    read2[3] = 533;
+    read2[4] = 537;
+    read2[5] = 564;
+    read2[6] = 545;
+    read2[7] = 540;
+    read2[8] = 351;
+    read2[9] = 499;
+    read2[10] = 553;
+    read2[11] = 520;
+
 
     K[0] = 0;
     //roll gains
@@ -127,6 +142,7 @@ int main(){
          //cmd.write_mov_speed(portHandler, packetHandler, i+1, 0);
         read1 =  cmd.read_pos(portHandler, packetHandler, i+1);
         printf("%d \n",read1);
+        cmd.write_pos(portHandler, packetHandler, i+1, read2[i]);
     }
 
 
