@@ -194,7 +194,7 @@ int main(){
     }
 	tFim = clock();
 	tDecorrido = ((tFim - tInicio) / (CLOCKS_PER_SEC / 1000));
-	cout << tDecorrido << endl;
+	cout << CLOCKS_PER_SEC << endl;
 }
 
 
