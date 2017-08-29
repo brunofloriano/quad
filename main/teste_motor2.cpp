@@ -65,7 +65,7 @@ int main(){
     dynamixel::GroupSyncWrite groupSyncWrite(portHandler, packetHandler, 30, 2);
 
 
-    time_t tInicio, tFim;
+    clock_t tInicio, tFim;
     float tDecorrido;
     float tsim = 10; //tempo de simulacao em segundos
     float tam = 100; //tempo de amostragem em milisegundos
@@ -152,9 +152,9 @@ int main(){
 
 
 
-    tInicio = time(NULL);   //clock();
-    tFim = time(NULL);   //clock();
-    tDecorrido = difftime(tFim, tInicio); //((tFim - tInicio) / (CLOCKS_PER_SEC / 1000));
+    tInicio = clock();
+    tFim = clock();
+    tDecorrido = ((tFim - tInicio) / (CLOCKS_PER_SEC));
     //Loop
     while(tDecorrido<tsim*1000){
 	if(tDecorrido>contador2){
@@ -192,9 +192,8 @@ int main(){
 
     contador2 = contador2 + tam;
     }
-	tFim = time(NULL);
-	//tDecorrido = ((tFim - tInicio) / (CLOCKS_PER_SEC / 1000));
-	tDecorrido = difftime(tFim, tInicio);
+	tFim = clock();
+	tDecorrido = ((tFim - tInicio) / (CLOCKS_PER_SEC));
 	cout << tDecorrido << endl;
 }
 
