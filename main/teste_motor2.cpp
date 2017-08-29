@@ -173,7 +173,7 @@ int main(){
     pitch = out;
 
 
-    //printf("%f %f \n", velocidade_roll, velocidade_pitch);
+    printf("%f %f \n", velocidade_roll, velocidade_pitch);
 
     while(i<13){
     if(i == 1 || i == 4 || i == 7 || i == 10){
@@ -194,7 +194,6 @@ int main(){
     }
 	tFim = clock();
 	tDecorrido = ((float)(tFim - tInicio) / (CLOCKS_PER_SEC/1000));
-	cout << tDecorrido << endl;
 }
 
 
