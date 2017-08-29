@@ -74,7 +74,7 @@ int main(){
     float roll_medido, pitch_medido, roll = 0, pitch = 0;
     float velocidade_roll, velocidade_pitch;
     float fc = 1;
-    float K_roll_R = 4, K_roll_L = 5;
+    float K_roll_R = 1, K_roll_L = 1;
     float K_pitch_F = 5, K_pitch_R = 5;
     float K_UP = 1, K_DOWN = -0.5;
     float K[13];
@@ -88,7 +88,7 @@ int main(){
     //roll gains
     K[1] = K_roll_L;
     K[4] = K_roll_R;
-    K[7] = K_roll_R;
+    K[7] = K_roll_R*1.1;
     K[10] = K_roll_L;
     //pitch gains
     K[2] = K_pitch_R*K_UP;
@@ -167,7 +167,7 @@ int main(){
     }
 	i = 1;
 
-	//roll
+	//pitch
     while(i<13){
     if(i == 2 || i == 3 || i == 5 || i == 6 || i == 8 || i == 9 || i == 11 || i == 12){
     v_desejada = -K[i]*velocidade_pitch;
