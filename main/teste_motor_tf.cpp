@@ -141,7 +141,7 @@ int main(){
     tDecorrido = ((float)(tFim - tInicio) / (CLOCKS_PER_SEC/1000));
     //Loop
     while(tDecorrido < tsim*10/24*1000){
-	if(tDecorrido>contador2){
+	if(tDecorrido>contador2*10/24){
 
 
     inicializacao();
