@@ -186,7 +186,7 @@ int main(){
     v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, i);
     v_medicao = ler_velocidade(v_medicao_int);
     v_aplicada = v_desejada - v_medicao;
-    if(i == 3 || i == 6 || i == 9 || i == 12){
+    if(i == 3 || i == 6 || i == 9 || i == 12 || i == 2 || i == 5 || i == 8 || i == 11z){
 
         cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(1.5*v_aplicada));
 
