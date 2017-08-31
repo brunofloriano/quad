@@ -140,8 +140,8 @@ int main(){
     tFim = clock();
     tDecorrido = ((float)(tFim - tInicio) / (CLOCKS_PER_SEC/1000));
     //Loop
-    while(tDecorrido < tsim*10/24*1000){
-	if(tDecorrido>contador2*10/24){
+    while(tDecorrido < tsim*1000){
+	if(tDecorrido>contador2){
 
 
     inicializacao();
@@ -160,7 +160,7 @@ int main(){
     printf("%f %f \n", velocidade_roll, velocidade_pitch);
 
 
-    if (tDecorrido > 1*10/24*1000){
+    if (tDecorrido > 1*1000){
     cmd.write_mov_speed(portHandler, packetHandler, 12, velocidade(1));
 	}
     v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, 12);
@@ -173,7 +173,7 @@ int main(){
     }
 
 	tFim = clock();
-	tDecorrido = ((float)(tFim - tInicio) / (CLOCKS_PER_SEC/1000));
+	tDecorrido = ((float)(tFim - tInicio)*24/10 / (CLOCKS_PER_SEC/1000));
     //cout << tInicio << " " << tFim << " " << tDecorrido << " " << CLOCKS_PER_SEC << endl;
 }
 
