@@ -192,7 +192,7 @@ int main(){
 
     }
     else{
-        cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(1.5*v_aplicada));
+        cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(v_aplicada));
 	}
 	i++;
     }
