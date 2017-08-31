@@ -156,7 +156,7 @@ int main(){
     tFim = clock();
     tDecorrido = ((float)(tFim - tInicio) / (CLOCKS_PER_SEC/1000));
     //Loop
-    while(tDecorrido<tsim*1000){
+    while(tFim<10000000){
 	if(tDecorrido>contador2){
 
 
