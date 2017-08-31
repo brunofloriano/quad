@@ -161,10 +161,11 @@ int main(){
 
 
     if (tDecorrido > 1*10/24*1000){
-    v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, 12);
-    v_medicao = ler_velocidade(v_medicao_int);
     cmd.write_mov_speed(portHandler, packetHandler, 12, velocidade(1));
 	}
+    v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, 12);
+    v_medicao = ler_velocidade(v_medicao_int);
+
 	arq3 << v_medicao << endl;
 
 
