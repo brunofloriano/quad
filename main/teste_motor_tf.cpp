@@ -68,7 +68,7 @@ int main(){
 
     clock_t tInicio, tFim;
     float tDecorrido;
-    float tsim = 7; //tempo de simulacao em segundos
+    float tsim = 10; //tempo de simulacao em segundos
     float tam = 100; //tempo de amostragem em milisegundos
     float out;
     float angulos[2];
@@ -162,7 +162,7 @@ int main(){
 
     v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, 12);
     v_medicao = ler_velocidade(v_medicao_int);
-    K1 = 3;
+    K1 = 2;
     if (tDecorrido > 1*1000){
     v_desejada = 0.5;
     v_aplicada = v_desejada - v_medicao;
