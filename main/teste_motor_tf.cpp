@@ -26,8 +26,9 @@
 using namespace std;
 
 float controlador(float x, float x_1, float y_1, float T){
-    float y;
-    y = (0.06*x+0.03*(x-x_1)/T + 0.13*y_1/T)/(1+0.13/T);
+    float y, ganho;
+    ganho = 0.1;
+    y = (ganho*(T-0.5)*x_1 + ganho*0.5*x - (T-0.13)*y_1)/0.13;
 
     return y;
 
@@ -77,7 +78,7 @@ int main(){
 
     clock_t tInicio, tFim;
     float tDecorrido;
-    float tsim = 3; //tempo de simulacao em segundos
+    float tsim = 10; //tempo de simulacao em segundos
     float tam = 100; //tempo de amostragem em milisegundos
     float out;
     float angulos[2];
@@ -168,7 +169,7 @@ int main(){
     pitch = out;
 
 
-    printf("%f %f \n", velocidade_roll, velocidade_pitch);
+    //printf("%f %f \n", velocidade_roll, velocidade_pitch);
 
     v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, 12);
     v_medicao = ler_velocidade(v_medicao_int);
@@ -178,13 +179,13 @@ int main(){
     if (tDecorrido > 1*1000){
     v_desejada = 0.5;
     v_aplicada = v_desejada - v_medicao;
-    saidacontrolador = controlador(v_aplicada, interx, intery, tam);
+    saidacontrolador = controlador(v_aplicada, interx, intery, tam/1000);
     cmd.write_mov_speed(portHandler, packetHandler, 12, velocidade(saidacontrolador));
     interx = v_aplicada;
     intery = saidacontrolador;
 	}
 
-
+	cout << saidacontrolador << endl;
 	arq3 << v_medicao << endl;
 
 
