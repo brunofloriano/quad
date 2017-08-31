@@ -191,6 +191,7 @@ int main(){
 
 
     contador2 = contador2 + tam;
+    cout << CLOCKS_PER_SEC << endl;
     }
 	tFim = clock();
 	tDecorrido = ((float)(tFim - tInicio) / (CLOCKS_PER_SEC/1000));
