@@ -188,7 +188,7 @@ int main(){
     v_aplicada = v_desejada - v_medicao;
     if(i == 3 || i == 6 || i == 9 || i == 12 || i == 2 || i == 5 || i == 8 || i == 11){
 
-        cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(1.5*v_aplicada));
+        cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(1.1*v_aplicada));
 
     }
     else{
