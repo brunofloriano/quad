@@ -81,6 +81,7 @@ int main(){
     float K_UP = 1.5, K_DOWN = -1.5;
     float K[13];
     float contador2 = 0;
+    float K1;
 
 
 
@@ -159,12 +160,15 @@ int main(){
 
     printf("%f %f \n", velocidade_roll, velocidade_pitch);
 
-
-    if (tDecorrido > 1*1000){
-    cmd.write_mov_speed(portHandler, packetHandler, 12, velocidade(1));
-	}
     v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, 12);
     v_medicao = ler_velocidade(v_medicao_int);
+    K1 = 1;
+    if (tDecorrido > 1*1000){
+    v_desejada = 1;
+    v_aplicada = v_desejada - v_medicao;
+    cmd.write_mov_speed(portHandler, packetHandler, 12, K1*velocidade(v_aplicada));
+	}
+
 
 	arq3 << v_medicao << endl;
 
