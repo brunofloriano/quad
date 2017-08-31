@@ -173,18 +173,27 @@ int main(){
     pitch = out;
 
 
-    //printf("%f %f \n", velocidade_roll, velocidade_pitch);
+    printf("%f %f \n", velocidade_roll, velocidade_pitch);
 
     while(i<13){
     if(i == 1 || i == 4 || i == 7 || i == 10){
-    v_desejada = -K[i]*velocidade_roll;
+        v_desejada = -K[i]*velocidade_roll;
     }
-    else{v_desejada = -K[i]*velocidade_pitch;}
+    else{
+            v_desejada = -K[i]*velocidade_pitch;
+        }
 
     v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, i);
     v_medicao = ler_velocidade(v_medicao_int);
     v_aplicada = v_desejada - v_medicao;
-    cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(v_aplicada));
+    if(i == 3 || i == 6 || i == 9 || i == 12){
+
+        cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(1.1*v_aplicada));
+
+    }
+    else{
+        cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(v_aplicada));
+	}
 	i++;
     }
 	i = 1;
@@ -195,7 +204,7 @@ int main(){
 
 	tFim = clock();
 	tDecorrido = ((float)(tFim - tInicio) / (CLOCKS_PER_SEC/1000));
-    cout << tInicio << " " << tFim << " " << tDecorrido << " " << CLOCKS_PER_SEC << endl;
+    //cout << tInicio << " " << tFim << " " << tDecorrido << " " << CLOCKS_PER_SEC << endl;
 }
 
 
