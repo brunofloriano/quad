@@ -162,7 +162,7 @@ int main(){
 
     v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, 12);
     v_medicao = ler_velocidade(v_medicao_int);
-    K1 = 1;
+    K1 = 4;
     if (tDecorrido > 1*1000){
     v_desejada = 0.5;
     v_aplicada = v_desejada - v_medicao;
