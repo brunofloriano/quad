@@ -160,7 +160,7 @@ int main(){
     printf("%f %f \n", velocidade_roll, velocidade_pitch);
 
 
-    if (tDecorrido > 1/24*1000){
+    if (tDecorrido > 1*1000){
     cmd.write_mov_speed(portHandler, packetHandler, 12, velocidade(1));
 	}
     v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, 12);
@@ -174,7 +174,7 @@ int main(){
 
 	tFim = clock();
 	tDecorrido = ((float)(tFim - tInicio) / (CLOCKS_PER_SEC/1000));
-    cout << tInicio << " " << tFim << " " << tDecorrido << " " << CLOCKS_PER_SEC << endl;
+    //cout << tInicio << " " << tFim << " " << tDecorrido << " " << CLOCKS_PER_SEC << endl;
 }
 
 
