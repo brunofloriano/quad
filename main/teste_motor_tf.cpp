@@ -25,6 +25,15 @@
 
 using namespace std;
 
+float controlador(float x, float x_1, float y_1, float T){
+    float y;
+    y = (0.06*x+0.03*(x-x_1)/T + 0.13*y_1/T)/(1+0.13/T);
+
+    return y;
+
+}
+
+
 int velocidade(float v){
     int x = MAX_SPEED*abs(v)/(MAX_SPEED_RAD_S);
     int CCW;
@@ -68,7 +77,7 @@ int main(){
 
     clock_t tInicio, tFim;
     float tDecorrido;
-    float tsim = 10; //tempo de simulacao em segundos
+    float tsim = 3; //tempo de simulacao em segundos
     float tam = 100; //tempo de amostragem em milisegundos
     float out;
     float angulos[2];
@@ -82,6 +91,7 @@ int main(){
     float K[13];
     float contador2 = 0;
     float K1;
+    float interx = 0, intery = 0, saidacontrolador; //variaveis intermediarias
 
 
 
@@ -163,10 +173,15 @@ int main(){
     v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, 12);
     v_medicao = ler_velocidade(v_medicao_int);
     K1 = 2;
+
+
     if (tDecorrido > 1*1000){
     v_desejada = 0.5;
     v_aplicada = v_desejada - v_medicao;
-    cmd.write_mov_speed(portHandler, packetHandler, 12, velocidade(K1*v_aplicada));
+    saidacontrolador = controlador(v_aplicada, interx, intery, tam);
+    cmd.write_mov_speed(portHandler, packetHandler, 12, velocidade(saidacontrolador));
+    interx = v_aplicada;
+    intery = saidacontrolador;
 	}
 
 
