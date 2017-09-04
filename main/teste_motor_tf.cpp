@@ -27,7 +27,7 @@ using namespace std;
 
 float controlador(float x, float x_1, float y_1, float T){
     float y, ganho;
-    ganho = 0.1;
+    ganho = 1;
     y = (ganho*(T-0.5)*x_1 + ganho*0.5*x - (T-0.13)*y_1)/0.13;
 
     return y;
@@ -180,7 +180,7 @@ int main(){
     v_desejada = 0.5;
     v_aplicada = v_desejada - v_medicao;
     saidacontrolador = controlador(v_aplicada, interx, intery, tam/1000);
-    cmd.write_mov_speed(portHandler, packetHandler, 12, velocidade(saidacontrolador));
+    cmd.write_mov_speed(portHandler, packetHandler, 12, velocidade(K1*v_aplicada));
     interx = v_aplicada;
     intery = saidacontrolador;
 	}
