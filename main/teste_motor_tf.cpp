@@ -171,7 +171,7 @@ int main(){
 
     //printf("%f %f \n", velocidade_roll, velocidade_pitch);
 
-    v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, 3);
+    v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, 2);
     v_medicao = ler_velocidade(v_medicao_int);
     K1 = 2;
 
@@ -180,7 +180,7 @@ int main(){
     v_desejada = 0.5;
     v_aplicada = v_desejada - v_medicao;
     saidacontrolador = controlador(v_aplicada, interx, intery, tam/1000);
-    cmd.write_mov_speed(portHandler, packetHandler, 3, velocidade(K1*v_aplicada));
+    cmd.write_mov_speed(portHandler, packetHandler, 2, velocidade(2.2*v_desejada));
     interx = v_aplicada;
     intery = saidacontrolador;
 	}
