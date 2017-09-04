@@ -121,6 +121,11 @@ int main(){
 
     cmd.config_ram(portHandler, packetHandler);
 
+    for(i=0; i<12;i++)
+    {
+         cmd.write_mov_speed(portHandler, packetHandler, i+1, 0);
+    }
+
     printf("Inicializacao finalizada, pressione qualquer tecla para iniciar \n");
     cmd.getch();
 
@@ -150,7 +155,7 @@ int main(){
 
 
     printf("%f %f \n", velocidade_roll, velocidade_pitch);
-
+    i = 1;
     while(i<13){
     if(i == 1 || i == 4 || i == 7 || i == 10){
         v_desejada = -K[i]*velocidade_roll;
