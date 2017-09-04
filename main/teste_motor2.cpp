@@ -80,35 +80,20 @@ int main(){
     float K_UP = 1.5, K_DOWN = -1.5;
     float K[13];
     float contador2 = 0;
-    int read1;
-    int read2[12];
 
 
     int i = 1;
     int v_medicao_int;
     int USB = inicializacao();
 
-    read2[0] = 505;
-    read2[1] = 498;
-    read2[2] = 458;
-    read2[3] = 533;
-    read2[4] = 537;
-    read2[5] = 564;
-    read2[6] = 545;
-    read2[7] = 540;
-    read2[8] = 351;
-    read2[9] = 499;
-    read2[10] = 553;
-    read2[11] = 520;
-
 
     K[0] = 0;
-    //roll gains
+    //----------roll gains-------//
     K[1] = K_roll_L;
     K[4] = K_roll_R;
     K[7] = K_roll_R*1.1;
     K[10] = K_roll_L;
-    //pitch gains
+    //----------pitch gains-------------//
     K[2] = K_pitch_R*K_UP;
     K[3] = K_pitch_R*K_DOWN;
     K[5] = -K_pitch_R*K_UP;
@@ -119,7 +104,7 @@ int main(){
     K[12] = K_pitch_F*K_DOWN;
 
 
-
+    //--------------------------Inicializacao------------------------------//
     if (portHandler->openPort())
     {
         printf("Succeeded to open the port!\n\n");
@@ -157,8 +142,8 @@ int main(){
     tDecorrido = ((float)(tFim - tInicio) / (CLOCKS_PER_SEC/1000));
 
 
-    //Loop
-    while(tDecorrido < tsim*10/24*1000){
+    //----------------------Loop principal------------------------------------//
+    while(tDecorrido < tsim*1000){
 	if(tDecorrido>contador2){
 
 
@@ -200,20 +185,19 @@ int main(){
     }
 
 	tFim = clock();
-	tDecorrido = ((float)(tFim - tInicio) / (CLOCKS_PER_SEC/1000));
-    //cout << tInicio << " " << tFim << " " << tDecorrido << " " << CLOCKS_PER_SEC << endl;
+	tDecorrido = ((float)(tFim - tInicio)*24/10 / (CLOCKS_PER_SEC/1000));
 }
 
 
-    //fim da simulacao, parar os motores
+    //-----------Fim da simulacao, parar os motores -------------//
     while(i<13){
 
     cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(0));
 	i++;
     }
 
-    //finalize
-    printf("Simulacao finalizada, pressione qualquer tecla para desbloquear \n");
+    //-------------------------Finalize------------------------//
+    printf("Sessao finalizada, pressione qualquer tecla para desbloquear \n");
     cmd.getch();
     cmd.write_torque(portHandler, packetHandler, BROADCASTID, 0);
 
