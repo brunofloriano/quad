@@ -147,7 +147,7 @@ int main(){
         //cmd.write_pos(portHandler, packetHandler, i+1, read2[i]);
     }
 
-
+    printf("Inicializacao finalizada, pressione qualquer tecla para iniciar \n");
     cmd.getch();
 
 
@@ -213,6 +213,7 @@ int main(){
     }
 
     //finalize
+    printf("Simulacao finalizada, pressione qualquer tecla para desbloquear \n");
     cmd.getch();
     cmd.write_torque(portHandler, packetHandler, BROADCASTID, 0);
 
