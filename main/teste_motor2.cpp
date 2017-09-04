@@ -155,6 +155,8 @@ int main(){
     tInicio = clock();
     tFim = clock();
     tDecorrido = ((float)(tFim - tInicio) / (CLOCKS_PER_SEC/1000));
+
+
     //Loop
     while(tDecorrido < tsim*10/24*1000){
 	if(tDecorrido>contador2){
@@ -203,9 +205,14 @@ int main(){
 }
 
 
+    //fim da simulacao, parar os motores
+    while(i<13){
 
+    cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(0));
+	i++;
+    }
 
-
+    //finalize
     cmd.getch();
     cmd.write_torque(portHandler, packetHandler, BROADCASTID, 0);
 
