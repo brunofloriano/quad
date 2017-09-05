@@ -75,11 +75,12 @@ int main(){
     float roll_medido, pitch_medido, roll = 0, pitch = 0;
     float velocidade_roll, velocidade_pitch;
     float fc = 1;
-    float K_roll_R = 2, K_roll_L = 2;
-    float K_pitch_F = 2, K_pitch_R = 2;
-    float K_UP = 1.5, K_DOWN = -1.5;
+    float K_roll_R = 1.001, K_roll_L = 1;
+    float K_pitch_F = 1.01, K_pitch_R = 1.007;
+    float K_UP = 1, K_DOWN = -1;
     float K[13];
     float contador2 = 0;
+    float threshold = 0.02;
 
 
     int i = 1;
@@ -153,6 +154,8 @@ int main(){
     velocidade_pitch = (out - pitch)*(PI/180)/(tam/1000);  //em rad/s
     pitch = out;
 
+   if(abs(velocidade_roll)<threshold){velocidade_roll = 0;}
+   if(abs(velocidade_pitch)<threshold){velocidade_pitch = 0;}
 
     printf("%f %f \n", velocidade_roll, velocidade_pitch);
     i = 1;
@@ -168,7 +171,7 @@ int main(){
     v_medicao = ler_velocidade(v_medicao_int);
     v_aplicada = v_desejada - v_medicao;
 
-    cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(2.2*v_desejada));
+    cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(2.2*v_aplicada));
 
 	i++;
     }
