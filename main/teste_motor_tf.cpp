@@ -141,6 +141,7 @@ int main(){
     {
          read[i] = cmd.read_pos(portHandler, packetHandler, i+1);
          cmd.write_mov_speed(portHandler, packetHandler, i+1, 0);
+         printf("%f \n", read[i]);
 
     }
 
@@ -172,7 +173,7 @@ int main(){
 
     //printf("%f %f \n", velocidade_roll, velocidade_pitch);
 
-    v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, 2);
+    v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, 12);
     v_medicao = ler_velocidade(v_medicao_int);
     K1 = 2;
 
@@ -181,7 +182,7 @@ int main(){
     v_desejada = 0.5;
     v_aplicada = v_desejada - v_medicao;
     saidacontrolador = controlador(v_aplicada, interx, intery, tam/1000);
-    cmd.write_mov_speed(portHandler, packetHandler, 2, velocidade(2.2*v_desejada));
+    cmd.write_mov_speed(portHandler, packetHandler, 12, velocidade(2.2*v_desejada));
     interx = v_aplicada;
     intery = saidacontrolador;
 	}
