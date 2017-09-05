@@ -93,6 +93,7 @@ int main(){
     float contador2 = 0;
     float K1;
     float interx = 0, intery = 0, saidacontrolador; //variaveis intermediarias
+    float read[12];
 
 
 
@@ -138,7 +139,7 @@ int main(){
 
     for(int i=0; i<12;i++)
     {
-
+         read[i] = cmd.read_pos(portHandler, packetHandler, i+1);
          cmd.write_mov_speed(portHandler, packetHandler, i+1, 0);
 
     }
