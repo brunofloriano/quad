@@ -141,7 +141,7 @@ int main(){
     {
          read[i] = cmd.read_pos(portHandler, packetHandler, i+1);
          cmd.write_mov_speed(portHandler, packetHandler, i+1, 0);
-         printf("%f \n", read[i]);
+         printf("%d \n", read[i]);
 
     }
 
