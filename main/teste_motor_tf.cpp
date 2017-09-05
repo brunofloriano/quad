@@ -93,7 +93,7 @@ int main(){
     float contador2 = 0;
     float K1;
     float interx = 0, intery = 0, saidacontrolador; //variaveis intermediarias
-    float read[12];
+    int read[12];
 
 
 
