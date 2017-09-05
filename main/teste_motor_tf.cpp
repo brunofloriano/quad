@@ -160,7 +160,7 @@ int main(){
          read[i] = cmd.read_pos(portHandler, packetHandler, i+1);
          while (read[i]=!write[i]){
             diff = write[i]-read[i];
-            cmd.write_mov_speed(portHandler, packetHandler, i+1, diff/(tam/1000));
+            cmd.write_mov_speed(portHandler, packetHandler, i+1, diff);
 
          }
 
