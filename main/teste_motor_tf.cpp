@@ -162,8 +162,8 @@ int main(){
             read[i] = cmd.read_pos(portHandler, packetHandler, i+1);
             diff = write[i]-read[i];
             if(diff<0){diff = abs(diff)+1024;}
-            cmd.write_mov_speed(portHandler, packetHandler, i+1, velocidade(ler_velocidade(diff)));
-
+            cmd.write_mov_speed(portHandler, packetHandler, i+1, velocidade(ler_velocidade(1.5*diff)));
+	    printf("%d \n", read[i]);
          }
 
 

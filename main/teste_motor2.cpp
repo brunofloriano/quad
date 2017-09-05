@@ -76,7 +76,7 @@ int main(){
     float velocidade_roll, velocidade_pitch;
     float fc = 1;
     float K_roll_R = 1.001, K_roll_L = 1;
-    float K_pitch_F = 1.01, K_pitch_R = 1.007;
+    float K_pitch_F = 1.01, K_pitch_R = 1.01;
     float K_UP = 1, K_DOWN = -1;
     float K[13];
     float contador2 = 0;
