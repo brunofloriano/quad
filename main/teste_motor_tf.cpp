@@ -94,7 +94,8 @@ int main(){
     float K1;
     float interx = 0, intery = 0, saidacontrolador; //variaveis intermediarias
     int read[12];
-
+    int write[12];
+    int diff;
 
 
     int i = 1;
@@ -119,6 +120,19 @@ int main(){
     K[11] = K_pitch_F*K_UP;
     K[12] = K_pitch_F*K_DOWN;
 
+    write[0] = 501;
+    write[1] = 506;
+    write[2] = 472;
+    write[3] = 525;
+    write[4] = 543;
+    write[5] = 508;
+    write[6] = 531;
+    write[7] = 511;
+    write[8] = 383;
+    write[9] = 471;
+    write[10] = 518;
+    write[11] = 383;
+
 
 
     if (portHandler->openPort())
@@ -137,11 +151,22 @@ int main(){
 
     cmd.config_ram(portHandler, packetHandler);
 
+
+
     for(int i=0; i<12;i++)
     {
+
+
          read[i] = cmd.read_pos(portHandler, packetHandler, i+1);
+         while (read[i]=!write[i]){
+            diff = write[i]-read[i];
+            cmd.write_mov_speed(portHandler, packetHandler, i+1, diff/(tam/1000));
+
+         }
+
+
          cmd.write_mov_speed(portHandler, packetHandler, i+1, 0);
-         printf("%d \n", read[i]);
+         //printf("%d \n", read[i]);
 
     }
 
