@@ -28,8 +28,8 @@ DIR_OBJS   = .objects
 # compiler options
 CC          = gcc
 CX          = g++
-CCFLAGS     = -O2 -O3 -DLINUX -D_GNU_SOURCE -Wall $(INCLUDES) $(FORMAT) -g
-CXFLAGS     = -O2 -O3 -DLINUX -D_GNU_SOURCE -Wall $(INCLUDES) $(FORMAT) -g
+CCFLAGS     = -O2 -O3 -DLINUX -D_GNU_SOURCE -Wall -pthread $(INCLUDES) $(FORMAT) -g
+CXFLAGS     = -O2 -O3 -DLINUX -D_GNU_SOURCE -Wall -pthread $(INCLUDES) $(FORMAT) -g
 LNKCC       = $(CX)
 LNKFLAGS    = $(CXFLAGS) #-Wl,-rpath,$(DIR_THOR)/lib
 FORMAT      =
@@ -44,7 +44,7 @@ LIBRARIES  += -lrt
 #---------------------------------------------------------------------
 # Files
 #---------------------------------------------------------------------
-SOURCES = teste_motor2.cpp command.cpp medicao.cpp filtro.cpp\
+SOURCES = main.cpp controle.cpp command.cpp medicao.cpp filtro.cpp\
     # *** OTHER SOURCES GO HERE ***
 
 OBJECTS  = $(addsuffix .o,$(addprefix $(DIR_OBJS)/,$(basename $(notdir $(SOURCES)))))
