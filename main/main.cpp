@@ -31,8 +31,8 @@ int main(){
 
 
     printf("Pressione qualquer tecla para iniciar \n");
-    cmd.getch();
     printf("Ok");
+    cmd.getch();
     pthread_create(&id, NULL, controle, NULL);
 
     tInicio = clock();
