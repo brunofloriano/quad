@@ -58,7 +58,6 @@ return v*CCW;
 }
 
 void *controle(void *id){
-    printf("Ok");
     command cmd;
     char *dev_name = (char*)DEVICENAME;
     dynamixel::PacketHandler *packetHandler = dynamixel::PacketHandler::getPacketHandler(1);
