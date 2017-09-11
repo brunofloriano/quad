@@ -30,9 +30,7 @@ int main(){
     int i = 1;
     long tid = 1;
 
-
     printf("Pressione qualquer tecla para iniciar \n");
-    printf("Ok");
     pthread_create(&id, NULL, controle, (void *)tid);
 
     tInicio = clock();
@@ -54,7 +52,8 @@ int main(){
 
     //-------------------------Finalize------------------------//
     printf("Sessao finalizada, pressione qualquer tecla para desbloquear \n");
-    cmd.getch();
+    //cmd.getch();
+	printf("Ok \n");
     cmd.write_torque(portHandler, packetHandler, BROADCASTID, 0);
 
 return 0;
