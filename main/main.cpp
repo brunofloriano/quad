@@ -11,6 +11,7 @@
 #include <pthread.h>
 #include <iostream>
 
+#define DEVICENAME                      "/dev/ttyUSB0"
 #define BROADCASTID			            254
 
 using namespace std;
