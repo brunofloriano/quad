@@ -9,15 +9,17 @@
 #include <termios.h>    // POSIX terminal control definitions
 #include <stdio.h>
 #include <pthread.h>
+#include <iostream>
 
 using namespace std;
 
 int main(){
-
+    command cmd;
     clock_t tInicio, tFim;
     float tDecorrido;
     float tsim = 10; //tempo de simulacao em segundos
     long id = 1;
+    int i;
 
 
     printf("Pressione qualquer tecla para iniciar \n");
