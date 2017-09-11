@@ -58,6 +58,7 @@ return v*CCW;
 }
 
 void *controle(void *id){
+    printf("Ok");
     command cmd;
     char *dev_name = (char*)DEVICENAME;
     dynamixel::PacketHandler *packetHandler = dynamixel::PacketHandler::getPacketHandler(1);
@@ -120,7 +121,6 @@ void *controle(void *id){
 
 while(1){
 
-    printf("Ok");
     inicializacao();
     medicao(angulos, USB);
     roll_medido = angulos[0];
