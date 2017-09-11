@@ -28,7 +28,7 @@ int main(){
     float tsim = 5; //tempo de simulacao em segundos
     pthread_t id;
     int i = 1;
-    long tid;
+    long tid = 1;
 
 
     printf("Pressione qualquer tecla para iniciar \n");
