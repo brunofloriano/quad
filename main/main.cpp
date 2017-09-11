@@ -11,10 +11,17 @@
 #include <pthread.h>
 #include <iostream>
 
+#define BROADCASTID			            254
+
 using namespace std;
 
 int main(){
     command cmd;
+    char *dev_name = (char*)DEVICENAME;
+    dynamixel::PacketHandler *packetHandler = dynamixel::PacketHandler::getPacketHandler(1);
+    dynamixel::PortHandler *portHandler = dynamixel::PortHandler::getPortHandler(dev_name);
+    dynamixel::GroupSyncWrite groupSyncWrite(portHandler, packetHandler, 30, 2);
+
     clock_t tInicio, tFim;
     float tDecorrido;
     float tsim = 10; //tempo de simulacao em segundos
