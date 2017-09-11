@@ -10,6 +10,8 @@
 #include <stdio.h>
 #include <pthread.h>
 
+using namespace std;
+
 int main(){
 
     clock_t tInicio, tFim;
