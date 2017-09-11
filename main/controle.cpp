@@ -107,7 +107,7 @@ void *controle(void *id){
     }
     else
     {
-        succes = 0;
+        success = 0;
         return 0;
     }
 
