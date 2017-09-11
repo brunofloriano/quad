@@ -28,11 +28,12 @@ int main(){
     float tsim = 5; //tempo de simulacao em segundos
     pthread_t id;
     int i = 1;
+    long tid
 
 
     printf("Pressione qualquer tecla para iniciar \n");
     printf("Ok");
-    pthread_create(&id, NULL, controle, NULL);
+    pthread_create(&id, NULL, controle, (void *)tid);
 
     tInicio = clock();
     tFim = clock();
