@@ -120,6 +120,7 @@ void *controle(void *id){
 
 while(1){
 
+    printf("Ok");
     inicializacao();
     medicao(angulos, USB);
     roll_medido = angulos[0];
@@ -127,7 +128,6 @@ while(1){
 
     velocidade_roll = (roll_medido - roll)*(PI/180)/(tam/1000);
     velocidade_pitch = (pitch_medido - pitch)*(PI/180)/(tam/1000);
-    printf("Ok");
 
     filtro(tam, fc, velocidade_roll, v_1_roll, &out);
     velocidade_roll = out;
