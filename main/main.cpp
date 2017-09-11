@@ -18,7 +18,7 @@ int main(){
     clock_t tInicio, tFim;
     float tDecorrido;
     float tsim = 10; //tempo de simulacao em segundos
-    long id = 1;
+    pthread_t id;
     int i;
 
 
