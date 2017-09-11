@@ -3,6 +3,6 @@
 
 int velocidade(float v);
 float ler_velocidade(int x);
-void *controle(void *id)
+void *controle(void *id);
 
 #endif
