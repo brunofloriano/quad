@@ -96,6 +96,7 @@ void controle(float *angulos, int USB){
     dynamixel::GroupSyncWrite groupSyncWrite(portHandler, packetHandler, 30, 2);
     
     inicializacao();
+    printf("OK1 \n");
     medicao(angulos, USB);
     
     roll_medido = angulos[0];
