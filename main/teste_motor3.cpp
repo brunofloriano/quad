@@ -56,6 +56,12 @@ return v*CCW;
 
 }
 
+void controle(float *angulos, int USB){
+    
+    medicao(angulos, USB);
+    
+    }
+
 int main(){
 
     command cmd;
@@ -143,7 +149,7 @@ int main(){
 
 
     inicializacao();
-    medicao(angulos, USB);
+    controle(angulos, USB);
     roll_medido = angulos[0];
     pitch_medido = angulos [1];
 
