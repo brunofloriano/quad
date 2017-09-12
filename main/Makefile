@@ -44,7 +44,7 @@ LIBRARIES  += -lrt
 #---------------------------------------------------------------------
 # Files
 #---------------------------------------------------------------------
-SOURCES = teste_motor3.cpp command.cpp filtro.cpp\
+SOURCES = teste_motor3.cpp command.cpp medicao.cpp filtro.cpp\
     # *** OTHER SOURCES GO HERE ***
 
 OBJECTS  = $(addsuffix .o,$(addprefix $(DIR_OBJS)/,$(basename $(notdir $(SOURCES)))))
