@@ -64,8 +64,10 @@ int main(){
 	tFim = clock();
 	tDecorrido = ((float)(tFim - tInicio)*24/10 / (CLOCKS_PER_SEC/1000));
 }
-    i = 1;
+    
   //-----------Fim da simulacao, parar os motores -------------//
+    pthread_cancel(id);
+    i = 1;
     while(i<13){
 
     cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(0));
