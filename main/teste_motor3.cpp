@@ -57,9 +57,57 @@ return v*CCW;
 }
 
 void controle(float *angulos, int USB){
+    float out;
+    float angulos[2];
+    float v_medicao, v_desejada, v_aplicada;
+    float roll_medido, pitch_medido, roll = 0, pitch = 0;
+    float velocidade_roll, velocidade_pitch;
+    float fc = 1;
+    float K_roll_R = 1.001, K_roll_L = 1;
+    float K_pitch_F = 1.01, K_pitch_R = 1.01;
+    float K_UP = 1, K_DOWN = -1;
+    float K[13];
+    float threshold = 0.02;
+    float tam = 100; //tempo de amostragem em milisegundos
+    
+    int i = 1;
+    int v_medicao_int;
     
     inicializacao();
     medicao(angulos, USB);
+    
+    roll_medido = angulos[0];
+    pitch_medido = angulos [1];
+
+    filtro(tam, fc, roll_medido, roll, &out);
+    velocidade_roll = (out - roll)*(PI/180)/(tam/1000);  //em rad/s
+    roll = out;
+    filtro(tam, fc, pitch_medido, pitch, &out);
+    velocidade_pitch = (out - pitch)*(PI/180)/(tam/1000);  //em rad/s
+    pitch = out;
+
+   if(abs(velocidade_roll)<threshold){velocidade_roll = 0;}
+   if(abs(velocidade_pitch)<threshold){velocidade_pitch = 0;}
+
+    printf("%f %f \n", velocidade_roll, velocidade_pitch);
+    i = 1;
+    while(i<13){
+    if(i == 1 || i == 4 || i == 7 || i == 10){
+        v_desejada = -K[i]*velocidade_roll;
+    }
+    else{
+            v_desejada = -K[i]*velocidade_pitch;
+        }
+
+    v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, i);
+    v_medicao = ler_velocidade(v_medicao_int);
+    v_aplicada = v_desejada - v_medicao;
+
+    cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(2.2*v_aplicada));
+
+	i++;
+    }
+	i = 1;
     
     }
 
@@ -76,22 +124,9 @@ int main(){
     float tDecorrido;
     float tsim = 5; //tempo de simulacao em segundos
     float tam = 100; //tempo de amostragem em milisegundos
-    float out;
-    float angulos[2];
-    float v_medicao, v_desejada, v_aplicada;
-    float roll_medido, pitch_medido, roll = 0, pitch = 0;
-    float velocidade_roll, velocidade_pitch;
-    float fc = 1;
-    float K_roll_R = 1.001, K_roll_L = 1;
-    float K_pitch_F = 1.01, K_pitch_R = 1.01;
-    float K_UP = 1, K_DOWN = -1;
-    float K[13];
     float contador2 = 0;
-    float threshold = 0.02;
-
-
+    
     int i = 1;
-    int v_medicao_int;
     int USB = inicializacao();
 
 
@@ -150,38 +185,7 @@ int main(){
 
 
     controle(angulos, USB);
-    roll_medido = angulos[0];
-    pitch_medido = angulos [1];
-
-    filtro(tam, fc, roll_medido, roll, &out);
-    velocidade_roll = (out - roll)*(PI/180)/(tam/1000);  //em rad/s
-    roll = out;
-    filtro(tam, fc, pitch_medido, pitch, &out);
-    velocidade_pitch = (out - pitch)*(PI/180)/(tam/1000);  //em rad/s
-    pitch = out;
-
-   if(abs(velocidade_roll)<threshold){velocidade_roll = 0;}
-   if(abs(velocidade_pitch)<threshold){velocidade_pitch = 0;}
-
-    printf("%f %f \n", velocidade_roll, velocidade_pitch);
-    i = 1;
-    while(i<13){
-    if(i == 1 || i == 4 || i == 7 || i == 10){
-        v_desejada = -K[i]*velocidade_roll;
-    }
-    else{
-            v_desejada = -K[i]*velocidade_pitch;
-        }
-
-    v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, i);
-    v_medicao = ler_velocidade(v_medicao_int);
-    v_aplicada = v_desejada - v_medicao;
-
-    cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(2.2*v_aplicada));
-
-	i++;
-    }
-	i = 1;
+    
 
 
     contador2 = contador2 + tam;
