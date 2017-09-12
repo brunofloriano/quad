@@ -115,7 +115,8 @@ while(1){
     velocidade_roll = (roll_medido - roll)*(PI/180)/(tam/1000);
     velocidade_pitch = (pitch_medido - pitch)*(PI/180)/(tam/1000);
     
-    printf("%f %f \n", velocidade_roll, velocidade_pitch);
+    printf("%f %f \n", roll_medido, pitch_medido);
+    printf("%f %f \n \n", velocidade_roll, velocidade_pitch);
 
     filtro((float)tam, fc, velocidade_roll, v_1_roll, &out);
     velocidade_roll = out;
