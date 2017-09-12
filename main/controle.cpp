@@ -108,6 +108,7 @@ while(1){
     medicao(angulos, USB);
     roll_medido = angulos[0];
     pitch_medido = angulos [1];
+    printf("%f %f \n", roll_medido, pitch_medido);
 
     velocidade_roll = (roll_medido - roll)*(PI/180)/(tam/1000);
     velocidade_pitch = (pitch_medido - pitch)*(PI/180)/(tam/1000);
