@@ -106,7 +106,7 @@ void *controle(void *id){
     
 while(1){
     printf("Ok4 \n");
-    inicializacao();
+    USB = inicializacao();
     printf("Ok5 \n");
     medicao(angulos, USB);
     printf("Ok6 \n");
