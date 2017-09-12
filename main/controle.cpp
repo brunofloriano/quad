@@ -105,7 +105,6 @@ void *controle(void *id){
     
 while(1){
     inicializacao();
-    printf("Ok5 \n");
     medicao(angulos, USB);
     printf("Ok6 \n");
     roll_medido = angulos[0];
