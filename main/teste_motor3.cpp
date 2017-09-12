@@ -56,6 +56,46 @@ return v*CCW;
 
 }
 
+void controle(){
+    inicializacao();
+    medicao(angulos, USB);
+    roll_medido = angulos[0];
+    pitch_medido = angulos [1];
+
+    filtro(tam, fc, roll_medido, roll, &out);
+    velocidade_roll = (out - roll)*(PI/180)/(tam/1000);  //em rad/s
+    roll = out;
+    filtro(tam, fc, pitch_medido, pitch, &out);
+    velocidade_pitch = (out - pitch)*(PI/180)/(tam/1000);  //em rad/s
+    pitch = out;
+
+   if(abs(velocidade_roll)<threshold){velocidade_roll = 0;}
+   if(abs(velocidade_pitch)<threshold){velocidade_pitch = 0;}
+
+    printf("%f %f \n", velocidade_roll, velocidade_pitch);
+    i = 1;
+    while(i<13){
+    if(i == 1 || i == 4 || i == 7 || i == 10){
+        v_desejada = -K[i]*velocidade_roll;
+    }
+    else{
+            v_desejada = -K[i]*velocidade_pitch;
+        }
+
+    v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, i);
+    v_medicao = ler_velocidade(v_medicao_int);
+    v_aplicada = v_desejada - v_medicao;
+
+    cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(2.2*v_aplicada));
+
+	i++;
+    }
+	i = 1;
+    
+    
+    
+    }
+
 int main(){
 
     command cmd;
@@ -140,44 +180,7 @@ int main(){
     //----------------------Loop principal------------------------------------//
     while(tDecorrido < tsim*1000){
 	if(tDecorrido>contador2){
-
-
-    inicializacao();
-    medicao(angulos, USB);
-    roll_medido = angulos[0];
-    pitch_medido = angulos [1];
-
-    filtro(tam, fc, roll_medido, roll, &out);
-    velocidade_roll = (out - roll)*(PI/180)/(tam/1000);  //em rad/s
-    roll = out;
-    filtro(tam, fc, pitch_medido, pitch, &out);
-    velocidade_pitch = (out - pitch)*(PI/180)/(tam/1000);  //em rad/s
-    pitch = out;
-
-   if(abs(velocidade_roll)<threshold){velocidade_roll = 0;}
-   if(abs(velocidade_pitch)<threshold){velocidade_pitch = 0;}
-
-    printf("%f %f \n", velocidade_roll, velocidade_pitch);
-    i = 1;
-    while(i<13){
-    if(i == 1 || i == 4 || i == 7 || i == 10){
-        v_desejada = -K[i]*velocidade_roll;
-    }
-    else{
-            v_desejada = -K[i]*velocidade_pitch;
-        }
-
-    v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, i);
-    v_medicao = ler_velocidade(v_medicao_int);
-    v_aplicada = v_desejada - v_medicao;
-
-    cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(2.2*v_aplicada));
-
-	i++;
-    }
-	i = 1;
-
-
+    controle();
     contador2 = contador2 + tam;
     }
 
