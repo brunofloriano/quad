@@ -57,6 +57,41 @@ return v*CCW;
 }
 
 void controle(){
+    float tam = 100; //tempo de amostragem em milisegundos
+    float out;
+    float angulos[2];
+    float v_medicao, v_desejada, v_aplicada;
+    float roll_medido, pitch_medido, roll = 0, pitch = 0;
+    float velocidade_roll, velocidade_pitch;
+    float fc = 1;
+    float K_roll_R = 1.001, K_roll_L = 1;
+    float K_pitch_F = 1.01, K_pitch_R = 1.01;
+    float K_UP = 1, K_DOWN = -1;
+    float K[13];
+    float threshold = 0.02;
+    
+    int i = 1;
+    int v_medicao_int;
+    int USB = inicializacao();
+    
+    
+
+    K[0] = 0;
+    //----------roll gains-------//
+    K[1] = K_roll_L;
+    K[4] = K_roll_R;
+    K[7] = K_roll_R*1.1;
+    K[10] = K_roll_L;
+    //----------pitch gains-------------//
+    K[2] = K_pitch_R*K_UP;
+    K[3] = K_pitch_R*K_DOWN;
+    K[5] = -K_pitch_R*K_UP;
+    K[6] = -K_pitch_R*K_DOWN;
+    K[8] = -K_pitch_F*K_UP;
+    K[9] = -K_pitch_F*K_DOWN;
+    K[11] = K_pitch_F*K_UP;
+    K[12] = K_pitch_F*K_DOWN;
+    
     inicializacao();
     medicao(angulos, USB);
     roll_medido = angulos[0];
@@ -109,40 +144,8 @@ int main(){
     float tDecorrido;
     float tsim = 10; //tempo de simulacao em segundos
     float tam = 100; //tempo de amostragem em milisegundos
-    float out;
-    float angulos[2];
-    float v_medicao, v_desejada, v_aplicada;
-    float roll_medido, pitch_medido, roll = 0, pitch = 0;
-    float velocidade_roll, velocidade_pitch;
-    float fc = 1;
-    float K_roll_R = 1.001, K_roll_L = 1;
-    float K_pitch_F = 1.01, K_pitch_R = 1.01;
-    float K_UP = 1, K_DOWN = -1;
-    float K[13];
     float contador2 = 0;
-    float threshold = 0.02;
-
-
     int i = 1;
-    int v_medicao_int;
-    int USB = inicializacao();
-
-
-    K[0] = 0;
-    //----------roll gains-------//
-    K[1] = K_roll_L;
-    K[4] = K_roll_R;
-    K[7] = K_roll_R*1.1;
-    K[10] = K_roll_L;
-    //----------pitch gains-------------//
-    K[2] = K_pitch_R*K_UP;
-    K[3] = K_pitch_R*K_DOWN;
-    K[5] = -K_pitch_R*K_UP;
-    K[6] = -K_pitch_R*K_DOWN;
-    K[8] = -K_pitch_F*K_UP;
-    K[9] = -K_pitch_F*K_DOWN;
-    K[11] = K_pitch_F*K_UP;
-    K[12] = K_pitch_F*K_DOWN;
 
 
     //--------------------------Inicializacao------------------------------//
@@ -190,6 +193,7 @@ int main(){
 
 
     //-----------Fim da simulacao, parar os motores -------------//
+    i=1;
     while(i<13){
 
     cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(0));
