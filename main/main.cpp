@@ -77,7 +77,7 @@ int main(){
     printf("Ok5 \n");
     //-------------------------Finalize------------------------//
     printf("Sessao finalizada, pressione qualquer tecla para desbloquear \n");
-    //cmd.getch();
+    cmd.getch();
 	printf("Ok6 \n");
     cmd.write_torque(portHandler, packetHandler, BROADCASTID, 0);
 
