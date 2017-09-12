@@ -58,11 +58,11 @@ int main(){
 
     tInicio = clock();
     tFim = clock();
-    tDecorrido = ((float)(tFim - tInicio)*24/10 / (CLOCKS_PER_SEC/1000));
+    tDecorrido = ((float)(tFim - tInicio) / (CLOCKS_PER_SEC/1000));
     //----------------------Loop para condição de parada------------------------------------//
     while(tDecorrido < tsim*1000){
 	tFim = clock();
-	tDecorrido = ((float)(tFim - tInicio)*24/10 / (CLOCKS_PER_SEC/1000));
+	tDecorrido = ((float)(tFim - tInicio) / (CLOCKS_PER_SEC/1000));
 }
     
   //-----------Fim da simulacao, parar os motores -------------//
