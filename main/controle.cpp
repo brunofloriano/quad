@@ -99,25 +99,9 @@ void *controle(void *id){
     K[11] = K_pitch_F*K_UP;
     K[12] = K_pitch_F*K_DOWN;
 
-
-    //--------------------------Inicializacao------------------------------//
-    if (portHandler->openPort())
-    {
-        success = 1;
-    }
-    else
-    {
-        success = 0;
-        return 0;
-    }
-
+    portHandler->openPort()
     cmd.config_ram(portHandler, packetHandler);
-
-    for(i=0; i<12;i++)
-    {
-         cmd.write_mov_speed(portHandler, packetHandler, i+1, 0);
-    }
-
+    
 while(1){
 
     inicializacao();
