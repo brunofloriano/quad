@@ -105,7 +105,9 @@ void controle(){
     
     
     inicializacao();
+    printf("Ok1 \n");
     medicao(angulos, USB);
+    printf("Ok2 \n");
     roll_medido = angulos[0];
     pitch_medido = angulos [1];
 
