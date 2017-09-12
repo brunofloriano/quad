@@ -104,6 +104,8 @@ void *controle(void *id){
     cmd.config_ram(portHandler, packetHandler);
     
 while(1){
+    
+    
     inicializacao();
     medicao(angulos, USB);
     printf("Ok6 \n");
