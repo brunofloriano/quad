@@ -102,11 +102,12 @@ void *controle(void *id){
     portHandler->openPort();
     portHandler->getBaudRate();
     cmd.config_ram(portHandler, packetHandler);
+    inicializacao();
     
 while(1){
 
 
-    inicializacao();
+    
     medicao(angulos, USB);
     roll_medido = angulos[0];
     pitch_medido = angulos [1];
