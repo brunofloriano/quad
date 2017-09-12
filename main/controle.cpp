@@ -107,7 +107,7 @@ void *controle(void *id){
 while(1){
 
 
-    
+    inicializacao();
     medicao(angulos, USB);
     roll_medido = angulos[0];
     pitch_medido = angulos [1];
