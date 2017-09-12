@@ -112,8 +112,6 @@ while(1){
     roll_medido = angulos[0];
     pitch_medido = angulos [1];
 
-    printf("%f %f \n", roll_medido, pitch_medido);
-
     velocidade_roll = (roll_medido - roll)*(PI/180)/(tam/1000);
     velocidade_pitch = (pitch_medido - pitch)*(PI/180)/(tam/1000);
 
@@ -127,6 +125,8 @@ while(1){
 
     roll = roll_medido;
     pitch = pitch_medido;
+    
+    printf("%f %f \n", velocidade_roll, velocidade_pitch);
 
    if(abs(velocidade_roll)<threshold){velocidade_roll = 0;}
    if(abs(velocidade_pitch)<threshold){velocidade_pitch = 0;}
