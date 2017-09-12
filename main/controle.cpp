@@ -115,11 +115,11 @@ while(1){
     velocidade_roll = (roll_medido - roll)*(PI/180)/(tam/1000);
     velocidade_pitch = (pitch_medido - pitch)*(PI/180)/(tam/1000);
 
-    filtro(tam, fc, velocidade_roll, v_1_roll, &out);
+    filtro((float)tam, fc, velocidade_roll, v_1_roll, &out);
     velocidade_roll = out;
     v_1_roll = out;
 
-    filtro(tam, fc, velocidade_pitch, v_1_pitch, &out);
+    filtro((float)tam, fc, velocidade_pitch, v_1_pitch, &out);
     velocidade_pitch = out;
     v_1_pitch = out;
 
