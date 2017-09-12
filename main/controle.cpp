@@ -116,7 +116,6 @@ while(1){
     velocidade_pitch = (pitch_medido - pitch)*(PI/180)/((float)tam/1000);
     
     printf("%f %f \n", roll_medido, pitch_medido);
-    printf("%f %f \n \n", velocidade_roll, velocidade_pitch);
 
     filtro((float)tam, fc, velocidade_roll, v_1_roll, &out);
     velocidade_roll = out;
@@ -128,7 +127,8 @@ while(1){
 
     roll = roll_medido;
     pitch = pitch_medido;
-    
+
+    printf("%f %f \n \n", velocidade_roll, velocidade_pitch);
 
    if(abs(velocidade_roll)<threshold){velocidade_roll = 0;}
    if(abs(velocidade_pitch)<threshold){velocidade_pitch = 0;}
