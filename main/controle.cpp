@@ -99,7 +99,7 @@ void *controle(void *id){
     K[11] = K_pitch_F*K_UP;
     K[12] = K_pitch_F*K_DOWN;
 
-    portHandler->openPort()
+    portHandler->openPort();
     cmd.config_ram(portHandler, packetHandler);
     
 while(1){
