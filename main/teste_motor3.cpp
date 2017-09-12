@@ -57,6 +57,13 @@ return v*CCW;
 }
 
 void controle(){
+    command cmd;
+    char *dev_name = (char*)DEVICENAME;
+    dynamixel::PacketHandler *packetHandler = dynamixel::PacketHandler::getPacketHandler(1);
+    dynamixel::PortHandler *portHandler = dynamixel::PortHandler::getPortHandler(dev_name);
+    dynamixel::GroupSyncWrite groupSyncWrite(portHandler, packetHandler, 30, 2);
+    
+    
     float tam = 100; //tempo de amostragem em milisegundos
     float out;
     float angulos[2];
@@ -91,6 +98,11 @@ void controle(){
     K[9] = -K_pitch_F*K_DOWN;
     K[11] = K_pitch_F*K_UP;
     K[12] = K_pitch_F*K_DOWN;
+    
+    portHandler->openPort();
+    portHandler->getBaudRate();
+    cmd.config_ram(portHandler, packetHandler);
+    
     
     inicializacao();
     medicao(angulos, USB);
