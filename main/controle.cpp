@@ -98,14 +98,18 @@ void *controle(void *id){
     K[9] = -K_pitch_F*K_DOWN;
     K[11] = K_pitch_F*K_UP;
     K[12] = K_pitch_F*K_DOWN;
-
+    printf("Ok1 \n");
     portHandler->openPort();
+    printf("Ok2 \n");
     cmd.config_ram(portHandler, packetHandler);
+    printf("Ok3 \n");
     
 while(1){
-
+    printf("Ok4 \n");
     inicializacao();
+    printf("Ok5 \n");
     medicao(angulos, USB);
+    printf("Ok6 \n");
     roll_medido = angulos[0];
     pitch_medido = angulos [1];
     printf("%f %f \n", roll_medido, pitch_medido);
