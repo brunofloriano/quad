@@ -112,8 +112,8 @@ while(1){
     roll_medido = angulos[0];
     pitch_medido = angulos [1];
 
-    velocidade_roll = (roll_medido - roll)*(PI/180)/(tam/1000);
-    velocidade_pitch = (pitch_medido - pitch)*(PI/180)/(tam/1000);
+    velocidade_roll = (roll_medido - roll)*(PI/180)/((float)tam/1000);
+    velocidade_pitch = (pitch_medido - pitch)*(PI/180)/((float)tam/1000);
     
     printf("%f %f \n", roll_medido, pitch_medido);
     printf("%f %f \n \n", velocidade_roll, velocidade_pitch);
