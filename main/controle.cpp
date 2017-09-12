@@ -104,13 +104,13 @@ void *controle(void *id){
     cmd.config_ram(portHandler, packetHandler);
     
 while(1){
-    
-    
+
+
     inicializacao();
     medicao(angulos, USB);
-    printf("Ok6 \n");
     roll_medido = angulos[0];
     pitch_medido = angulos [1];
+
     printf("%f %f \n", roll_medido, pitch_medido);
 
     velocidade_roll = (roll_medido - roll)*(PI/180)/(tam/1000);
