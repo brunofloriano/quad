@@ -29,6 +29,28 @@ int main(){
     pthread_t id;
     int i = 1;
     long tid = 1;
+    
+        //--------------------------Inicializacao------------------------------//
+    if (portHandler->openPort())
+    {
+        printf("Succeeded to open the port!\n\n");
+        printf(" - Device Name : %s\n", dev_name);
+        printf(" - Baudrate    : %d\n\n", portHandler->getBaudRate());
+    }
+    else
+    {
+        printf("Failed to open the port! [%s]\n", dev_name);
+        printf("Press any key to terminate...\n");
+        cmd.getch();
+        return 0;
+    }
+
+    cmd.config_ram(portHandler, packetHandler);
+
+    for(i=0; i<12;i++)
+    {
+         cmd.write_mov_speed(portHandler, packetHandler, i+1, 0);
+    }
 
     printf("Pressione qualquer tecla para iniciar \n");
     printf("Ok1 \n");
@@ -45,6 +67,7 @@ int main(){
 	tDecorrido = ((float)(tFim - tInicio)*24/10 / (CLOCKS_PER_SEC/1000));
 }
     printf("Ok4 \n");
+    i = 1;
   //-----------Fim da simulacao, parar os motores -------------//
     while(i<13){
 
