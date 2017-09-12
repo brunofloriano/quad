@@ -58,6 +58,7 @@ return v*CCW;
 
 void controle(float *angulos, int USB){
     
+    inicializacao();
     medicao(angulos, USB);
     
     }
@@ -73,7 +74,7 @@ int main(){
 
     clock_t tInicio, tFim;
     float tDecorrido;
-    float tsim = 10; //tempo de simulacao em segundos
+    float tsim = 5; //tempo de simulacao em segundos
     float tam = 100; //tempo de amostragem em milisegundos
     float out;
     float angulos[2];
@@ -148,7 +149,6 @@ int main(){
 	if(tDecorrido>contador2){
 
 
-    inicializacao();
     controle(angulos, USB);
     roll_medido = angulos[0];
     pitch_medido = angulos [1];
