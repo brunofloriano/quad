@@ -58,7 +58,6 @@ return v*CCW;
 
 void controle(float *angulos, int USB){
     float out;
-    float angulos[2];
     float v_medicao, v_desejada, v_aplicada;
     float roll_medido, pitch_medido, roll = 0, pitch = 0;
     float velocidade_roll, velocidade_pitch;
@@ -90,7 +89,7 @@ void controle(float *angulos, int USB){
     K[12] = K_pitch_F*K_DOWN;
 
 
-    
+    command cmd;
     char *dev_name = (char*)DEVICENAME;
     dynamixel::PacketHandler *packetHandler = dynamixel::PacketHandler::getPacketHandler(1);
     dynamixel::PortHandler *portHandler = dynamixel::PortHandler::getPortHandler(dev_name);
@@ -148,6 +147,7 @@ int main(){
     float tsim = 5; //tempo de simulacao em segundos
     float tam = 100; //tempo de amostragem em milisegundos
     float contador2 = 0;
+    float angulos[2];
     
     int i = 1;
     int USB = inicializacao();
