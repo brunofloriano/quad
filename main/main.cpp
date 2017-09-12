@@ -53,20 +53,17 @@ int main(){
     }
 
     printf("Pressione qualquer tecla para iniciar \n");
-    printf("Ok1 \n");
+    cmd.getch();
     pthread_create(&id, NULL, controle, (void *)tid);
-    printf("Ok2 \n");
 
     tInicio = clock();
     tFim = clock();
     tDecorrido = ((float)(tFim - tInicio)*24/10 / (CLOCKS_PER_SEC/1000));
-    printf("Ok3 \n");
     //----------------------Loop para condição de parada------------------------------------//
     while(tDecorrido < tsim*1000){
 	tFim = clock();
 	tDecorrido = ((float)(tFim - tInicio)*24/10 / (CLOCKS_PER_SEC/1000));
 }
-    printf("Ok4 \n");
     i = 1;
   //-----------Fim da simulacao, parar os motores -------------//
     while(i<13){
@@ -74,11 +71,9 @@ int main(){
     cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(0));
 	i++;
     }
-    printf("Ok5 \n");
     //-------------------------Finalize------------------------//
     printf("Sessao finalizada, pressione qualquer tecla para desbloquear \n");
     cmd.getch();
-	printf("Ok6 \n");
     cmd.write_torque(portHandler, packetHandler, BROADCASTID, 0);
 
 return 0;
