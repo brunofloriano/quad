@@ -95,7 +95,7 @@ void controle(float *angulos, int USB){
     dynamixel::PortHandler *portHandler = dynamixel::PortHandler::getPortHandler(dev_name);
     dynamixel::GroupSyncWrite groupSyncWrite(portHandler, packetHandler, 30, 2);
     
-    inicializacao();
+   
     printf("OK1 \n");
     medicao(angulos, USB);
     
@@ -190,7 +190,7 @@ int main(){
     while(tDecorrido < tsim*1000){
 	if(tDecorrido>contador2){
 
-
+    inicializacao();
     controle(angulos, USB);
     
 
