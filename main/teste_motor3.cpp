@@ -3,7 +3,7 @@
 #include <fcntl.h>      // File control definitions
 #include <errno.h>      // Error number definitions
 #include <termios.h>    // POSIX terminal control definitions
-#include "medicao.h"
+//#include "medicao.h"
 #include "filtro.h"
 #include <stdio.h>
 
