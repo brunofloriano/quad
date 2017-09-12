@@ -73,6 +73,29 @@ void controle(float *angulos, int USB){
     int i = 1;
     int v_medicao_int;
     
+        K[0] = 0;
+    //----------roll gains-------//
+    K[1] = K_roll_L;
+    K[4] = K_roll_R;
+    K[7] = K_roll_R*1.1;
+    K[10] = K_roll_L;
+    //----------pitch gains-------------//
+    K[2] = K_pitch_R*K_UP;
+    K[3] = K_pitch_R*K_DOWN;
+    K[5] = -K_pitch_R*K_UP;
+    K[6] = -K_pitch_R*K_DOWN;
+    K[8] = -K_pitch_F*K_UP;
+    K[9] = -K_pitch_F*K_DOWN;
+    K[11] = K_pitch_F*K_UP;
+    K[12] = K_pitch_F*K_DOWN;
+
+
+    
+    char *dev_name = (char*)DEVICENAME;
+    dynamixel::PacketHandler *packetHandler = dynamixel::PacketHandler::getPacketHandler(1);
+    dynamixel::PortHandler *portHandler = dynamixel::PortHandler::getPortHandler(dev_name);
+    dynamixel::GroupSyncWrite groupSyncWrite(portHandler, packetHandler, 30, 2);
+    
     inicializacao();
     medicao(angulos, USB);
     
@@ -128,23 +151,6 @@ int main(){
     
     int i = 1;
     int USB = inicializacao();
-
-
-    K[0] = 0;
-    //----------roll gains-------//
-    K[1] = K_roll_L;
-    K[4] = K_roll_R;
-    K[7] = K_roll_R*1.1;
-    K[10] = K_roll_L;
-    //----------pitch gains-------------//
-    K[2] = K_pitch_R*K_UP;
-    K[3] = K_pitch_R*K_DOWN;
-    K[5] = -K_pitch_R*K_UP;
-    K[6] = -K_pitch_R*K_DOWN;
-    K[8] = -K_pitch_F*K_UP;
-    K[9] = -K_pitch_F*K_DOWN;
-    K[11] = K_pitch_F*K_UP;
-    K[12] = K_pitch_F*K_DOWN;
 
 
     //--------------------------Inicializacao------------------------------//
