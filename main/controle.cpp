@@ -99,21 +99,8 @@ void *controle(void *id){
     K[11] = K_pitch_F*K_UP;
     K[12] = K_pitch_F*K_DOWN;
 
- //--------------------------Inicializacao------------------------------//
-    if (portHandler->openPort())
-    {
-        printf("Succeeded to open the port!\n\n");
-        printf(" - Device Name : %s\n", dev_name);
-        printf(" - Baudrate    : %d\n\n", portHandler->getBaudRate());
-    }
-    else
-    {
-        printf("Failed to open the port! [%s]\n", dev_name);
-        printf("Press any key to terminate...\n");
-        cmd.getch();
-        return 0;
-    }
-
+    portHandler->openPort();
+    portHandler->getBaudRate();
     cmd.config_ram(portHandler, packetHandler);
     
 while(1){
