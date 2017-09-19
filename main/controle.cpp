@@ -82,7 +82,8 @@ void *controle(void *id){
     int success;
     int USB = inicializacao();
 
-
+    angulos[0] = 0;
+    angulos[1] = 0;
     K[0] = 0;
     //----------roll gains-------//
     K[1] = K_roll_L;
@@ -106,9 +107,11 @@ void *controle(void *id){
     
 while(1){
 
-
+    printf("Ok1 \n");
     inicializacao();
+printf("Ok2 \n");
     medicao(angulos, USB);
+printf("Ok3 \n");
     roll_medido = angulos[0];
     pitch_medido = angulos [1];
 
