@@ -107,11 +107,9 @@ void *controle(void *id){
     
 while(1){
 
-    printf("Ok1 \n");
+
     inicializacao();
-printf("Ok2 \n");
     medicao(angulos, USB);
-printf("Ok3 \n");
     roll_medido = angulos[0];
     pitch_medido = angulos [1];
 
