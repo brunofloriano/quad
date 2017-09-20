@@ -131,7 +131,7 @@ while(1){
    if(abs(velocidade_roll)<threshold){velocidade_roll = 0;}
    if(abs(velocidade_pitch)<threshold){velocidade_pitch = 0;}
    
-    //printf("%f %f \n \n", roll, pitch);
+    printf("%f %f \n \n", roll, pitch);
 
     i = 1;
     while(i<13){
