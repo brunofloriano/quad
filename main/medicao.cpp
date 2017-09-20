@@ -82,6 +82,7 @@ int medicao(float *angulos, int USB){
                 n = read( USB, &buf, 1 );
             }
             while( buf != '<' && n > 0);
+            printf("Buf do laco inicial: %c \n",buf);
             do
             {
                 n = read( USB, &buf, 1 );
@@ -89,6 +90,7 @@ int medicao(float *angulos, int USB){
                 spot += n;
             }
             while( buf != '>' && n > 0);
+            printf("Buf do segundo laco: %c \n",buf);
             temp=response;
             inic=temp.find('\n');
             fim=inic;
