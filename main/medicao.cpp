@@ -13,9 +13,9 @@ using namespace std;
 
 int inicializacao(){
 
-    int USB = open( "/dev/ttyACM0", O_RDONLY| O_NOCTTY | O_NONBLOCK);
+    int USB = open( "/dev/ttyACM0", O_RDWR| O_NOCTTY | O_NONBLOCK);
     close(USB);
-    USB = open( "/dev/ttyACM0", O_RDONLY| O_NOCTTY | O_NONBLOCK);
+    USB = open( "/dev/ttyACM0", O_RDWR| O_NOCTTY | O_NONBLOCK);
 
     //USB Handling//
     struct termios tty;
@@ -75,7 +75,7 @@ int medicao(float *angulos, int USB){
             n_endl=0;
             memset(response, '\0', sizeof response);
 
-            //n_written = write( USB, "1", 1 );
+            n_written = write( USB, "1", 1 );
 
             do
             {
@@ -83,7 +83,7 @@ int medicao(float *angulos, int USB){
                 printf("n = %d \n",n);
                 printf("buf = %c \n",buf);
             }
-            while( buf != '<' && n < 0);
+            while( buf != '<' && n > 0);
             
             do
             {
