@@ -109,7 +109,7 @@ void *controle(void *id){
     K[12] = K_pitch_F*K_DOWN;
     
     //--------Data logger-------//
-	if(!gDataLogger_Init(&gDataLogger,(char*) "matlabdatafiles/file.mat",NULL)){
+	if(!gDataLogger_Init(&gDataLogger,(char*) "gdatalogger/matlabdatafiles/data.mat",NULL)){
 		printf("\nErro em gDataLogger_Init\n\n");
 		return EXIT_FAILURE;
 	}

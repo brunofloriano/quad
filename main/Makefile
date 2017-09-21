@@ -44,7 +44,7 @@ LIBRARIES  += -lrt
 #---------------------------------------------------------------------
 # Files
 #---------------------------------------------------------------------
-SOURCES = main.cpp controle.cpp command.cpp medicao.cpp filtro.cpp\
+SOURCES = main.cpp controle.cpp command.cpp medicao.cpp filtro.cpp gdatalogger/gdatalogger.c gdatalogger/gqueue.c gdatalogger/gmatlabdatafile.c\
     # *** OTHER SOURCES GO HERE ***
 
 OBJECTS  = $(addsuffix .o,$(addprefix $(DIR_OBJS)/,$(basename $(notdir $(SOURCES)))))
