@@ -18,8 +18,6 @@
 #define DEVICENAME                      "/dev/ttyUSB0"
 #define BROADCASTID			            254
 
-GDATALOGGER gDataLogger;
-
 using namespace std;
 
 int main(){
@@ -82,9 +80,6 @@ int main(){
     //-------------------------Finalize------------------------//
     printf("Sessao finalizada, pressione qualquer tecla para desbloquear \n");
     cmd.getch();
-    gDataLogger_IPCUpdate(&gDataLogger); // gerencia IPC
-    //gDataLogger_MatfileUpdate(&gDataLogger); // esvazia os buffers no arquivo de log
-    gDataLogger_Close(&gDataLogger);
     cmd.write_torque(portHandler, packetHandler, BROADCASTID, 0);
 
 return 0;

@@ -178,7 +178,8 @@ while(1){
 
 	i++;
     }
-
+    
+    gDataLogger_IPCUpdate(&gDataLogger); // gerencia IPC
     usleep(tam*1000); //sleep for microseconds
 }
     return 0;
