@@ -147,7 +147,7 @@ while(1){
     velocidade_pitch = out;
     v_1_pitch = out;
     
-    printf("%f %f \n", velocidade_pitch, velocidade_roll);
+    //printf("%f %f \n", velocidade_pitch, velocidade_roll);
 
     roll = roll_medido;
     pitch = pitch_medido;
