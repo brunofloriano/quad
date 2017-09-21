@@ -86,7 +86,7 @@ int medicao(float *angulos, int USB){
                 printf("errno = %d \n",errno);
                 if(buf = '<'){errno = 0;}
             }
-            while( buf != '<' && n > 0 && errno == 0);
+            while(errno == 0);
             
             do
             {
