@@ -30,9 +30,7 @@
 #define PI                              3.14159265
 #define MAX_SPEED_RAD_S                 79.4*V_MAX/16*2*PI/60
 
-#ifndef gDataLogger
 GDATALOGGER gDataLogger;
-#endif
 
 int velocidade(float v){
     int x = MAX_SPEED*abs(v)/(MAX_SPEED_RAD_S);
@@ -110,6 +108,15 @@ void *controle(void *id){
     K[11] = K_pitch_F*K_UP;
     K[12] = K_pitch_F*K_DOWN;
     
+
+
+    portHandler->openPort();
+    portHandler->getBaudRate();
+    cmd.config_ram(portHandler, packetHandler);
+    inicializacao();
+    
+while(1){
+
     //--------Data logger-------//
 	if(!gDataLogger_Init(&gDataLogger,(char*) "gdatalogger/matlabdatafiles/data.mat",NULL)){
 		printf("\nErro em gDataLogger_Init\n\n");
@@ -120,15 +127,7 @@ void *controle(void *id){
     gDataLogger_DeclareVariable(&gDataLogger,(char*) "pitch_angle",(char*) "deg",1,1,1000);
     gDataLogger_DeclareVariable(&gDataLogger,(char*) "roll_speed",(char*) "rad/s",1,1,1000);
     gDataLogger_DeclareVariable(&gDataLogger,(char*) "pitch_speed",(char*) "rad/s",1,1,1000);
-
-    portHandler->openPort();
-    portHandler->getBaudRate();
-    cmd.config_ram(portHandler, packetHandler);
-    inicializacao();
     
-while(1){
-
-
     inicializacao();
     medicao(angulos, USB);
     roll_medido = angulos[0];
@@ -180,6 +179,7 @@ while(1){
     }
     
     gDataLogger_IPCUpdate(&gDataLogger); // gerencia IPC
+    gDataLogger_Close(&gDataLogger);
     usleep(tam*1000); //sleep for microseconds
 }
     return 0;
