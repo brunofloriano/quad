@@ -146,14 +146,14 @@ while(1){
     filtro((float)tam, fc, velocidade_pitch, v_1_pitch, &out);
     velocidade_pitch = out;
     v_1_pitch = out;
+    
+    printf("%f %f \n", velocidade_pitch, velocidade_roll);
 
     roll = roll_medido;
     pitch = pitch_medido;
     
    if(abs(velocidade_roll)<threshold){velocidade_roll = 0;}
    if(abs(velocidade_pitch)<threshold){velocidade_pitch = 0;}
-   
-    printf("%f %f \n", velocidade_pitch, velocidade_roll);
    
     dados = (double)roll_medido;
     gDataLogger_InsertVariable(&gDataLogger,(char*) "roll_angle",&dados);
