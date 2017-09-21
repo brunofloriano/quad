@@ -82,6 +82,7 @@ int medicao(float *angulos, int USB){
                 n = read( USB, &buf, 1 );
                 //printf("n = %d \n",n);
                 //printf("buf = %c \n",buf);
+                printf("buf = %d \n",errno);
             }
             while( buf != '<' && n > 0);
             
