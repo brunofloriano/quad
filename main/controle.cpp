@@ -89,6 +89,8 @@ void *controle(void *id){
     int v_medicao_int;
     int success;
     int USB = inicializacao();
+    
+    double dados;
 
     angulos[0] = 0;
     angulos[1] = 0;
@@ -150,10 +152,14 @@ while(1){
    if(abs(velocidade_roll)<threshold){velocidade_roll = 0;}
    if(abs(velocidade_pitch)<threshold){velocidade_pitch = 0;}
    
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "roll_angle",(double)&roll_medido);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "pitch_angle",(double)&pitch_medido);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "roll_speed",(double)&velocidade_roll);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "roll_speed",(double)&velocidade_pitch);
+    dados = (double)roll_medido;
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "roll_angle",(double)&dados);
+    dados = (double)pitch_medido;
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "pitch_angle",(double)&dados);
+    dados = (double)velocidade_roll;
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "roll_speed",(double)&dados);
+    dados = (double)velocidade_pitch;
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "roll_speed",(double)&dados);
 
     i = 1;
     while(i<13){
