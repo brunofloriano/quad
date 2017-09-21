@@ -83,7 +83,7 @@ int medicao(float *angulos, int USB){
                 printf("n = %d \n",n);
                 printf("buf = %c \n",buf);
             }
-            while( buf != '<' && n <= 0);
+            while( buf != '<' && n > 0);
             
             do
             {
