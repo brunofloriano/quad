@@ -103,7 +103,7 @@ void *controle(void *id){
     portHandler->openPort();
     portHandler->getBaudRate();
     cmd.config_ram(portHandler, packetHandler);
-    //inicializacao();
+    inicializacao();
     
 while(1){
 
