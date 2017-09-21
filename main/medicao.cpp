@@ -67,6 +67,8 @@ int medicao(float *angulos, int USB){
 
     string temp,temp2;
     size_t inic, fim;
+    timeval tempo;
+    tempo.tv_usec = 1000;
 
 
             memset(temp_val, 0, sizeof temp_val);
@@ -76,7 +78,7 @@ int medicao(float *angulos, int USB){
             n_endl=0;
             memset(response, '\0', sizeof response);
 
-        select(USB+1, (fd_set *)&USB, NULL,NULL, (timeval *)1000);
+        select(USB+1, (fd_set *)&USB, NULL,NULL, &tempo.tv_usec);
             n_written = write( USB, "1", 1 );
 
             do
