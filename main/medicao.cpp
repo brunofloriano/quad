@@ -69,6 +69,7 @@ int medicao(float *angulos, int USB){
     size_t inic, fim;
     timeval tempo;
     tempo.tv_usec = 1000;
+    tempo.tv_sec = 1;
 
 
             memset(temp_val, 0, sizeof temp_val);
