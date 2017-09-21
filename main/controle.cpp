@@ -10,9 +10,9 @@
 #include "filtro.h"
 #include <stdio.h>
 
-#include "gdatalogger/gqueue.h"
-#include "gdatalogger/gmatlabdatafile.h"
-#include "gdatalogger/gdatalogger.h"
+#include "gqueue.h"
+#include "gmatlabdatafile.h"
+#include "gdatalogger.h"
 
 #define Kp_roll 1
 #define Kd_roll 0
@@ -29,9 +29,6 @@
 #define V_MAX                           13.3
 #define PI                              3.14159265
 #define MAX_SPEED_RAD_S                 79.4*V_MAX/16*2*PI/60
-
-
-GDATALOGGER gDataLogger;
 
 
 int velocidade(float v){

@@ -11,9 +11,9 @@
 #include <pthread.h>
 #include <iostream>
 
-#include "gdatalogger/gqueue.h"
-#include "gdatalogger/gmatlabdatafile.h"
-#include "gdatalogger/gdatalogger.h"
+#include "gqueue.h"
+#include "gmatlabdatafile.h"
+#include "gdatalogger.h"
 
 #define DEVICENAME                      "/dev/ttyUSB0"
 #define BROADCASTID			            254
