@@ -76,7 +76,7 @@ int medicao(float *angulos, int USB){
             n_endl=0;
             memset(response, '\0', sizeof response);
 
-        select(USB+1, USB, NULL,NULL, 1);
+        select(USB+1, (fd_set *)USB, NULL,NULL, 1);
             n_written = write( USB, "1", 1 );
 
             do
