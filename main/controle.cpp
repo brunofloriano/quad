@@ -30,6 +30,9 @@
 #define PI                              3.14159265
 #define MAX_SPEED_RAD_S                 79.4*V_MAX/16*2*PI/60
 
+#ifndef gDataLogger
+GDATALOGGER gDataLogger;
+#endif
 
 int velocidade(float v){
     int x = MAX_SPEED*abs(v)/(MAX_SPEED_RAD_S);
