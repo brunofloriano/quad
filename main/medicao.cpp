@@ -77,21 +77,11 @@ int medicao(float *angulos, int USB){
 
             n_written = write( USB, "1", 1 );
 
-
             do
             {
                 n = read( USB, &buf, 1 );
                 printf("n = %d \n",n);
                 printf("buf = %c \n",buf);
-            }
-            while( n < 0);
-
-
-            do
-            {
-                n = read( USB, &buf, 1 );
-                printf("n1 = %d \n",n);
-                printf("buf1 = %c \n",buf);
             }
             while( buf != '<' && n > 0);
             
