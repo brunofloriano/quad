@@ -113,7 +113,7 @@ void *controle(void *id){
     //--------Data logger-------//
 	if(!gDataLogger_Init(&gDataLogger,(char*) "gdatalogger/matlabdatafiles/data.mat",NULL)){
 		printf("\nErro em gDataLogger_Init\n\n");
-		return -1;
+		pthread_exit(NULL);
 	}
     
     gDataLogger_DeclareVariable(&gDataLogger,(char*) "roll_angle",(char*) "deg",1,1,1000);
