@@ -151,7 +151,7 @@ while(1){
     pitch = pitch_medido;
 
     
-    printf("%f %f \n", velocidade_pitch velocidade_roll);
+    printf("%f %f \n", velocidade_pitch, velocidade_roll);
     
    if(abs(velocidade_roll)<threshold){velocidade_roll = 0;}
    if(abs(velocidade_pitch)<threshold){velocidade_pitch = 0;}
