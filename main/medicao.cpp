@@ -67,9 +67,6 @@ int medicao(float *angulos, int USB){
 
     string temp,temp2;
     size_t inic, fim;
-    timeval tempo;
-    tempo.tv_usec = 1000;
-    tempo.tv_sec = 1;
 
 
             memset(temp_val, 0, sizeof temp_val);
@@ -78,8 +75,7 @@ int medicao(float *angulos, int USB){
             buf='\0';
             n_endl=0;
             memset(response, '\0', sizeof response);
-
-        select(USB+1, (fd_set *)&USB, NULL,NULL, &tempo);
+            
             n_written = write( USB, "1", 1 );
 
             do
@@ -87,7 +83,7 @@ int medicao(float *angulos, int USB){
                 n = read( USB, &buf, 1 );
                 //printf("n = %d \n",n);
                 //printf("buf = %c \n",buf);
-                printf("buf = %d \n",errno);
+                printf("errno = %d \n",errno);
             }
             while( buf != '<' && n > 0);
             
