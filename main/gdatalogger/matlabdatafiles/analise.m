@@ -1,3 +1,4 @@
+clear
 load('data.mat');
 size = num2str(pitch_angle_size-1);
 tsim = 5;
