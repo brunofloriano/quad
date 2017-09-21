@@ -6,6 +6,7 @@
 #include <fcntl.h>      // File control definitions
 #include <errno.h>      // Error number definitions
 #include <termios.h>    // POSIX terminal control definitions
+#include <sys/select.h>
 
 #define PI    3.14159265
 
@@ -75,6 +76,7 @@ int medicao(float *angulos, int USB){
             n_endl=0;
             memset(response, '\0', sizeof response);
 
+        select(USB+1, &USB, NULL,NULL, 1);
             n_written = write( USB, "1", 1 );
 
             do
