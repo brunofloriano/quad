@@ -76,13 +76,14 @@ int medicao(float *angulos, int USB){
             memset(response, '\0', sizeof response);
 
             n_written = write( USB, "1", 1 );
-printf("%d",errno);
+
             do
             {
                 n = read( USB, &buf, 1 );
+                printf("%d \n",n);
             }
             while( buf != '<' && n > 0);
-            printf("%d",errno);
+            
             do
             {
                 n = read( USB, &buf, 1 );
