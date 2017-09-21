@@ -63,6 +63,11 @@ return v*CCW;
 
 }
 
+int end(){
+    gDataLogger_Close(&gDataLogger);    
+    return 0;
+    }
+
 void *controle(void *id){
     command cmd;
     char *dev_name = (char*)DEVICENAME;
@@ -108,15 +113,6 @@ void *controle(void *id){
     K[11] = K_pitch_F*K_UP;
     K[12] = K_pitch_F*K_DOWN;
     
-
-
-    portHandler->openPort();
-    portHandler->getBaudRate();
-    cmd.config_ram(portHandler, packetHandler);
-    inicializacao();
-    
-while(1){
-
     //--------Data logger-------//
 	if(!gDataLogger_Init(&gDataLogger,(char*) "gdatalogger/matlabdatafiles/data.mat",NULL)){
 		printf("\nErro em gDataLogger_Init\n\n");
@@ -127,6 +123,13 @@ while(1){
     gDataLogger_DeclareVariable(&gDataLogger,(char*) "pitch_angle",(char*) "deg",1,1,1000);
     gDataLogger_DeclareVariable(&gDataLogger,(char*) "roll_speed",(char*) "rad/s",1,1,1000);
     gDataLogger_DeclareVariable(&gDataLogger,(char*) "pitch_speed",(char*) "rad/s",1,1,1000);
+
+    portHandler->openPort();
+    portHandler->getBaudRate();
+    cmd.config_ram(portHandler, packetHandler);
+    inicializacao();
+    
+while(1){
     
     inicializacao();
     medicao(angulos, USB);
@@ -179,7 +182,6 @@ while(1){
     }
     
     gDataLogger_IPCUpdate(&gDataLogger); // gerencia IPC
-    gDataLogger_Close(&gDataLogger);
     usleep(tam*1000); //sleep for microseconds
 }
     return 0;
