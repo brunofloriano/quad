@@ -14,9 +14,9 @@ using namespace std;
 
 int inicializacao(){
 
-    int USB = open( "/dev/ttyACM0", O_RDWR| O_NOCTTY | O_NONBLOCK);
+    int USB = open( "/dev/ttyACM0", O_RDWR| O_NOCTTY )//| O_NONBLOCK);
     close(USB);
-    USB = open( "/dev/ttyACM0", O_RDWR| O_NOCTTY | O_NONBLOCK);
+    USB = open( "/dev/ttyACM0", O_RDWR| O_NOCTTY )//| O_NONBLOCK);
 
     //USB Handling//
     struct termios tty;
@@ -86,7 +86,7 @@ int medicao(float *angulos, int USB){
                 printf("errno = %d \n",errno);
                 if(buf = '<'){errno = 0;}
             }
-            while(errno == 0);
+            while( buf != '<' && n > 0);
             
             do
             {
