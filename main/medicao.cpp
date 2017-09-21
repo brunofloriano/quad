@@ -115,6 +115,13 @@ int medicao(float *angulos, int USB){
     angulos[0] = atan(-xAcel/zAcel)*180/PI;   //roll
     angulos[1] = 3+atan(yAcel/(sqrt(xAcel*xAcel+zAcel*zAcel)))*180/PI; //pitch
 
+    if ( fpclassify(angulos[0]) == FP_NAN){
+        angulos[0] = 0;
+        }
+
+    if ( fpclassify(angulos[1]) == FP_NAN){
+        angulos[1] = 0;
+        }
 
 
 close(USB);
