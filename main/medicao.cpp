@@ -85,7 +85,7 @@ int medicao(float *angulos, int USB){
                 //printf("buf = %c \n",buf);
                 printf("errno = %d \n",errno);
             }
-            while( buf != '<' && n > 0);
+            while( buf != '<' && n < 0);
             
             do
             {
