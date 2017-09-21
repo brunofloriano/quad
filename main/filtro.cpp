@@ -15,7 +15,7 @@ float filtro(float tam, float fc, float Ak, float Afko, float *Afk){
         }
 
     *Afk = a1*Afko + a2*Ak;
-    printf("%f %f %f %f %f %f %f \n",a1, a2, T,fc,Ak,Afko,*Afk);
+    //printf("%f %f %f %f %f %f %f \n",a1, a2, T,fc,Ak,Afko,*Afk);
 
 return 0;
 
