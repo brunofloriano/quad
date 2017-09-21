@@ -85,7 +85,7 @@ void *controle(void *id){
     float K_pitch_F = 1.01, K_pitch_R = 1.01;
     float K_UP = 1, K_DOWN = -1;
     float K[13];
-    float threshold = 0;
+    float threshold = 0.0024;
 
     int tam = 100; //tempo de amostragem em milisegundos
     int i = 1;
