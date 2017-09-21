@@ -159,7 +159,7 @@ while(1){
     dados = (double)velocidade_roll;
     gDataLogger_InsertVariable(&gDataLogger,(char*) "roll_speed",&dados);
     dados = (double)velocidade_pitch;
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "roll_speed",&dados);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "pitch_speed",&dados);
 
     i = 1;
     while(i<13){
