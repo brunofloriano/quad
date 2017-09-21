@@ -10,6 +10,10 @@
 #include "filtro.h"
 #include <stdio.h>
 
+#include "gdatalogger/gqueue.h"
+#include "gdatalogger/gmatlabdatafile.h"
+#include "gdatalogger/gdatalogger.h"
+
 #define Kp_roll 1
 #define Kd_roll 0
 #define Kp_pitch 1
@@ -25,6 +29,10 @@
 #define V_MAX                           13.3
 #define PI                              3.14159265
 #define MAX_SPEED_RAD_S                 79.4*V_MAX/16*2*PI/60
+
+
+GDATALOGGER gDataLogger;
+
 
 int velocidade(float v){
     int x = MAX_SPEED*abs(v)/(MAX_SPEED_RAD_S);
@@ -99,6 +107,17 @@ void *controle(void *id){
     K[9] = -K_pitch_F*K_DOWN;
     K[11] = K_pitch_F*K_UP;
     K[12] = K_pitch_F*K_DOWN;
+    
+    //--------Data logger-------//
+	if(!gDataLogger_Init(&gDataLogger,(char*) "matlabdatafiles/file.mat",NULL)){
+		printf("\nErro em gDataLogger_Init\n\n");
+		return EXIT_FAILURE;
+	}
+    
+    gDataLogger_DeclareVariable(&gDataLogger,(char*) "roll_angle",(char*) "deg",1,1,1000);
+    gDataLogger_DeclareVariable(&gDataLogger,(char*) "pitch_angle",(char*) "deg",1,1,1000);
+    gDataLogger_DeclareVariable(&gDataLogger,(char*) "roll_speed",(char*) "rad/s",1,1,1000);
+    gDataLogger_DeclareVariable(&gDataLogger,(char*) "pitch_speed",(char*) "rad/s",1,1,1000);
 
     portHandler->openPort();
     portHandler->getBaudRate();
@@ -131,7 +150,10 @@ while(1){
    if(abs(velocidade_roll)<threshold){velocidade_roll = 0;}
    if(abs(velocidade_pitch)<threshold){velocidade_pitch = 0;}
    
-    printf("%f %f \n \n", roll, pitch);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "roll_angle",&roll_medido);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "pitch_angle",&pitch_medido);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "roll_speed",&velocidade_roll);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "roll_speed",&velocidade_pitch);
 
     i = 1;
     while(i<13){
