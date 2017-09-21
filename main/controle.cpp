@@ -153,13 +153,13 @@ while(1){
    if(abs(velocidade_pitch)<threshold){velocidade_pitch = 0;}
    
     dados = (double)roll_medido;
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "roll_angle",(double)&dados);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "roll_angle",&dados);
     dados = (double)pitch_medido;
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "pitch_angle",(double)&dados);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "pitch_angle",&dados);
     dados = (double)velocidade_roll;
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "roll_speed",(double)&dados);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "roll_speed",&dados);
     dados = (double)velocidade_pitch;
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "roll_speed",(double)&dados);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "roll_speed",&dados);
 
     i = 1;
     while(i<13){
