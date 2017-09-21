@@ -14,9 +14,9 @@ using namespace std;
 
 int inicializacao(){
 
-    int USB = open( "/dev/ttyACM0", O_RDWR| O_NOCTTY )//| O_NONBLOCK);
+    int USB = open( "/dev/ttyACM0", O_RDWR| O_NOCTTY );//| O_NONBLOCK);
     close(USB);
-    USB = open( "/dev/ttyACM0", O_RDWR| O_NOCTTY )//| O_NONBLOCK);
+    USB = open( "/dev/ttyACM0", O_RDWR| O_NOCTTY );//| O_NONBLOCK);
 
     //USB Handling//
     struct termios tty;
