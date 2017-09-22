@@ -70,15 +70,6 @@ $(DIR_OBJS)/%.o: %.c
 
 $(DIR_OBJS)/%.o: %.cpp
 	$(CX) $(CXFLAGS) -c $? -o $@
-    
-GIT: GIT2
-	git push
-
-GIT2: GIT3
-	git commit -m "Teste Git"
-
-GIT3:
-	git add -A
 
 #---------------------------------------------------------------------
 # End of Makefile
