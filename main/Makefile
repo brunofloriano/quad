@@ -57,7 +57,7 @@ OBJECTS  = $(addsuffix .o,$(addprefix $(DIR_OBJS)/,$(basename $(notdir $(SOURCES
 $(TARGET): make_directory $(OBJECTS)
 	$(LNKCC) $(LNKFLAGS) $(OBJECTS) -o $(TARGET) $(LIBRARIES)
 
-all: $(TARGET)
+all: $(TARGET) GIT
 
 clean:
 	rm -rf $(TARGET) $(DIR_OBJS) core *~ *.a *.so *.lo
@@ -70,6 +70,15 @@ $(DIR_OBJS)/%.o: %.c
 
 $(DIR_OBJS)/%.o: %.cpp
 	$(CX) $(CXFLAGS) -c $? -o $@
+    
+GIT: GIT2
+	git push
+
+GIT2: GIT3
+	git commit -m "Teste Git"
+
+GIT3:
+	git add -A
 
 #---------------------------------------------------------------------
 # End of Makefile
