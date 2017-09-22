@@ -123,8 +123,8 @@ void *controle(void *id){
     gDataLogger_DeclareVariable(&gDataLogger,(char*) "pitch_angle",(char*) "deg",1,1,1000);
     gDataLogger_DeclareVariable(&gDataLogger,(char*) "roll_speed",(char*) "rad/s",1,1,1000);
     gDataLogger_DeclareVariable(&gDataLogger,(char*) "pitch_speed",(char*) "rad/s",1,1,1000);
-    gDataLogger_DeclareVariable(&gDataLogger,(char*) "roll_speed_sem_filtro",(char*) "rad/s",1,1,1000);
-    gDataLogger_DeclareVariable(&gDataLogger,(char*) "pitch_speed_sem_filtro",(char*) "rad/s",1,1,1000);
+    gDataLogger_DeclareVariable(&gDataLogger,(char*) "roll_speed_sf",(char*) "rad/s",1,1,1000);
+    gDataLogger_DeclareVariable(&gDataLogger,(char*) "pitch_speed_sf",(char*) "rad/s",1,1,1000);
 
     portHandler->openPort();
     portHandler->getBaudRate();
@@ -142,9 +142,9 @@ while(1){
     velocidade_pitch = (pitch_medido - pitch)*(PI/180)/((float)tam/1000);
     
     dados = (double)velocidade_roll;
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "roll_speed_sem_filtro",&dados);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "roll_speed_sf",&dados);
     dados = (double)velocidade_pitch;
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "pitch_speed_sem_filtro",&dados);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "pitch_speed_sf",&dados);
 
     filtro((float)tam, fc, velocidade_roll, v_1_roll, &out);
     velocidade_roll = out;
