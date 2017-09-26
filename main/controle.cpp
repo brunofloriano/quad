@@ -213,7 +213,7 @@ while(1){
     gDataLogger_IPCUpdate(&gDataLogger); // gerencia IPC
     tFim = clock();
 	tDecorrido = ((float)(tFim - tInicio) / (CLOCKS_PER_SEC/1000));
-    printf("tempo decorrido foi: %f \n",tDecorrido)
+    printf("tempo decorrido foi: %f \n",tDecorrido);
     usleep(tam*1000); //sleep for microseconds
 }
     return 0;
