@@ -94,6 +94,8 @@ void *controle(void *id){
     int USB = inicializacao();
     
     double dados;
+    
+    char motor[64];
 
     angulos[0] = 0;
     angulos[1] = 0;
@@ -125,6 +127,19 @@ void *controle(void *id){
     gDataLogger_DeclareVariable(&gDataLogger,(char*) "pitch_speed",(char*) "rad/s",1,1,1000);
     gDataLogger_DeclareVariable(&gDataLogger,(char*) "roll_speed_sf",(char*) "rad/s",1,1,1000);
     gDataLogger_DeclareVariable(&gDataLogger,(char*) "pitch_speed_sf",(char*) "rad/s",1,1,1000);
+    
+    gDataLogger_DeclareVariable(&gDataLogger,(char*) "v_motor1",(char*) "rad/s",1,1,1000);
+    gDataLogger_DeclareVariable(&gDataLogger,(char*) "v_motor2",(char*) "rad/s",1,1,1000);
+    gDataLogger_DeclareVariable(&gDataLogger,(char*) "v_motor3",(char*) "rad/s",1,1,1000);
+    gDataLogger_DeclareVariable(&gDataLogger,(char*) "v_motor4",(char*) "rad/s",1,1,1000);
+    gDataLogger_DeclareVariable(&gDataLogger,(char*) "v_motor5",(char*) "rad/s",1,1,1000);
+    gDataLogger_DeclareVariable(&gDataLogger,(char*) "v_motor6",(char*) "rad/s",1,1,1000);
+    gDataLogger_DeclareVariable(&gDataLogger,(char*) "v_motor7",(char*) "rad/s",1,1,1000);
+    gDataLogger_DeclareVariable(&gDataLogger,(char*) "v_motor8",(char*) "rad/s",1,1,1000);
+    gDataLogger_DeclareVariable(&gDataLogger,(char*) "v_motor9",(char*) "rad/s",1,1,1000);
+    gDataLogger_DeclareVariable(&gDataLogger,(char*) "v_motor10",(char*) "rad/s",1,1,1000);
+    gDataLogger_DeclareVariable(&gDataLogger,(char*) "v_motor11",(char*) "rad/s",1,1,1000);
+    gDataLogger_DeclareVariable(&gDataLogger,(char*) "v_motor12",(char*) "rad/s",1,1,1000);
 
     portHandler->openPort();
     portHandler->getBaudRate();
@@ -160,8 +175,6 @@ while(1){
    if(abs(velocidade_roll)<threshold){velocidade_roll = 0;}
    if(abs(velocidade_pitch)<threshold){velocidade_pitch = 0;}
    
-    printf("%f %f \n", velocidade_pitch, velocidade_roll);
-   
     dados = (double)roll_medido;
     gDataLogger_InsertVariable(&gDataLogger,(char*) "roll_angle",&dados);
     dados = (double)pitch_medido;
@@ -182,6 +195,9 @@ while(1){
 
     v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, i);
     v_medicao = ler_velocidade(v_medicao_int);
+    dados = (double)v_medicao;
+    sprintf(motor,"v_motor%d",i);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) motor,&dados);
     v_aplicada = v_desejada - v_medicao;
 
     cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(0*v_aplicada));
