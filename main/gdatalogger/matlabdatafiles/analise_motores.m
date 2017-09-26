@@ -29,12 +29,12 @@ xlabel('Tempo (s)');
 ylabel('Velocidade (rad/s)');
 
 figure
-for i=1:11
+for i=1:12
 eval(['v_motor' '=' 'v_motor' num2str(i) '_0_' num2str(size)]);
 plot(t,v_motor);
 hold on
-legend(['Motor' num2str(i)]);
+end
+legend('Motor1','Motor2','Motor3','Motor4','Motor5','Motor6','Motor7','Motor8','Motor9','Motor10','Motor11','Motor12');
 title('Velocidade dos Motores x Tempo');
 xlabel('Tempo (s)');
 ylabel('Velocidade (rad/s)');
-end

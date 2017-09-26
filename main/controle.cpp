@@ -90,7 +90,6 @@ void *controle(void *id){
     int tam = 100; //tempo de amostragem em milisegundos
     int i = 1;
     int v_medicao_int;
-    int success;
     int USB = inicializacao();
     
     double dados;
@@ -195,12 +194,14 @@ while(1){
 
     v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, i);
     v_medicao = ler_velocidade(v_medicao_int);
+    
     dados = (double)v_medicao;
     sprintf(motor,"v_motor%d",i);
     gDataLogger_InsertVariable(&gDataLogger,(char*) motor,&dados);
+    
     v_aplicada = v_desejada - v_medicao;
 
-    cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(0*v_aplicada));
+    cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(2.2*v_aplicada));
 
 	i++;
     }
