@@ -2,7 +2,7 @@ clear all
 close all
 load('data.mat');
 size = num2str(pitch_angle_size-1);
-tsim = 5;
+tsim = 10;
 eval(['pitch_angle' '=' 'pitch_angle_0_' num2str(size) ';']);
 eval(['roll_angle' '=' 'roll_angle_0_' num2str(size) ';']);
 eval(['pitch_speed' '=' 'pitch_speed_0_' num2str(size) ';']);
