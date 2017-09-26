@@ -95,6 +95,9 @@ void *controle(void *id){
     double dados;
     
     char motor[64];
+    
+    clock_t tInicio, tFim;
+    float tDecorrido;
 
     angulos[0] = 0;
     angulos[1] = 0;
@@ -146,6 +149,7 @@ void *controle(void *id){
     inicializacao();
     
 while(1){
+    tInicio = clock();
     
     inicializacao();
     medicao(angulos, USB);
@@ -207,6 +211,9 @@ while(1){
     }
     
     gDataLogger_IPCUpdate(&gDataLogger); // gerencia IPC
+    tFim = clock();
+	tDecorrido = ((float)(tFim - tInicio) / (CLOCKS_PER_SEC/1000));
+    printf("tempo decorrido foi: %f \n",tDecorrido)
     usleep(tam*1000); //sleep for microseconds
 }
     return 0;
