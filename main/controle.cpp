@@ -81,7 +81,7 @@ void *controle(void *id){
     float roll_medido, pitch_medido, roll = 0, pitch = 0;
     float velocidade_roll, velocidade_pitch, v_1_roll = 0, v_1_pitch = 0;
     float fc = 1;
-    float K_roll_R = 1.501, K_roll_L = 1.5;
+    float K_roll_R = 1.001, K_roll_L = 1;
     float K_pitch_F = 1.01, K_pitch_R = 1.01;
     float K_UP = 1, K_DOWN = -1;
     float K[13];
