@@ -201,7 +201,7 @@ while(1){
     
     v_aplicada = v_desejada - v_medicao;
 
-    cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(2.3*v_desejada));
+    cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(2.3*0));
 
 	i++;
     }
