@@ -44,7 +44,7 @@ void timer_start (void)
     sigev.sigev_value.sival_int = timer_nr;
     sigev.sigev_notify = SIGEV_THREAD;
     sigev.sigev_notify_attributes = NULL;
-    sigev.sigev_notify_function = timer_function;
+    sigev.sigev_notify_function = controle;
 
 //    if (timer_create (CLOCK_MONOTONIC, &sigev, &timer) < 0)
     if (timer_create (CLOCK_REALTIME, &sigev, &timer) < 0)
