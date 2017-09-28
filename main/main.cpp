@@ -34,7 +34,6 @@ int main(){
     float tsim = 10; //tempo de simulacao em segundos
     pthread_t id;
     int i = 1;
-    long tid = 1;
     char comando[256];
     
     //-------------Timer Variables--------------//
