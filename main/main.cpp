@@ -91,11 +91,12 @@ int main(){
 	tFim = clock();
 	tDecorrido = ((float)(tFim - tInicio) / (CLOCKS_PER_SEC/1000));
 }
-printf("Ok2 \n");
+
     
   //-----------Fim da simulacao, parar os motores -------------//
     timer_delete(timerid);
     end();
+    printf("Ok2 \n");
     i = 1;
     while(i<13){
 
