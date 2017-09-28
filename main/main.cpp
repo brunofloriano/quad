@@ -93,7 +93,6 @@ int main(){
     
   //-----------Fim da simulacao, parar os motores -------------//
     end();
-    pthread_cancel(id);
     i = 1;
     while(i<13){
 
