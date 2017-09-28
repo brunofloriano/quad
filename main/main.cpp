@@ -94,8 +94,8 @@ int main(){
 printf("Ok2 \n");
     
   //-----------Fim da simulacao, parar os motores -------------//
-    end();
     timer_delete(timerid);
+    end();
     i = 1;
     while(i<13){
 
