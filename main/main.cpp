@@ -41,12 +41,14 @@ int main(){
     timer_t timerid;
     struct sigevent se;
     struct itimerspec ts;
+    struct pthread_attr_t att;
     long nanosecs = 100*(1000*1000); //tempo de amostragem em ns
+    pthread_attr_init(&att);
     
     se.sigev_notify = SIGEV_THREAD;
     se.sigev_value.sival_ptr = &timerid;
     se.sigev_notify_function = controle;
-    se.sigev_notify_attributes = NULL;
+    se.sigev_notify_attributes = att;
     
     ts.it_value.tv_sec = nanosecs / 1000000000;
     ts.it_value.tv_nsec = nanosecs;
