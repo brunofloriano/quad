@@ -99,6 +99,7 @@ int main(){
     end();
     printf("Ok2 \n");
     i = 1;
+    printf("Ok3 \n");
     while(i<13){
 
     cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(0));
