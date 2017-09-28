@@ -68,7 +68,7 @@ int end(){
     return 0;
     }
 
-void controle(union sigval arg){
+void controle(){
     command cmd;
     char *dev_name = (char*)DEVICENAME;
     dynamixel::PacketHandler *packetHandler = dynamixel::PacketHandler::getPacketHandler(1);
