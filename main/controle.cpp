@@ -205,6 +205,5 @@ void controle(union sigval arg){
     
     gDataLogger_IPCUpdate(&gDataLogger); // gerencia IPC
 
-    return 0;
 }
 #endif
