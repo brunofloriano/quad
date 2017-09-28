@@ -93,6 +93,7 @@ int main(){
     
   //-----------Fim da simulacao, parar os motores -------------//
     end();
+    timer_delete(timerid);
     i = 1;
     while(i<13){
 
