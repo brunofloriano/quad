@@ -84,12 +84,12 @@ int main(){
     printf("Sessao finalizada, pressione qualquer tecla para desbloquear \n");
     cmd.getch();
     cmd.write_torque(portHandler, packetHandler, BROADCASTID, 0);
-    //sprintf(comando, "git add -A");
-    //system(comando);
-    //sprintf(comando, "git commit -m 'Teste Git'");
-    //system(comando);
-    //sprintf(comando, "git push");
-    //system(comando);
+    sprintf(comando, "git add -A");
+    system(comando);
+    sprintf(comando, "git commit -m 'Teste Git'");
+    system(comando);
+    sprintf(comando, "git push");
+    system(comando);
 
 return 0;
 }
