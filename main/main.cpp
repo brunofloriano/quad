@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <pthread.h>
 #include <string.h>
+#include <signal.h>
 #include <iostream>
 
 #include "gqueue.h"
@@ -36,6 +37,23 @@ int main(){
     long tid = 1;
     char comando[256];
     
+    //-------------Timer Variables--------------//
+    clockid_t clockid = CLOCK_REALTIME;
+    timer_t timerid;
+    struct sigevent se;
+    struct itimerspec ts;
+    long nanosecs = 100*(1000*1000); //tempo de amostragem em ns
+    
+    se.sigev_notify = SIGEV_THREAD;
+    se.sigev_value.sival_ptr = &timerid;
+    se.sigev_notify_function = controle;
+    se.sigev_notify_attributes = NULL;
+    
+    ts.it_value.tv_sec = nanosecs / 1000000000;
+    ts.it_value.tv_nsec = nanosecs;
+    ts.it_interval.tv_sec = nanosecs / 1000000000;
+    ts.it_interval.tv_nsec = nanosecs;
+    
         //--------------------------Inicializacao------------------------------//
     if (portHandler->openPort())
     {
@@ -60,7 +78,10 @@ int main(){
 
     printf("Pressione qualquer tecla para iniciar \n");
     cmd.getch();
-    pthread_create(&id, NULL, controle, (void *)tid);
+    
+    timer_create(clockid, &se, &timerid);
+    timer_settime(timerid, 0, &ts, 0);
+
 
     tInicio = clock();
     tFim = clock();
