@@ -4,6 +4,6 @@
 int velocidade(float v);
 float ler_velocidade(int x);
 int end();
-void controle();
+void controle(union sigval arg);
 
 #endif
