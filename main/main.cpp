@@ -19,8 +19,56 @@
 
 #define DEVICENAME                      "/dev/ttyUSB0"
 #define BROADCASTID			            254
+#define TASK_PERIOD_US  100000
+
+int timer_nr;
+timer_t timer;
+double Tglobal;
+long int counter = 0;
+
+volatile double tempo = 0.0;
+
 
 using namespace std;
+
+void timer_start (void)
+{
+    struct itimerspec itimer = { { 1, 0 }, { 1, 0 } };
+    struct sigevent sigev;
+
+    itimer.it_interval.tv_sec=0;
+    itimer.it_interval.tv_nsec=TASK_PERIOD_US * 1000; 
+    itimer.it_value=itimer.it_interval;
+
+    memset (&sigev, 0, sizeof (struct sigevent));
+    sigev.sigev_value.sival_int = timer_nr;
+    sigev.sigev_notify = SIGEV_THREAD;
+    sigev.sigev_notify_attributes = NULL;
+    sigev.sigev_notify_function = timer_function;
+
+//    if (timer_create (CLOCK_MONOTONIC, &sigev, &timer) < 0)
+    if (timer_create (CLOCK_REALTIME, &sigev, &timer) < 0)
+    {
+        fprintf (stderr, "[%d]: %s\n", __LINE__, strerror (errno));
+        exit (errno);
+    }
+
+    if (timer_settime (timer, 0, &itimer, NULL) < 0)
+    {
+        fprintf (stderr, "[%d]: %s\n", __LINE__, strerror (errno));
+        exit (errno);
+    }
+}
+
+void timer_stop (void)
+{
+    if (timer_delete (timer) < 0)
+    {
+        fprintf (stderr, "[%d]: %s\n", __LINE__, strerror (errno));
+        exit (errno);
+    }
+}   
+
 
 int main(){
     command cmd;
@@ -35,23 +83,6 @@ int main(){
     pthread_t id;
     int i = 1;
     char comando[256];
-    
-    //-------------Timer Variables--------------//
-    clockid_t clockid = CLOCK_REALTIME;
-    timer_t timerid;
-    struct sigevent se;
-    struct itimerspec ts;
-    long nanosecs = 100*(1000*1000); //tempo de amostragem em ns
-    
-    se.sigev_notify = SIGEV_THREAD;
-    se.sigev_value.sival_ptr = &timerid;
-    se.sigev_notify_function = controle;
-    se.sigev_notify_attributes = NULL;
-    
-    ts.it_value.tv_sec = nanosecs / 1000000000;
-    ts.it_value.tv_nsec = nanosecs;
-    ts.it_interval.tv_sec = nanosecs / 1000000000;
-    ts.it_interval.tv_nsec = nanosecs;
     
         //--------------------------Inicializacao------------------------------//
     if (portHandler->openPort())
@@ -78,15 +109,13 @@ int main(){
     printf("Pressione qualquer tecla para iniciar \n");
     cmd.getch();
     
-    timer_create(clockid, &se, &timerid);
-    timer_settime(timerid, 0, &ts, 0);
+    timer_start ();
 
 
     tInicio = clock();
     tFim = clock();
     tDecorrido = ((float)(tFim - tInicio) / (CLOCKS_PER_SEC/1000));
     //----------------------Loop para condição de parada------------------------------------//
-    printf("Ok1 \n");
     while(tDecorrido < tsim*1000){
 	tFim = clock();
 	tDecorrido = ((float)(tFim - tInicio) / (CLOCKS_PER_SEC/1000));
@@ -94,12 +123,9 @@ int main(){
 
     
   //-----------Fim da simulacao, parar os motores -------------//
-    timer_settime(timerid, 0, 0, 0);
-    timer_delete(timerid);
-    end();
-    printf("Ok2 \n");
+    timer_stop ();
+    end();   
     i = 1;
-    printf("Ok3 \n");
     while(i<13){
 
     cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(0));
