@@ -256,10 +256,6 @@ int main(){
 	while(!kbhit()){
 		usleep(20000);
 		gDataLogger_IPCUpdate(&gDataLogger); // gerencia IPC
-		if(++n>10){
-			gDataLogger_MatfileUpdate(&gDataLogger); // esvazia os buffers no arquivo de log
-			n = 0;
-		}
 	}
 
     
@@ -278,7 +274,7 @@ int main(){
     cmd.write_torque(portHandler, packetHandler, BROADCASTID, 0);
     sprintf(comando, "git add -A");
     system(comando);
-    sprintf(comando, "git commit -m 'Teste Git'");
+    sprintf(comando, "git commit -m 'Aquisicao de Dados'");
     system(comando);
     sprintf(comando, "git push");
     system(comando);
