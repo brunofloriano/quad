@@ -20,6 +20,7 @@
 #define DEVICENAME                      "/dev/ttyUSB0"
 #define BROADCASTID			            254
 #define TASK_PERIOD_US  100000
+#define PI                              3.14159265
 
 GDATALOGGER gDataLogger;
 
@@ -27,8 +28,9 @@ int timer_nr;
 timer_t timer;
 double Tglobal;
 long int counter = 0;
-
-volatile double tempo = 0.0;
+void timer_start (void);
+void timer_stop (void);
+void controle (union sigval sigval);
 
 
 using namespace std;
