@@ -94,12 +94,13 @@ void controle(union sigval arg){
     float K[13];
     float threshold = 0;//0.0024;
 
-    int tam = 100; //tempo de amostragem em milisegundos
+    int tam = TASK_PERIOD_US/1000; //tempo de amostragem em milisegundos
     int i = 1;
     int v_medicao_int;
     int USB = inicializacao();
     
     double dados;
+    double dados_motores[12];
     
     char motor[64];
 
@@ -129,8 +130,6 @@ void controle(union sigval arg){
     medicao(angulos, USB);
     roll_medido = angulos[0];
     pitch_medido = angulos [1];
-    
-    printf("%f %f \n", roll_medido, pitch_medido);
 
     velocidade_roll = (roll_medido - roll)*(PI/180)/((float)tam/1000);
     velocidade_pitch = (pitch_medido - pitch)*(PI/180)/((float)tam/1000);
@@ -173,11 +172,8 @@ void controle(union sigval arg){
         }
 
     v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, i);
-    v_medicao = ler_velocidade(v_medicao_int);
-    
-    dados = (double)v_medicao;
-    sprintf(motor,"v_motor%d",i);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) motor,&dados);
+    v_medicao = ler_velocidade(v_medicao_int);    
+    dados_motores[i] = (double)v_medicao;
     
     v_aplicada = v_desejada - v_medicao;
 
@@ -185,7 +181,19 @@ void controle(union sigval arg){
 
 	i++;
     }
-
+    
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor1",&dados_motores[1]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor2",&dados_motores[2]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor3",&dados_motores[3]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor4",&dados_motores[4]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor5",&dados_motores[5]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor6",&dados_motores[6]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor7",&dados_motores[7]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor8",&dados_motores[8]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor9",&dados_motores[9]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor10",&dados_motores[10]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor11",&dados_motores[11]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor12",&dados_motores[12]);
 }
 
 int main(){
