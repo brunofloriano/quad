@@ -92,7 +92,7 @@ void controle(union sigval arg){
     float K_pitch_F = 1.01, K_pitch_R = 1.01;
     float K_UP = 1, K_DOWN = -1;
     float K[13];
-    float threshold = 0;//0.0024;
+    float threshold = 0.0024;
 
     int tam = TASK_PERIOD_US/1000; //tempo de amostragem em milisegundos
     int i = 1;
@@ -260,6 +260,7 @@ int main(){
     cmd.getch();
     
     timer_start ();
+    printf("Programa em andamento \n");
 
     //----------------------Loop para condição de parada------------------------------------//
 	while(!kbhit()){
@@ -279,7 +280,7 @@ int main(){
 	i++;
     }
     //----------------------------------Finalize---------------------------------------//
-    printf("Sessao finalizada, pressione qualquer tecla para desbloquear \n");
+    printf("Sessao finalizada, exportando dados \n");
     cmd.getch();
     cmd.write_torque(portHandler, packetHandler, BROADCASTID, 0);
     sprintf(comando, "git add -A");
