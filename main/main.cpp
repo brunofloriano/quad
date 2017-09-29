@@ -83,8 +83,10 @@ void controle(union sigval arg){
     float out;
     float angulos[2];
     float v_medicao, v_desejada, v_aplicada;
-    float roll_medido, pitch_medido, roll = 0, pitch = 0;
-    float velocidade_roll, velocidade_pitch, v_1_roll = 0, v_1_pitch = 0;
+    float roll_medido, pitch_medido;
+    static float roll = 0, pitch = 0;
+    float velocidade_roll, velocidade_pitch;
+    static float v_1_roll = 0, v_1_pitch = 0;
     float fc = 1;
     float K_roll_R = 1.001, K_roll_L = 1;
     float K_pitch_F = 1.01, K_pitch_R = 1.01;
@@ -252,7 +254,6 @@ int main(){
     timer_start ();
 
     //----------------------Loop para condição de parada------------------------------------//
-    n = 0;
 	while(!kbhit()){
 		usleep(20000);
 		gDataLogger_IPCUpdate(&gDataLogger); // gerencia IPC
