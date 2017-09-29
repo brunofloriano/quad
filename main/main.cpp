@@ -181,8 +181,6 @@ void controle(union sigval arg){
 
 	i++;
     }
-    
-    gDataLogger_IPCUpdate(&gDataLogger); // gerencia IPC
 
 }
 
