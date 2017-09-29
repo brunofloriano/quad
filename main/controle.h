@@ -3,7 +3,7 @@
 
 int velocidade(float v);
 float ler_velocidade(int x);
-int end();
-void controle(union sigval arg);
+int kbhit(void);
+int getch(void);
 
 #endif

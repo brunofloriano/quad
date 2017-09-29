@@ -62,150 +62,45 @@ float ler_velocidade(int x){
 return v*CCW;
 
 }
-
-int end(){
-    gDataLogger_Close(&gDataLogger);    
-    return 0;
-    }
-
-void controle(union sigval arg){
-    command cmd;
-    char *dev_name = (char*)DEVICENAME;
-    dynamixel::PacketHandler *packetHandler = dynamixel::PacketHandler::getPacketHandler(1);
-    dynamixel::PortHandler *portHandler = dynamixel::PortHandler::getPortHandler(dev_name);
-    dynamixel::GroupSyncWrite groupSyncWrite(portHandler, packetHandler, 30, 2);
-
-    float out;
-    float angulos[2];
-    float v_medicao, v_desejada, v_aplicada;
-    float roll_medido, pitch_medido, roll = 0, pitch = 0;
-    float velocidade_roll, velocidade_pitch, v_1_roll = 0, v_1_pitch = 0;
-    float fc = 1;
-    float K_roll_R = 1.001, K_roll_L = 1;
-    float K_pitch_F = 1.01, K_pitch_R = 1.01;
-    float K_UP = 1, K_DOWN = -1;
-    float K[13];
-    float threshold = 0;//0.0024;
-
-    int tam = 100; //tempo de amostragem em milisegundos
-    int i = 1;
-    int v_medicao_int;
-    int USB = inicializacao();
-    
-    double dados;
-    
-    char motor[64];
-
-    angulos[0] = 0;
-    angulos[1] = 0;
-    K[0] = 0;
-    //----------roll gains-------//
-    K[1] = K_roll_L;
-    K[4] = K_roll_R;
-    K[7] = K_roll_R*1.1;
-    K[10] = K_roll_L;
-    //----------pitch gains-------------//
-    K[2] = K_pitch_R*K_UP;
-    K[3] = K_pitch_R*K_DOWN;
-    K[5] = -K_pitch_R*K_UP;
-    K[6] = -K_pitch_R*K_DOWN;
-    K[8] = -K_pitch_F*K_UP;
-    K[9] = -K_pitch_F*K_DOWN;
-    K[11] = K_pitch_F*K_UP;
-    K[12] = K_pitch_F*K_DOWN;
-    
-    //--------Data logger-------//
-	if(!gDataLogger_Init(&gDataLogger,(char*) "gdatalogger/matlabdatafiles/data.mat",NULL)){
-		printf("\nErro em gDataLogger_Init\n\n");
-		pthread_exit(NULL);
-	}
-    
-    gDataLogger_DeclareVariable(&gDataLogger,(char*) "roll_angle",(char*) "deg",1,1,1000);
-    gDataLogger_DeclareVariable(&gDataLogger,(char*) "pitch_angle",(char*) "deg",1,1,1000);
-    gDataLogger_DeclareVariable(&gDataLogger,(char*) "roll_speed",(char*) "rad/s",1,1,1000);
-    gDataLogger_DeclareVariable(&gDataLogger,(char*) "pitch_speed",(char*) "rad/s",1,1,1000);
-    gDataLogger_DeclareVariable(&gDataLogger,(char*) "roll_speed_sf",(char*) "rad/s",1,1,1000);
-    gDataLogger_DeclareVariable(&gDataLogger,(char*) "pitch_speed_sf",(char*) "rad/s",1,1,1000);
-    
-    gDataLogger_DeclareVariable(&gDataLogger,(char*) "v_motor1",(char*) "rad/s",1,1,1000);
-    gDataLogger_DeclareVariable(&gDataLogger,(char*) "v_motor2",(char*) "rad/s",1,1,1000);
-    gDataLogger_DeclareVariable(&gDataLogger,(char*) "v_motor3",(char*) "rad/s",1,1,1000);
-    gDataLogger_DeclareVariable(&gDataLogger,(char*) "v_motor4",(char*) "rad/s",1,1,1000);
-    gDataLogger_DeclareVariable(&gDataLogger,(char*) "v_motor5",(char*) "rad/s",1,1,1000);
-    gDataLogger_DeclareVariable(&gDataLogger,(char*) "v_motor6",(char*) "rad/s",1,1,1000);
-    gDataLogger_DeclareVariable(&gDataLogger,(char*) "v_motor7",(char*) "rad/s",1,1,1000);
-    gDataLogger_DeclareVariable(&gDataLogger,(char*) "v_motor8",(char*) "rad/s",1,1,1000);
-    gDataLogger_DeclareVariable(&gDataLogger,(char*) "v_motor9",(char*) "rad/s",1,1,1000);
-    gDataLogger_DeclareVariable(&gDataLogger,(char*) "v_motor10",(char*) "rad/s",1,1,1000);
-    gDataLogger_DeclareVariable(&gDataLogger,(char*) "v_motor11",(char*) "rad/s",1,1,1000);
-    gDataLogger_DeclareVariable(&gDataLogger,(char*) "v_motor12",(char*) "rad/s",1,1,1000);
-
-    portHandler->openPort();
-    portHandler->getBaudRate();
-    cmd.config_ram(portHandler, packetHandler);
-    
-    inicializacao();
-    medicao(angulos, USB);
-    roll_medido = angulos[0];
-    pitch_medido = angulos [1];
-    
-    printf("%f %f \n", roll_medido, pitch_medido);
-
-    velocidade_roll = (roll_medido - roll)*(PI/180)/((float)tam/1000);
-    velocidade_pitch = (pitch_medido - pitch)*(PI/180)/((float)tam/1000);
-    
-    dados = (double)velocidade_roll;
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "roll_speed_sf",&dados);
-    dados = (double)velocidade_pitch;
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "pitch_speed_sf",&dados);
-
-    filtro((float)tam, fc, velocidade_roll, v_1_roll, &out);
-    velocidade_roll = out;
-    v_1_roll = out;
-
-    filtro((float)tam, fc, velocidade_pitch, v_1_pitch, &out);
-    velocidade_pitch = out;
-    v_1_pitch = out;
-
-    roll = roll_medido;
-    pitch = pitch_medido;
-    
-   if(abs(velocidade_roll)<threshold){velocidade_roll = 0;}
-   if(abs(velocidade_pitch)<threshold){velocidade_pitch = 0;}
-   
-    dados = (double)roll_medido;
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "roll_angle",&dados);
-    dados = (double)pitch_medido;
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "pitch_angle",&dados);
-    dados = (double)velocidade_roll;
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "roll_speed",&dados);
-    dados = (double)velocidade_pitch;
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "pitch_speed",&dados);
-
-    i = 1;
-    while(i<13){
-    if(i == 1 || i == 4 || i == 7 || i == 10){
-        v_desejada = -K[i]*velocidade_roll;
-    }
-    else{
-            v_desejada = -K[i]*velocidade_pitch;
-        }
-
-    v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, i);
-    v_medicao = ler_velocidade(v_medicao_int);
-    
-    dados = (double)v_medicao;
-    sprintf(motor,"v_motor%d",i);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) motor,&dados);
-    
-    v_aplicada = v_desejada - v_medicao;
-
-    cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(2.3*0));
-
-	i++;
-    }
-    
-    gDataLogger_IPCUpdate(&gDataLogger); // gerencia IPC
-
-}
 #endif
+
+int kbhit(void)
+{
+	struct termios oldt, newt;
+	int ch;
+	int oldf;
+
+	tcgetattr(STDIN_FILENO, &oldt);
+	newt = oldt;
+	newt.c_lflag &= ~(ICANON | ECHO);
+	tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+	oldf = fcntl(STDIN_FILENO, F_GETFL, 0);
+	fcntl(STDIN_FILENO, F_SETFL, oldf | O_NONBLOCK);
+
+	ch = getchar();
+
+	tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
+	fcntl(STDIN_FILENO, F_SETFL, oldf);
+
+	if(ch != EOF)
+	{
+	ungetc(ch, stdin);
+	return 1;
+	}
+
+	return 0;
+}
+
+int getch(void)
+{
+	struct termios oldt,
+	newt;
+	int ch;
+	tcgetattr( STDIN_FILENO, &oldt );
+	newt = oldt;
+	newt.c_lflag &= ~( ICANON | ECHO );
+	tcsetattr( STDIN_FILENO, TCSANOW, &newt );
+	ch = getchar();
+	tcsetattr( STDIN_FILENO, TCSANOW, &oldt );
+	return ch;
+}
