@@ -193,8 +193,6 @@ int main(){
     dynamixel::PortHandler *portHandler = dynamixel::PortHandler::getPortHandler(dev_name);
     dynamixel::GroupSyncWrite groupSyncWrite(portHandler, packetHandler, 30, 2);
 
-    float tsim = 10; //tempo de simulacao em segundos
-    pthread_t id;
     int i = 1;
     char comando[256];
     int n;
@@ -260,7 +258,6 @@ int main(){
 		gDataLogger_IPCUpdate(&gDataLogger); // gerencia IPC
 		if(++n>10){
 			gDataLogger_MatfileUpdate(&gDataLogger); // esvazia os buffers no arquivo de log
-			printf("\n Tempo decorrido: %f s. Tglobal = %f ms. counter = %li",tempo,Tglobal*1000,counter);
 			n = 0;
 		}
 	}
