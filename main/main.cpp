@@ -92,7 +92,7 @@ void controle(union sigval arg){
     float K_pitch_F = 1.01, K_pitch_R = 1.01;
     float K_UP = 1, K_DOWN = -1;
     float K[13];
-    float threshold = 0;//0.0024;
+    float threshold = 0.0024;
 
     int tam = TASK_PERIOD_US/1000; //tempo de amostragem em milisegundos
     int i = 1;
