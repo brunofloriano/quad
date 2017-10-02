@@ -272,6 +272,7 @@ int main(){
     
   //--------------------Fim da simulacao, parar os motores --------------------------------//
     timer_stop ();
+    gDataLogger_MatfileUpdate(&gDataLogger);
 	gDataLogger_Close(&gDataLogger);  
     i = 1;
     while(i<13){
