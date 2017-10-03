@@ -269,7 +269,7 @@ int main(){
     
   //--------------------Fim da simulacao, parar os motores --------------------------------//
     timer_stop ();
-	gDataLogger_Close(&gDataLogger);  
+	gDataLogger_Close(&gDataLogger);
     i = 1;
     while(i<13){
 
@@ -277,7 +277,9 @@ int main(){
 	i++;
     }
     //----------------------------------Finalize---------------------------------------//
-    printf("Sessao finalizada, exportando dados \n");
+    printf("Sessao finalizada, deseja exportar os dados? 1 para sim \n");
+    scanf("%d",&i);
+    if(i==1){
     cmd.write_torque(portHandler, packetHandler, BROADCASTID, 0);
     sprintf(comando, "git add -A");
     system(comando);
@@ -285,6 +287,9 @@ int main(){
     system(comando);
     sprintf(comando, "git push");
     system(comando);
-
+    }
+    else{
+    printf("Fim da sessao \n");
+        }
 return 0;
 }
