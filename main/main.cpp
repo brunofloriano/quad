@@ -37,25 +37,25 @@ void controle (union sigval sigval);
 
 using namespace std;
 
-    float out;
+    double out;
     float angulos[2];
-    float v_medicao, v_desejada, v_aplicada;
+    double v_medicao, v_desejada, v_aplicada;
     double roll_medido, pitch_medido;
-    static float roll = 0, pitch = 0;
-    float velocidade_roll, velocidade_pitch;
-    static float v_1_roll = 0, v_1_pitch = 0;
+    static double roll = 0, pitch = 0;
+    double velocidade_roll, velocidade_pitch;
+    static double v_1_roll = 0, v_1_pitch = 0;
+    
     float fc = 1;
     float K_roll_R = 1.001, K_roll_L = 2;
     float K_pitch_F = 1.01, K_pitch_R = 1.01;
     float K_UP = 1, K_DOWN = -1;
     float K[12];
     float threshold = 0.0024;
-
-    int tam = TASK_PERIOD_US/1000; //tempo de amostragem em milisegundos
+    float tam = TASK_PERIOD_US/1000; //tempo de amostragem em milisegundos
+    
     int i = 1;
     int v_medicao_int;
     
-    double dados;
     double dados_motores[12];
 
 
@@ -136,16 +136,14 @@ void controle(union sigval arg){
     velocidade_roll = (roll_medido - roll)*(PI/180)/((float)tam/1000);
     velocidade_pitch = (pitch_medido - pitch)*(PI/180)/((float)tam/1000);
     
-    dados = (double)velocidade_roll;
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "roll_speed_sf",&dados);
-    dados = (double)velocidade_pitch;
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "pitch_speed_sf",&dados);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "roll_speed_sf",&velocidade_roll);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "pitch_speed_sf",&velocidade_pitch);
 
-    filtro((float)tam, fc, velocidade_roll, v_1_roll, &out);
+    filtro(tam, fc, velocidade_roll, v_1_roll, &out);
     velocidade_roll = out;
     v_1_roll = out;
 
-    filtro((float)tam, fc, velocidade_pitch, v_1_pitch, &out);
+    filtro(tam, fc, velocidade_pitch, v_1_pitch, &out);
     velocidade_pitch = out;
     v_1_pitch = out;
 
@@ -158,10 +156,8 @@ void controle(union sigval arg){
 
     gDataLogger_InsertVariable(&gDataLogger,(char*) "roll_angle",&roll_medido);
     gDataLogger_InsertVariable(&gDataLogger,(char*) "pitch_angle",&pitch_medido);
-    dados = (double)velocidade_roll;
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "roll_speed",&dados);
-    dados = (double)velocidade_pitch;
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "pitch_speed",&dados);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "roll_speed",&velocidade_roll);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "pitch_speed",&velocidade_pitch);
 
     i = 1;
     while(i<13){
