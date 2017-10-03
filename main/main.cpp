@@ -54,7 +54,6 @@ using namespace std;
     int tam = TASK_PERIOD_US/1000; //tempo de amostragem em milisegundos
     int i = 1;
     int v_medicao_int;
-    int USB = inicializacao();
     
     double dados;
     double dados_motores[12];
@@ -107,6 +106,8 @@ void controle(union sigval arg){
     dynamixel::PacketHandler *packetHandler = dynamixel::PacketHandler::getPacketHandler(1);
     dynamixel::PortHandler *portHandler = dynamixel::PortHandler::getPortHandler(dev_name);
     dynamixel::GroupSyncWrite groupSyncWrite(portHandler, packetHandler, 30, 2);
+    
+    int USB = inicializacao();
     
     angulos[0] = 0;
     angulos[1] = 0;
