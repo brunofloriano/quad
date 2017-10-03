@@ -1,9 +1,18 @@
 #include "include/command.h"
+#include "medicao.h"
+#include "filtro.h"
+#include "controle.h"
+
 #include <unistd.h>     // UNIX standard function definitions
 #include <fcntl.h>      // File control definitions
 #include <errno.h>      // Error number definitions
 #include <termios.h>    // POSIX terminal control definitions
 #include <stdio.h>
+#include <pthread.h>
+#include <string.h>
+#include <signal.h>
+#include <iostream>
+
 
 #define BROADCASTID			            254
 #define DEVICENAME                      "/dev/ttyUSB0"
