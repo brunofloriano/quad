@@ -133,8 +133,8 @@ void controle(union sigval arg){
     roll_medido = (double)angulos[0];
     pitch_medido = (double)angulos[1];
 
-    velocidade_roll = (roll_medido - roll)*(PI/180)/((float)tam/1000);
-    velocidade_pitch = (pitch_medido - pitch)*(PI/180)/((float)tam/1000);
+    velocidade_roll = (roll_medido - roll)*(PI/180)/(tam/1000);
+    velocidade_pitch = (pitch_medido - pitch)*(PI/180)/(tam/1000);
     
     gDataLogger_InsertVariable(&gDataLogger,(char*) "roll_speed_sf",&velocidade_roll);
     gDataLogger_InsertVariable(&gDataLogger,(char*) "pitch_speed_sf",&velocidade_pitch);
