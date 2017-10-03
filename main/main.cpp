@@ -107,7 +107,7 @@ void controle(union sigval arg){
     dynamixel::PortHandler *portHandler = dynamixel::PortHandler::getPortHandler(dev_name);
     dynamixel::GroupSyncWrite groupSyncWrite(portHandler, packetHandler, 30, 2);
     
-    int USB = inicializacao();
+    int USB; //= inicializacao();
     
     //----------roll gains-------//
     K[1-1] = K_roll_L;
@@ -128,7 +128,7 @@ void controle(union sigval arg){
     portHandler->getBaudRate();
     cmd.config_ram(portHandler, packetHandler);
     
-    //inicializacao();
+    USB = inicializacao();
     medicao(angulos, USB);
     roll_medido = (double)angulos[0];
     pitch_medido = (double)angulos[1];
