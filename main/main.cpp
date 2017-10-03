@@ -131,7 +131,7 @@ void controle(union sigval arg){
     portHandler->getBaudRate();
     cmd.config_ram(portHandler, packetHandler);
     
-    inicializacao();
+    //inicializacao();
     medicao(angulos, USB);
     roll_medido = angulos[0];
     pitch_medido = angulos [1];
