@@ -181,7 +181,7 @@ void controle(union sigval arg){
     gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor4",&v_medicao[3]);
     gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor5",&v_medicao[4]);
     gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor6",&v_medicao[5]);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor7",&dv_medicao[6]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor7",&v_medicao[6]);
     gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor8",&v_medicao[7]);
     gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor9",&v_medicao[8]);
     gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor10",&v_medicao[9]);
