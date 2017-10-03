@@ -101,8 +101,6 @@ void controle(union sigval arg){
     
     double dados;
     double dados_motores[12];
-    
-    char motor[64];
 
     angulos[0] = 0;
     angulos[1] = 0;
@@ -173,7 +171,7 @@ void controle(union sigval arg){
 
     v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, i);
     v_medicao = ler_velocidade(v_medicao_int);    
-    dados_motores[i] = (double)v_medicao;
+    dados_motores[i-1] = (double)v_medicao;
     
     v_aplicada = v_desejada - v_medicao;
 
@@ -182,18 +180,18 @@ void controle(union sigval arg){
 	i++;
     }
     
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor1",&dados_motores[1]);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor2",&dados_motores[2]);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor3",&dados_motores[3]);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor4",&dados_motores[4]);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor5",&dados_motores[5]);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor6",&dados_motores[6]);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor7",&dados_motores[7]);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor8",&dados_motores[8]);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor9",&dados_motores[9]);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor10",&dados_motores[10]);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor11",&dados_motores[11]);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor12",&dados_motores[12]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor1",&dados_motores[0]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor2",&dados_motores[1]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor3",&dados_motores[2]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor4",&dados_motores[3]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor5",&dados_motores[4]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor6",&dados_motores[5]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor7",&dados_motores[6]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor8",&dados_motores[7]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor9",&dados_motores[8]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor10",&dados_motores[9]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor11",&dados_motores[10]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor12",&dados_motores[11]);
 }
 
 int main(){
@@ -205,7 +203,6 @@ int main(){
 
     int i = 1;
     char comando[256];
-    int n;
     
         //--------------------------Inicializacao------------------------------//
     if (portHandler->openPort())
