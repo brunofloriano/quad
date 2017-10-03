@@ -11,8 +11,10 @@
 #include <pthread.h>
 #include <string.h>
 #include <signal.h>
+#include <sys/time.h>
 #include <iostream>
 
+#include "time.h"
 #include "gqueue.h"
 #include "gmatlabdatafile.h"
 #include "gdatalogger.h"
