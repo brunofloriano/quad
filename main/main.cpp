@@ -177,7 +177,7 @@ void controle(union sigval arg){
     
     v_aplicada = v_desejada - v_medicao;
 
-    cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(2.3*v_desejada));
+    cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(2.3*v_aplicada));
 
 	i++;
     }
@@ -281,7 +281,6 @@ int main(){
     }
     //----------------------------------Finalize---------------------------------------//
     printf("Sessao finalizada, exportando dados \n");
-    cmd.getch();
     cmd.write_torque(portHandler, packetHandler, BROADCASTID, 0);
     sprintf(comando, "git add -A");
     system(comando);
