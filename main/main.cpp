@@ -155,10 +155,9 @@ void controle(union sigval arg){
    if(abs(velocidade_roll)<threshold){velocidade_roll = 0;}
    if(abs(velocidade_pitch)<threshold){velocidade_pitch = 0;}
    
-    dados = (double)roll_medido;
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "roll_angle",&dados);
-    dados = (double)pitch_medido;
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "pitch_angle",&dados);
+
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "roll_angle",&roll_medido);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "pitch_angle",&pitch_medido);
     dados = (double)velocidade_roll;
     gDataLogger_InsertVariable(&gDataLogger,(char*) "roll_speed",&dados);
     dados = (double)velocidade_pitch;
