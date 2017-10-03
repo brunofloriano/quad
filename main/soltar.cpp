@@ -6,6 +6,7 @@
 #include <stdio.h>
 
 #define BROADCASTID			            254
+#define DEVICENAME                      "/dev/ttyUSB0"
 
 using namespace std;
 
@@ -15,7 +16,7 @@ int main(){
     dynamixel::PacketHandler *packetHandler = dynamixel::PacketHandler::getPacketHandler(1);
     dynamixel::PortHandler *portHandler = dynamixel::PortHandler::getPortHandler(dev_name);
     dynamixel::GroupSyncWrite groupSyncWrite(portHandler, packetHandler, 30, 2);
-    
+    int i;
     
     
        //--------------------------Inicializacao------------------------------//
