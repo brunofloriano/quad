@@ -74,6 +74,8 @@ void timer_stop (void)
 }   
 
 void controle(union sigval arg){
+    double T = 0;
+    static timestruct_t timestruct;
     command cmd;
     char *dev_name = (char*)DEVICENAME;
     dynamixel::PacketHandler *packetHandler = dynamixel::PacketHandler::getPacketHandler(1);
@@ -192,6 +194,11 @@ void controle(union sigval arg){
     gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor10",&dados_motores[9]);
     gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor11",&dados_motores[10]);
     gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor12",&dados_motores[11]);
+
+    T = time_gettime(&timestruct);
+    printf("%f \n",T);
+    time_reset(&timestruct);
+
 }
 
 int main(){
