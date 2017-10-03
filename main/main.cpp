@@ -28,8 +28,6 @@ GDATALOGGER gDataLogger;
 
 int timer_nr;
 timer_t timer;
-double Tglobal;
-long int counter = 0;
 void timer_start (void);
 void timer_stop (void);
 void controle (union sigval sigval);
