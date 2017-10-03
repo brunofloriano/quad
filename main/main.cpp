@@ -277,10 +277,10 @@ int main(){
 	i++;
     }
     //----------------------------------Finalize---------------------------------------//
+    cmd.write_torque(portHandler, packetHandler, BROADCASTID, 0);
     printf("Sessao finalizada, deseja exportar os dados? 1 para sim \n");
     scanf("%d",&i);
     if(i==1){
-    cmd.write_torque(portHandler, packetHandler, BROADCASTID, 0);
     sprintf(comando, "git add -A");
     system(comando);
     sprintf(comando, "git commit -m 'Aquisicao de Dados'");
