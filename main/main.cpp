@@ -39,7 +39,7 @@ using namespace std;
 
     double out;
     float angulos[2];
-    double v_medicao, v_desejada, v_aplicada;
+    double v_medicao[12], v_desejada, v_aplicada;
     double roll_medido, pitch_medido;
     static double roll = 0, pitch = 0;
     double velocidade_roll, velocidade_pitch;
@@ -55,9 +55,6 @@ using namespace std;
     
     int i = 1;
     int v_medicao_int;
-    
-    double dados_motores[12];
-
 
 void timer_start (void)
 {
@@ -169,28 +166,27 @@ void controle(union sigval arg){
         }
 
     v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, i);
-    v_medicao = ler_velocidade(v_medicao_int);    
-    dados_motores[i-1] = (double)v_medicao;
+    v_medicao[i-1] = ler_velocidade(v_medicao_int);    
     
-    v_aplicada = v_desejada - v_medicao;
+    v_aplicada = v_desejada - v_medicao[i-1];
 
     cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(2.3*v_desejada));
 
 	i++;
     }
     
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor1",&dados_motores[0]);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor2",&dados_motores[1]);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor3",&dados_motores[2]);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor4",&dados_motores[3]);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor5",&dados_motores[4]);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor6",&dados_motores[5]);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor7",&dados_motores[6]);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor8",&dados_motores[7]);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor9",&dados_motores[8]);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor10",&dados_motores[9]);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor11",&dados_motores[10]);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor12",&dados_motores[11]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor1",&v_medicao[0]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor2",&v_medicao[1]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor3",&v_medicao[2]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor4",&v_medicao[3]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor5",&v_medicao[4]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor6",&v_medicao[5]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor7",&dv_medicao[6]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor8",&v_medicao[7]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor9",&v_medicao[8]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor10",&v_medicao[9]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor11",&v_medicao[10]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor12",&v_medicao[11]);
 
     T = time_gettime(&timestruct);
     printf("%f \n",T*1000);
