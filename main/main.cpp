@@ -49,7 +49,7 @@ void controle (union sigval sigval);
     float fc = 1;
     float K_roll_R = 1.001, K_roll_L = 1.0;
     float K_pitch_F = 1.11, K_pitch_R = 1.11;
-    float K_UP = 1, K_DOWN = -0.4;
+    float K_UP = 1, K_DOWN = 0;//-0.4;
     float K[12];
     float threshold = 0;//0.0024;
     float tam = TASK_PERIOD_US/1000; //tempo de amostragem em milisegundos
@@ -147,6 +147,7 @@ void controle(union sigval arg){
     v_medicao[i-1] = ler_velocidade(v_medicao_int);
 
     v_aplicada = v_desejada - v_medicao[i-1];
+    if(i == 3 || i == 6 || i == 9 || i == 12){v_aplicada = 2*v_aplicada;}
 
     cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(2.3*v_aplicada));
 
