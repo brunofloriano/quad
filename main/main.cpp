@@ -33,16 +33,16 @@ void timer_stop (void);
 void controle (union sigval sigval);
 
 
-using namespace std;
+//using namespace std;
 
     double out;
-    float angulos[2];
     double v_medicao[12], v_desejada, v_aplicada;
     double roll_medido, pitch_medido;
-    static double roll = 0, pitch = 0;
     double velocidade_roll, velocidade_pitch;
-    static double v_1_roll = 0, v_1_pitch = 0;
-    
+    double roll = 0, pitch = 0;
+    double v_1_roll = 0, v_1_pitch = 0;
+
+    float angulos[2];
     float fc = 1;
     float K_roll_R = 1.001, K_roll_L = 2;
     float K_pitch_F = 1.01, K_pitch_R = 1.01;
@@ -50,7 +50,7 @@ using namespace std;
     float K[12];
     float threshold = 0.0024;
     float tam = TASK_PERIOD_US/1000; //tempo de amostragem em milisegundos
-    
+
     int i = 1;
     int v_medicao_int;
 
@@ -60,7 +60,7 @@ void timer_start (void)
     struct sigevent sigev;
 
     itimer.it_interval.tv_sec=0;
-    itimer.it_interval.tv_nsec=TASK_PERIOD_US * 1000; 
+    itimer.it_interval.tv_nsec=TASK_PERIOD_US * 1000;
     itimer.it_value=itimer.it_interval;
 
     memset (&sigev, 0, sizeof (struct sigevent));
@@ -90,39 +90,25 @@ void timer_stop (void)
         fprintf (stderr, "[%d]: %s\n", __LINE__, strerror (errno));
         exit (errno);
     }
-}   
+}
 
 void controle(union sigval arg){
     double T = 0;
     static timestruct_t timestruct;
     time_reset(&timestruct);
+
     command cmd;
     char *dev_name = (char*)DEVICENAME;
     dynamixel::PacketHandler *packetHandler = dynamixel::PacketHandler::getPacketHandler(1);
     dynamixel::PortHandler *portHandler = dynamixel::PortHandler::getPortHandler(dev_name);
     dynamixel::GroupSyncWrite groupSyncWrite(portHandler, packetHandler, 30, 2);
-    
+
     int USB = inicializacao();
-    
-    //----------roll gains-------//
-    K[1-1] = K_roll_L;
-    K[4-1] = K_roll_R;
-    K[7-1] = K_roll_R*1.1;
-    K[10-1] = K_roll_L;
-    //----------pitch gains-------------//
-    K[2-1] = K_pitch_R*K_UP;
-    K[3-1] = K_pitch_R*K_DOWN;
-    K[5-1] = -K_pitch_R*K_UP;
-    K[6-1] = -K_pitch_R*K_DOWN;
-    K[8-1] = -K_pitch_F*K_UP;
-    K[9-1] = -K_pitch_F*K_DOWN;
-    K[11-1] = K_pitch_F*K_UP;
-    K[12-1] = K_pitch_F*K_DOWN;
-    
+
     portHandler->openPort();
     portHandler->getBaudRate();
     cmd.config_ram(portHandler, packetHandler);
-    
+
     inicializacao();
     medicao(angulos, USB);
     roll_medido = (double)angulos[0];
@@ -130,7 +116,7 @@ void controle(union sigval arg){
 
     velocidade_roll = (roll_medido - roll)*(PI/180)/(tam/1000);
     velocidade_pitch = (pitch_medido - pitch)*(PI/180)/(tam/1000);
-    
+
     gDataLogger_InsertVariable(&gDataLogger,(char*) "roll_speed_sf",&velocidade_roll);
     gDataLogger_InsertVariable(&gDataLogger,(char*) "pitch_speed_sf",&velocidade_pitch);
 
@@ -144,10 +130,10 @@ void controle(union sigval arg){
 
     roll = roll_medido;
     pitch = pitch_medido;
-    
+
    if(abs(velocidade_roll)<threshold){velocidade_roll = 0;}
    if(abs(velocidade_pitch)<threshold){velocidade_pitch = 0;}
-   
+
 
     gDataLogger_InsertVariable(&gDataLogger,(char*) "roll_angle",&roll_medido);
     gDataLogger_InsertVariable(&gDataLogger,(char*) "pitch_angle",&pitch_medido);
@@ -164,15 +150,15 @@ void controle(union sigval arg){
         }
 
     v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, i);
-    v_medicao[i-1] = ler_velocidade(v_medicao_int);    
-    
+    v_medicao[i-1] = ler_velocidade(v_medicao_int);
+
     v_aplicada = v_desejada - v_medicao[i-1];
 
     cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(2.3*v_desejada));
 
 	i++;
     }
-    
+
     gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor1",&v_medicao[0]);
     gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor2",&v_medicao[1]);
     gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor3",&v_medicao[2]);
@@ -199,9 +185,24 @@ int main(){
     dynamixel::PortHandler *portHandler = dynamixel::PortHandler::getPortHandler(dev_name);
     dynamixel::GroupSyncWrite groupSyncWrite(portHandler, packetHandler, 30, 2);
 
-    int i = 1;
+    int i;
     char comando[256];
-    
+
+    //----------roll gains-------//
+    K[1-1] = K_roll_L;
+    K[4-1] = K_roll_R;
+    K[7-1] = K_roll_R*1.1;
+    K[10-1] = K_roll_L;
+    //----------pitch gains-------------//
+    K[2-1] = K_pitch_R*K_UP;
+    K[3-1] = K_pitch_R*K_DOWN;
+    K[5-1] = -K_pitch_R*K_UP;
+    K[6-1] = -K_pitch_R*K_DOWN;
+    K[8-1] = -K_pitch_F*K_UP;
+    K[9-1] = -K_pitch_F*K_DOWN;
+    K[11-1] = K_pitch_F*K_UP;
+    K[12-1] = K_pitch_F*K_DOWN;
+
         //--------------------------Inicializacao------------------------------//
     if (portHandler->openPort())
     {
@@ -223,20 +224,20 @@ int main(){
     {
          cmd.write_mov_speed(portHandler, packetHandler, i+1, 0);
     }
-    
+
         //----------------------------Data logger-----------------------------------//
 	if(!gDataLogger_Init(&gDataLogger,(char*) "gdatalogger/matlabdatafiles/data.mat",NULL)){
 		printf("\nErro em gDataLogger_Init\n\n");
 		pthread_exit(NULL);
 	}
-    
+
     gDataLogger_DeclareVariable(&gDataLogger,(char*) "roll_angle",(char*) "deg",1,1,1000);
     gDataLogger_DeclareVariable(&gDataLogger,(char*) "pitch_angle",(char*) "deg",1,1,1000);
     gDataLogger_DeclareVariable(&gDataLogger,(char*) "roll_speed",(char*) "rad/s",1,1,1000);
     gDataLogger_DeclareVariable(&gDataLogger,(char*) "pitch_speed",(char*) "rad/s",1,1,1000);
     gDataLogger_DeclareVariable(&gDataLogger,(char*) "roll_speed_sf",(char*) "rad/s",1,1,1000);
     gDataLogger_DeclareVariable(&gDataLogger,(char*) "pitch_speed_sf",(char*) "rad/s",1,1,1000);
-    
+
     gDataLogger_DeclareVariable(&gDataLogger,(char*) "v_motor1",(char*) "rad/s",1,1,1000);
     gDataLogger_DeclareVariable(&gDataLogger,(char*) "v_motor2",(char*) "rad/s",1,1,1000);
     gDataLogger_DeclareVariable(&gDataLogger,(char*) "v_motor3",(char*) "rad/s",1,1,1000);
@@ -253,18 +254,18 @@ int main(){
 
     printf("Pressione qualquer tecla para iniciar \n");
     cmd.getch();
-    
+
     timer_start ();
     printf("Programa em andamento, pressione qualquer tecla para finalizar \n");
 
-    //----------------------Loop para condiÃ§Ã£o de parada------------------------------------//
+    //----------------------Loop para condição de parada------------------------------------//
 	while(!kbhit()){
 		usleep(20000);
 		gDataLogger_IPCUpdate(&gDataLogger); // gerencia IPC
         //gDataLogger_MatfileUpdate(&gDataLogger); // esvazia os buffers no arquivo de log
 	}
 
-    
+
   //--------------------Fim da simulacao, parar os motores --------------------------------//
     timer_stop ();
 	gDataLogger_Close(&gDataLogger);

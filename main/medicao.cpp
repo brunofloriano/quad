@@ -26,7 +26,8 @@ int inicializacao(){
     /* Error Handling */
     if ( tcgetattr ( USB, &tty ) != 0 )
     {
-        std::cout << "Error " << errno << " from tcgetattr: " << strerror(errno) << std::endl;
+        //std::cout << "Error " << errno << " from tcgetattr: " << strerror(errno) << std::endl;
+        printf("Erro from tcgetattr");
     }
 
     /* Save old tty parameters */
@@ -49,7 +50,8 @@ int inicializacao(){
     //tcflush( USB, TCIFLUSH );
     if ( tcsetattr ( USB, TCSANOW, &tty ) != 0)
     {
-        std::cout << "Error " << errno << " from tcsetattr" << std::endl;
+        //std::cout << "Error " << errno << " from tcsetattr" << std::endl;
+        printf("Erro from tcsetattr \n");
     }
 
 return USB;
@@ -75,7 +77,7 @@ int medicao(float *angulos, int USB){
             buf='\0';
             n_endl=0;
             memset(response, '\0', sizeof response);
-            
+
             n_written = write( USB, "1", 1 );
 
             do
@@ -83,7 +85,7 @@ int medicao(float *angulos, int USB){
                 n = read( USB, &buf, 1 );
             }
             while( buf != '<' && n > 0);
-            
+
             do
             {
                 n = read( USB, &buf, 1 );
