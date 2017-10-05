@@ -56,6 +56,7 @@ void controle (union sigval sigval);
 
     int i = 1;
     int v_medicao_int;
+    int USB;
 
 void timer_start (void)
 {
@@ -100,7 +101,7 @@ void controle(union sigval arg){
     static timestruct_t timestruct;
     time_reset(&timestruct);
 
-    int USB = inicializacao();
+    //int USB = inicializacao();
 
     inicializacao();
     medicao(angulos, USB);
