@@ -101,7 +101,7 @@ void controle(union sigval arg){
     static timestruct_t timestruct;
     time_reset(&timestruct);
 
-    USB = inicializacao();
+    
 
     //inicializacao();
     medicao(angulos, USB);
@@ -246,7 +246,7 @@ int main(){
 
     printf("Pressione qualquer tecla para iniciar \n");
     cmd.getch();
-
+    USB = inicializacao();
     timer_start ();
     printf("Programa em andamento, pressione qualquer tecla para finalizar \n");
 
