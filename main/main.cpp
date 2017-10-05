@@ -42,8 +42,8 @@ void controle (union sigval sigval);
     double v_medicao[12], v_desejada, v_aplicada;
     double roll_medido, pitch_medido;
     double velocidade_roll, velocidade_pitch;
-    double roll = 0, pitch = 0;
-    double v_1_roll = 0, v_1_pitch = 0;
+    static double roll = 0, pitch = 0;
+    static double v_1_roll = 0, v_1_pitch = 0;
 
     float angulos[2];
     float fc = 1;
