@@ -12,7 +12,6 @@
 #include <string.h>
 #include <signal.h>
 #include <sys/time.h>
-#include <iostream>
 
 #include "time.h"
 #include "gqueue.h"
@@ -38,8 +37,6 @@ void controle (union sigval sigval);
     dynamixel::PortHandler *portHandler = dynamixel::PortHandler::getPortHandler(dev_name);
     dynamixel::GroupSyncWrite groupSyncWrite(portHandler, packetHandler, 30, 2);
 
-
-//using namespace std;
 
     double out;
     double v_medicao[12], v_desejada, v_aplicada;
@@ -104,10 +101,6 @@ void controle(union sigval arg){
     time_reset(&timestruct);
 
     int USB = inicializacao();
-
-    portHandler->openPort();
-    portHandler->getBaudRate();
-    cmd.config_ram(portHandler, packetHandler);
 
     inicializacao();
     medicao(angulos, USB);
