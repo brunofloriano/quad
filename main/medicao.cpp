@@ -59,7 +59,6 @@ return USB;
 
 int medicao(float *angulos, int USB){
 
-    command cmd;
     char buf = '\0';
     char response[1024];
 
