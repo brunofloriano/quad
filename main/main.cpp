@@ -51,7 +51,7 @@ void controle (union sigval sigval);
     float K_pitch_F = 1.01, K_pitch_R = 1.01;
     float K_UP = 1, K_DOWN = -1;
     float K[12];
-    float threshold = 0.0024;
+    float threshold = 0;//0.0024;
     float tam = TASK_PERIOD_US/1000; //tempo de amostragem em milisegundos
 
     int i = 1;
