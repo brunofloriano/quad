@@ -32,6 +32,12 @@ void timer_start (void);
 void timer_stop (void);
 void controle (union sigval sigval);
 
+    command cmd;
+    char *dev_name = (char*)DEVICENAME;
+    dynamixel::PacketHandler *packetHandler = dynamixel::PacketHandler::getPacketHandler(1);
+    dynamixel::PortHandler *portHandler = dynamixel::PortHandler::getPortHandler(dev_name);
+    dynamixel::GroupSyncWrite groupSyncWrite(portHandler, packetHandler, 30, 2);
+
 
 //using namespace std;
 
@@ -96,12 +102,6 @@ void controle(union sigval arg){
     double T = 0;
     static timestruct_t timestruct;
     time_reset(&timestruct);
-
-    command cmd;
-    char *dev_name = (char*)DEVICENAME;
-    dynamixel::PacketHandler *packetHandler = dynamixel::PacketHandler::getPacketHandler(1);
-    dynamixel::PortHandler *portHandler = dynamixel::PortHandler::getPortHandler(dev_name);
-    dynamixel::GroupSyncWrite groupSyncWrite(portHandler, packetHandler, 30, 2);
 
     int USB = inicializacao();
 
@@ -179,11 +179,6 @@ void controle(union sigval arg){
 }
 
 int main(){
-    command cmd;
-    char *dev_name = (char*)DEVICENAME;
-    dynamixel::PacketHandler *packetHandler = dynamixel::PacketHandler::getPacketHandler(1);
-    dynamixel::PortHandler *portHandler = dynamixel::PortHandler::getPortHandler(dev_name);
-    dynamixel::GroupSyncWrite groupSyncWrite(portHandler, packetHandler, 30, 2);
 
     int i;
     char comando[256];
@@ -258,7 +253,7 @@ int main(){
     timer_start ();
     printf("Programa em andamento, pressione qualquer tecla para finalizar \n");
 
-    //----------------------Loop para condição de parada------------------------------------//
+    //----------------------Loop para condiÃ§Ã£o de parada------------------------------------//
 	while(!kbhit()){
 		usleep(20000);
 		gDataLogger_IPCUpdate(&gDataLogger); // gerencia IPC
