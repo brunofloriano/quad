@@ -48,7 +48,7 @@ void controle (union sigval sigval);
     float angulos[2];
     float fc = 1;
     float K_roll_R = 1.001, K_roll_L = 1.0;
-    float K_pitch_F = 1.11, K_pitch_R = 1.11;
+    float K_pitch_F = 1.21, K_pitch_R = 1.21;
     float K_UP = 1, K_DOWN = 0;//-0.4;
     float K[12];
     float threshold = 0;//0.0024;
