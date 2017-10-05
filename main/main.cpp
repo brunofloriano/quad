@@ -148,7 +148,7 @@ void controle(union sigval arg){
 
     v_aplicada = v_desejada - v_medicao[i-1];
 
-    cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(2.3*v_desejada));
+    cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(2.3*v_aplicada));
 
 	i++;
     }
