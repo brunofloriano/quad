@@ -101,7 +101,7 @@ void controle(union sigval arg){
     static timestruct_t timestruct;
     time_reset(&timestruct);
 
-    USB = inicializacao();
+    int USB = inicializacao();
 
     inicializacao();
     medicao(angulos, USB);
