@@ -103,7 +103,7 @@ void controle(union sigval arg){
 
     USB = inicializacao();
 
-    //inicializacao();
+    inicializacao();
     medicao(angulos, USB);
     roll_medido = (double)angulos[0];
     pitch_medido = (double)angulos[1];
