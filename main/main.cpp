@@ -101,9 +101,9 @@ void controle(union sigval arg){
     static timestruct_t timestruct;
     time_reset(&timestruct);
 
-    int USB = inicializacao();
+    USB = inicializacao();
 
-    inicializacao();
+    //inicializacao();
     medicao(angulos, USB);
     roll_medido = (double)angulos[0];
     pitch_medido = (double)angulos[1];
