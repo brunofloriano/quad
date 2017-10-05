@@ -167,7 +167,8 @@ void controle(union sigval arg){
     gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor12",&v_medicao[11]);
 
     T = time_gettime(&timestruct);
-    printf("%f \n",T*1000);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "T",&T);
+    //printf("%f \n",T*1000);
     time_reset(&timestruct);
 
 }
@@ -239,6 +240,8 @@ int main(){
     gDataLogger_DeclareVariable(&gDataLogger,(char*) "v_motor10",(char*) "rad/s",1,1,1000);
     gDataLogger_DeclareVariable(&gDataLogger,(char*) "v_motor11",(char*) "rad/s",1,1,1000);
     gDataLogger_DeclareVariable(&gDataLogger,(char*) "v_motor12",(char*) "rad/s",1,1,1000);
+    
+    gDataLogger_DeclareVariable(&gDataLogger,(char*) "T",(char*) "s",1,1,1000);
 
 
     printf("Pressione qualquer tecla para iniciar \n");
