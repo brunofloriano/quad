@@ -148,8 +148,15 @@ void controle(union sigval arg){
 
     v_aplicada = v_desejada - v_medicao[i-1];
     
-    if(i == 3 || i == 6 || i == 9 || i == 12){v_aplicada = 2.2*v_aplicada;}
-    else{v_aplicada = v_desejada;}
+    if(i == 3 || i == 6 || i == 9 || i == 12){
+        v_aplicada = 2.2*v_aplicada;
+        }
+    else{v_aplicada = v_desejada;
+        if(v_desejada<0.01){
+            v_aplicada = -1.5*v_medicao[i-1];
+            }
+    }
+
 
     cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(2.3*v_aplicada));
 
