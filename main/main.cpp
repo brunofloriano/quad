@@ -140,15 +140,16 @@ void controle(union sigval arg){
         v_desejada = -K[i-1]*velocidade_roll;
     }
     else{
-            v_desejada = -K[i-1]*velocidade_pitch;
+            v_desejada = 1;//-K[i-1]*velocidade_pitch;
         }
 
     v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, i);
     v_medicao[i-1] = ler_velocidade(v_medicao_int);
 
-    v_aplicada = v_desejada; //- v_medicao[i-1];
+    v_aplicada = v_desejada - v_medicao[i-1];
     if(i == 3 || i == 6 || i == 9 || i == 12){v_aplicada = 2.2*v_aplicada;}
-    
+    else{v_aplicada = 0.5*v_aplicada;}
+
     cmd.write_mov_speed(portHandler, packetHandler, 11, velocidade(2.3*v_aplicada));
 
 	i++;
