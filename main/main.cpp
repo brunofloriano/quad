@@ -153,7 +153,7 @@ void controle(union sigval arg){
         }
     else{
         v_aplicada = v_desejada;
-        if(abs(v_desejada)<0.001){v_aplicada = -2.2*v_medicao[i-1];}
+     //   if(abs(v_desejada)<0.001){v_aplicada = -2.2*v_medicao[i-1];}
     }
 
 
