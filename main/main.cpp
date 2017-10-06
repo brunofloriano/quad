@@ -150,7 +150,7 @@ void controle(union sigval arg){
     if(i == 3 || i == 6 || i == 9 || i == 12){v_aplicada = 2.2*v_aplicada;}
     else{v_aplicada = v_desejada - 1.1*v_medicao[i-1];}
 
-    cmd.write_mov_speed(portHandler, packetHandler, 10,velocidade(2.3*1);//i, velocidade(2.3*v_aplicada));
+    cmd.write_mov_speed(portHandler, packetHandler, 10,velocidade(2.3*1));//i, velocidade(2.3*v_aplicada));
 
 	i++;
     }
