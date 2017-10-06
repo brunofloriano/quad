@@ -151,10 +151,8 @@ void controle(union sigval arg){
     if(i == 3 || i == 6 || i == 9 || i == 12){
         v_aplicada = 2.2*v_aplicada;
         }
-    else{v_aplicada = v_desejada;
-        if(abs(v_desejada)<0.005){
-            v_aplicada = -2.2*v_medicao[i-1];
-            }
+    else{
+        v_aplicada = v_desejada;s
     }
 
 
