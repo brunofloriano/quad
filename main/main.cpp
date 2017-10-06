@@ -152,7 +152,7 @@ void controle(union sigval arg){
         v_aplicada = 2.2*v_aplicada;
         }
     else{
-        v_aplicada = v_desejada;s
+        v_aplicada = v_desejada;
     }
 
 
