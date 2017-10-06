@@ -147,8 +147,9 @@ void controle(union sigval arg){
     v_medicao[i-1] = ler_velocidade(v_medicao_int);
 
     v_aplicada = v_desejada - v_medicao[i-1];
+    
     if(i == 3 || i == 6 || i == 9 || i == 12){v_aplicada = 2.2*v_aplicada;}
-    else{v_aplicada = 0.25*v_aplicada;}
+    else{v_aplicada = 0.1*v_aplicada;}
 
     cmd.write_mov_speed(portHandler, packetHandler, 11, velocidade(2.3*v_aplicada));
 
