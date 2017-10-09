@@ -12,6 +12,7 @@
 #include <string.h>
 #include <signal.h>
 #include <sys/time.h>
+#include <sys/select.h>
 
 #include "time.h"
 #include "gqueue.h"
