@@ -102,7 +102,7 @@ void timer_stop (void)
 
 int inicializacao(){
 
-    //USB = open( "/dev/ttyACM0", O_RDWR| O_NOCTTY | O_NONBLOCK);
+    USB = open( "/dev/ttyACM0", O_RDWR| O_NOCTTY | O_NONBLOCK);
     //close(USB);
     //USB = open( "/dev/ttyACM0", O_RDWR| O_NOCTTY | O_NONBLOCK);
 
@@ -151,7 +151,7 @@ void controle(union sigval arg){
 
     
 
-    inicializacao();
+    //inicializacao();
     medicao(angulos, USB);
     roll_medido = (double)angulos[0];
     pitch_medido = (double)angulos[1];
@@ -303,7 +303,6 @@ int main(){
 
     printf("Pressione qualquer tecla para iniciar \n");
     cmd.getch();
-    USB = open( "/dev/ttyACM0", O_RDWR| O_NOCTTY | O_NONBLOCK);
     USB = inicializacao();
     timer_start ();
     printf("Programa em andamento, pressione qualquer tecla para finalizar \n");
