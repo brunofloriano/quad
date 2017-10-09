@@ -58,8 +58,8 @@ void controle (union sigval sigval);
     int v_medicao_int;
     volatile int USB;
     
-    volatile struct termios tty;
-    volatile struct termios tty_old;
+    struct termios tty;
+    struct termios tty_old;
 
 void timer_start (void)
 {
@@ -102,8 +102,8 @@ void timer_stop (void)
 int inicializacao(){
 
     USB = open( "/dev/ttyACM0", O_RDWR| O_NOCTTY | O_NONBLOCK);
-    close(USB);
-    USB = open( "/dev/ttyACM0", O_RDWR| O_NOCTTY | O_NONBLOCK);
+    //close(USB);
+    //USB = open( "/dev/ttyACM0", O_RDWR| O_NOCTTY | O_NONBLOCK);
 
     //USB Handling//
     memset (&tty, 0, sizeof tty);
