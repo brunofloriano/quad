@@ -58,8 +58,8 @@ void controle (union sigval sigval);
     int v_medicao_int;
     volatile int USB;
     
-    struct termios tty;
-    struct termios tty_old;
+    volatile struct termios tty;
+    volatile struct termios tty_old;
 
 void timer_start (void)
 {
