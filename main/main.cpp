@@ -302,8 +302,8 @@ int main(){
 
     printf("Pressione qualquer tecla para iniciar \n");
     cmd.getch();
-    USB = inicializacao();
     USB = open( "/dev/ttyACM0", O_RDWR| O_NOCTTY | O_NONBLOCK);
+    USB = inicializacao();
     timer_start ();
     printf("Programa em andamento, pressione qualquer tecla para finalizar \n");
 
