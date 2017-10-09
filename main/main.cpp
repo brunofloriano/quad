@@ -56,7 +56,7 @@ void controle (union sigval sigval);
 
     int i = 1;
     int v_medicao_int;
-    int USB;
+    volatile int USB;
 
 void timer_start (void)
 {
@@ -103,7 +103,7 @@ void controle(union sigval arg){
 
     
 
-    inicializacao();
+    //inicializacao();
     medicao(angulos, USB);
     roll_medido = (double)angulos[0];
     pitch_medido = (double)angulos[1];
@@ -177,7 +177,7 @@ void controle(union sigval arg){
 
     T = time_gettime(&timestruct);
     gDataLogger_InsertVariable(&gDataLogger,(char*) "T",&T);
-    //printf("%f \n",T*1000);
+    printf("%f \n",T*1000);
     time_reset(&timestruct);
 
 }
