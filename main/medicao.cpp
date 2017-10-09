@@ -19,8 +19,6 @@ int inicializacao(){
     USB = open( "/dev/ttyACM0", O_RDWR| O_NOCTTY | O_NONBLOCK);
 
     //USB Handling//
-    struct termios tty;
-    struct termios tty_old;
     memset (&tty, 0, sizeof tty);
 
     /* Error Handling */
