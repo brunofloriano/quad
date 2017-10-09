@@ -102,7 +102,7 @@ void timer_stop (void)
 
 int inicializacao(){
 
-    USB = open( "/dev/ttyACM0", O_RDWR| O_NOCTTY | O_NONBLOCK);
+    //USB = open( "/dev/ttyACM0", O_RDWR| O_NOCTTY | O_NONBLOCK);
     //close(USB);
     //USB = open( "/dev/ttyACM0", O_RDWR| O_NOCTTY | O_NONBLOCK);
 
@@ -151,7 +151,8 @@ void controle(union sigval arg){
 
     
 
-    inicializacao();
+   //inicializacao();
+    USB = open( "/dev/ttyACM0", O_RDWR| O_NOCTTY | O_NONBLOCK);
     medicao(angulos, USB);
     roll_medido = (double)angulos[0];
     pitch_medido = (double)angulos[1];
