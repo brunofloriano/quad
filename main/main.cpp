@@ -151,7 +151,7 @@ void controle(union sigval arg){
 
     
 
-    //inicializacao();
+
     medicao(angulos, USB);
     roll_medido = (double)angulos[0];
     pitch_medido = (double)angulos[1];
@@ -225,7 +225,7 @@ void controle(union sigval arg){
 
     T = time_gettime(&timestruct);
     gDataLogger_InsertVariable(&gDataLogger,(char*) "T",&T);
-    printf("%f \n",T*1000);
+    //printf("%f \n",T*1000);
     time_reset(&timestruct);
 
 }
@@ -304,7 +304,6 @@ int main(){
     printf("Pressione qualquer tecla para iniciar \n");
     cmd.getch();
     USB = inicializacao();
-    //USB = open( "/dev/ttyACM0", O_RDWR| O_NOCTTY | O_NONBLOCK);
     timer_start ();
     printf("Programa em andamento, pressione qualquer tecla para finalizar \n");
 
