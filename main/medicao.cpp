@@ -80,7 +80,7 @@ int medicao(float *angulos, int USB){
         }
 
 
-close(USB);
+//close(USB);
 return 0;
 }
 
