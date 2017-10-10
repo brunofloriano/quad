@@ -57,8 +57,8 @@ void controle (union sigval sigval);
 
     int i = 1;
     int v_medicao_int;
-    //volatile int USB;
-    static int USB;
+    int USB;
+
     struct termios tty;
     struct termios tty_old;
 
@@ -101,7 +101,7 @@ void timer_stop (void)
 }
 
 int inicializacao(){
-
+    int A = USB;
     //USB = open( "/dev/ttyACM0", O_RDWR| O_NOCTTY | O_NONBLOCK);
     //close(USB);
     //USB = open( "/dev/ttyACM0", O_RDWR| O_NOCTTY | O_NONBLOCK);
@@ -110,7 +110,7 @@ int inicializacao(){
     memset (&tty, 0, sizeof tty);
 
     /* Error Handling */
-    if ( tcgetattr ( USB, &tty ) != 0 )
+    if ( tcgetattr ( A, &tty ) != 0 )
     {
         //std::cout << "Error " << errno << " from tcgetattr: " << strerror(errno) << std::endl;
         printf("Erro %d from tcgetattr",(int)errno);
@@ -134,7 +134,7 @@ int inicializacao(){
     cfmakeraw(&tty);
     /* Flush Port, then applies attributes */
     //tcflush( USB, TCIFLUSH );
-    if ( tcsetattr ( USB, TCSANOW, &tty ) != 0)
+    if ( tcsetattr ( A, TCSANOW, &tty ) != 0)
     {
         //std::cout << "Error " << errno << " from tcsetattr" << std::endl;
         printf("Erro from tcsetattr \n");
