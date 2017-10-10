@@ -101,8 +101,8 @@ void timer_stop (void)
 }
 
 int inicializacao(){
-    int A = USB;
-    //USB = open( "/dev/ttyACM0", O_RDWR| O_NOCTTY | O_NONBLOCK);
+`
+    USB = open( "/dev/ttyACM0", O_RDWR| O_NOCTTY | O_NONBLOCK);
     //close(USB);
     //USB = open( "/dev/ttyACM0", O_RDWR| O_NOCTTY | O_NONBLOCK);
 
@@ -110,7 +110,7 @@ int inicializacao(){
     memset (&tty, 0, sizeof tty);
 
     /* Error Handling */
-    if ( tcgetattr ( A, &tty ) != 0 )
+    if ( tcgetattr ( USB, &tty ) != 0 )
     {
         //std::cout << "Error " << errno << " from tcgetattr: " << strerror(errno) << std::endl;
         printf("Erro %d from tcgetattr",(int)errno);
@@ -134,7 +134,7 @@ int inicializacao(){
     cfmakeraw(&tty);
     /* Flush Port, then applies attributes */
     //tcflush( USB, TCIFLUSH );
-    if ( tcsetattr ( A, TCSANOW, &tty ) != 0)
+    if ( tcsetattr ( USB, TCSANOW, &tty ) != 0)
     {
         //std::cout << "Error " << errno << " from tcsetattr" << std::endl;
         printf("Erro from tcsetattr \n");
@@ -151,7 +151,7 @@ void controle(union sigval arg){
 
     
 
-    inicializacao();
+    //inicializacao();
     medicao(angulos, USB);
     roll_medido = (double)angulos[0];
     pitch_medido = (double)angulos[1];
@@ -303,8 +303,8 @@ int main(){
 
     printf("Pressione qualquer tecla para iniciar \n");
     cmd.getch();
-    //USB = inicializacao();
-    USB = open( "/dev/ttyACM0", O_RDWR| O_NOCTTY | O_NONBLOCK);
+    USB = inicializacao();
+    //USB = open( "/dev/ttyACM0", O_RDWR| O_NOCTTY | O_NONBLOCK);
     timer_start ();
     printf("Programa em andamento, pressione qualquer tecla para finalizar \n");
 
