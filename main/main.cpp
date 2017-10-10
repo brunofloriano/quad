@@ -102,7 +102,7 @@ void timer_stop (void)
 
 int inicializacao(){
 
-    //USB = open( "/dev/ttyACM0", O_RDWR| O_NOCTTY | O_NONBLOCK);
+    USB = open( "/dev/ttyACM0", O_RDWR| O_NOCTTY | O_NONBLOCK);
     //close(USB);
     //USB = open( "/dev/ttyACM0", O_RDWR| O_NOCTTY | O_NONBLOCK);
 
@@ -113,7 +113,7 @@ int inicializacao(){
     if ( tcgetattr ( USB, &tty ) != 0 )
     {
         //std::cout << "Error " << errno << " from tcgetattr: " << strerror(errno) << std::endl;
-        printf("Erro from tcgetattr");
+        printf("Erro %d from tcgetattr",(int)errno);
     }
 
     /* Save old tty parameters */
