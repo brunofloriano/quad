@@ -189,8 +189,8 @@ void controle(union sigval arg){
             v_desejada = -K[i-1]*velocidade_pitch;
         }
 
-    //v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, i);
-    //v_medicao[i-1] = ler_velocidade(v_medicao_int);
+    v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, i);
+    v_medicao[i-1] = ler_velocidade(v_medicao_int);
     
     if(i == 3 || i == 6 || i == 9 || i == 12){
         v_aplicada = 2.2*(v_desejada); //- v_medicao[i-1]);
@@ -201,7 +201,7 @@ void controle(union sigval arg){
     }
 
 
-    //cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(2.3*v_aplicada));
+    cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(2.3*v_aplicada));
 
 	i++;
     }

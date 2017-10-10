@@ -65,14 +65,14 @@ int command::read_mov_speed(dynamixel::PortHandler *portHandler, dynamixel::Pack
     uint8_t dxl_error = 0;
     int     dxl_comm_result = COMM_TX_FAIL;
     int16_t value16   = 0;
-    do{
+    //do{
         dxl_comm_result=packetHandler->read2ByteTxRx(portHandler, id, 38,(uint16_t*)&value16,&dxl_error);  // Endereço p/posiçao atual 36,37
         if (dxl_comm_result == COMM_SUCCESS)
         {
             if (dxl_error != 0) packetHandler->printRxPacketError(dxl_error);
             return(value16);
         }
-    }while(dxl_comm_result != COMM_SUCCESS);
+    //}while(dxl_comm_result != COMM_SUCCESS);
     //packetHandler->printTxRxResult(dxl_comm_result);
     return(-1);
 }
@@ -82,14 +82,14 @@ void command::write_mov_speed(dynamixel::PortHandler *portHandler, dynamixel::Pa
     uint8_t dxl_error = 0;
     int dxl_comm_result = COMM_TX_FAIL;
 
-    do{
+    //do{
         dxl_comm_result = packetHandler->write2ByteTxRx(portHandler, id, 32, (uint16_t)value, &dxl_error);
         if (dxl_comm_result == COMM_SUCCESS)
         {
             if (dxl_error != 0) packetHandler->printRxPacketError(dxl_error);
             //fprintf(stderr, "\n Success to write\n\n");
         }
-    }while(dxl_comm_result != COMM_SUCCESS);
+    //}while(dxl_comm_result != COMM_SUCCESS);
     //else
     //{
     //    packetHandler->printTxRxResult(dxl_comm_result);
