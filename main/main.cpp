@@ -58,7 +58,7 @@ void controle (union sigval sigval);
     int i = 1;
     int v_medicao_int;
     //volatile int USB;
-    int USB;
+    static int USB;
     struct termios tty;
     struct termios tty_old;
 
