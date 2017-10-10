@@ -307,7 +307,7 @@ int main(){
 
     //----------------------Loop para condição de parada------------------------------------//
 	while(!kbhit()){
-		//usleep(20000);
+		usleep(20000);
 		gDataLogger_IPCUpdate(&gDataLogger); // gerencia IPC
         //gDataLogger_MatfileUpdate(&gDataLogger); // esvazia os buffers no arquivo de log
 	}
