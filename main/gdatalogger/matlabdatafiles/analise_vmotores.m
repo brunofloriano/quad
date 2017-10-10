@@ -61,3 +61,5 @@ ylabel('Velocidade (rad/s)');
 size = num2str(T_size-1);
 eval(['T' '=' 'T_0_' num2str(size) ';']);
 media_tempo = mean(T)
+figure
+plot(T);
