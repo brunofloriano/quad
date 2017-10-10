@@ -62,8 +62,8 @@ void command::write_pos(dynamixel::PortHandler *portHandler, dynamixel::PacketHa
 int command::read_mov_speed(dynamixel::PortHandler *portHandler, dynamixel::PacketHandler *packetHandler, uint8_t id)
 {
 
-//    uint8_t dxl_error = 0;
-//    int     dxl_comm_result = COMM_TX_FAIL;
+    uint8_t dxl_error = 0;
+    int     dxl_comm_result = COMM_TX_FAIL;
     int16_t value16   = 0;
     //do{
         dxl_comm_result=packetHandler->read2ByteTxRx(portHandler, id, 38,(uint16_t*)&value16,&dxl_error);  // Endereço p/posiçao atual 36,37
