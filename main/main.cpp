@@ -151,8 +151,7 @@ void controle(union sigval arg){
 
     
 
-   //inicializacao();
-    USB = open( "/dev/ttyACM0", O_RDWR| O_NOCTTY | O_NONBLOCK);
+    inicializacao();
     medicao(angulos, USB);
     roll_medido = (double)angulos[0];
     pitch_medido = (double)angulos[1];
@@ -304,7 +303,8 @@ int main(){
 
     printf("Pressione qualquer tecla para iniciar \n");
     cmd.getch();
-    USB = inicializacao();
+    //USB = inicializacao();
+    USB = open( "/dev/ttyACM0", O_RDWR| O_NOCTTY | O_NONBLOCK);
     timer_start ();
     printf("Programa em andamento, pressione qualquer tecla para finalizar \n");
 
