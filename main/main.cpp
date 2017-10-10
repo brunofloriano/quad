@@ -201,7 +201,7 @@ void controle(union sigval arg){
     }
 
 
-    cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(2.3*v_aplicada));
+    //cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(2.3*v_aplicada));
 
 	i++;
     }

@@ -59,5 +59,4 @@ xlabel('Tempo (s)');
 ylabel('Velocidade (rad/s)');
 
 size = num2str(T_size-1);
-eval(['T' '=' 'T_0_' num2str(size) ';']);
-media_tempo = mean(T)
+eval(['T' '=' 'pitch_angle_0_' num2str(size) ';']);
