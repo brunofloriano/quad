@@ -208,7 +208,18 @@ void controle(union sigval arg){
 	i++;
     }
 
-
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor1",&v_medicao[0]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor2",&v_medicao[1]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor3",&v_medicao[2]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor4",&v_medicao[3]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor5",&v_medicao[4]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor6",&v_medicao[5]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor7",&v_medicao[6]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor8",&v_medicao[7]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor9",&v_medicao[8]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor10",&v_medicao[9]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor11",&v_medicao[10]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor12",&v_medicao[11]);
 
     T = time_gettime(&timestruct);
     gDataLogger_InsertVariable(&gDataLogger,(char*) "T",&T);
@@ -296,19 +307,7 @@ int main(){
 
     //----------------------Loop para condição de parada------------------------------------//
 	while(!kbhit()){
-		usleep(100000);
-            gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor1",&v_medicao[0]);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor2",&v_medicao[1]);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor3",&v_medicao[2]);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor4",&v_medicao[3]);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor5",&v_medicao[4]);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor6",&v_medicao[5]);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor7",&v_medicao[6]);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor8",&v_medicao[7]);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor9",&v_medicao[8]);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor10",&v_medicao[9]);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor11",&v_medicao[10]);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor12",&v_medicao[11]);
+		usleep(20000);
 		gDataLogger_IPCUpdate(&gDataLogger); // gerencia IPC
         //gDataLogger_MatfileUpdate(&gDataLogger); // esvazia os buffers no arquivo de log
 	}
