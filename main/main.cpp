@@ -21,7 +21,7 @@
 
 #define DEVICENAME                      "/dev/ttyUSB0"
 #define BROADCASTID			            254
-#define TASK_PERIOD_US                  100000
+#define TASK_PERIOD_US                  200000
 #define PI                              3.14159265
 
 GDATALOGGER gDataLogger;
