@@ -43,8 +43,10 @@ void controle (union sigval sigval);
     double v_medicao[12], v_desejada, v_aplicada;
     double roll_medido, pitch_medido;
     double velocidade_roll, velocidade_pitch;
+    double T = 0;
     static double roll = 0, pitch = 0;
     static double v_1_roll = 0, v_1_pitch = 0;
+    volatile double tempo = 0.0;
 
     float angulos[2];
     float fc = 1;
@@ -61,6 +63,8 @@ void controle (union sigval sigval);
 
     struct termios tty;
     struct termios tty_old;
+    
+    static timestruct_t timestruct;
 
 void timer_start (void)
 {
@@ -145,11 +149,12 @@ return USB;
 
 
 void controle(union sigval arg){
-    double T = 0;
-    static timestruct_t timestruct;
-    time_reset(&timestruct);
-
-
+    
+    T = time_gettime(&timestruct);
+	time_reset(&timestruct);
+	tempo += T;
+    
+    
     medicao(angulos, USB);
     roll_medido = (double)angulos[0];
     pitch_medido = (double)angulos[1];
@@ -220,8 +225,9 @@ void controle(union sigval arg){
     gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor12",&v_medicao[11]);
 
     T = time_gettime(&timestruct);
+    tempo += T;
     gDataLogger_InsertVariable(&gDataLogger,(char*) "T",&T);
-    //printf("%f \n",T*1000);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "tempo",&tempo);
     time_reset(&timestruct);
 
 }
@@ -295,12 +301,14 @@ int main(){
     gDataLogger_DeclareVariable(&gDataLogger,(char*) "v_motor12",(char*) "rad/s",1,1,1000);
     
     gDataLogger_DeclareVariable(&gDataLogger,(char*) "T",(char*) "s",1,1,1000);
+    gDataLogger_DeclareVariable(&gDataLogger,(char*) "tempo",(char*) "s",1,1,1000);
 
 
     printf("Pressione qualquer tecla para iniciar \n");
     cmd.getch();
     USB = inicializacao();
     timer_start ();
+    time_reset(&timestruct);
     printf("Programa em andamento, pressione qualquer tecla para finalizar \n");
 
     //----------------------Loop para condição de parada------------------------------------//
