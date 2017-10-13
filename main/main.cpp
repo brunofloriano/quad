@@ -50,7 +50,7 @@ void controle (union sigval sigval);
 
     float angulos[2];
     float fc = 1;
-    float K_roll_R = 1.501, K_roll_L = 1.2;
+    float K_roll_R = 1.501, K_roll_L = 1.5;
     float K_pitch_F = 1.01, K_pitch_R = 1.01;
     float K_UP = 1, K_DOWN = 0;//-0.4;
     float K[12];
@@ -198,7 +198,7 @@ void controle(union sigval arg){
     v_medicao[i-1] = ler_velocidade(v_medicao_int);
     
     if(i == 3 || i == 6 || i == 9 || i == 12){
-        v_aplicada = 2.2*(v_desejada); //- v_medicao[i-1]);
+        v_aplicada = 2.2*(v_desejada-v_aplicada); //- v_medicao[i-1]);
         }
     else{
         v_aplicada = v_desejada;
