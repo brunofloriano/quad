@@ -12,9 +12,7 @@ eval(['tsim' '=' 'tempo_0_' num2str(size) '(' num2str(size) ')' ';']);
 eval(['tempo' '=' 'tempo_0_' num2str(size) ';']);
 
 if (tempo_size ~= pitch_angle_size)
-    t = (0:length(pitch_angle)-1)*tsim/(length(pitch_angle)-1);
-else
-    t = tempo;
+t = (0:length(pitch_angle)-1)*tsim/(length(pitch_angle)-1);
 end
 
 plot(t,pitch_angle);
@@ -35,9 +33,7 @@ eval(['size' '=' 'v_motor' num2str(i) '_size -1;']);
 eval(['v_motor' '=' 'v_motor' num2str(i) '_0_' num2str(size) ';']);
 
 if (tempo_size ~= v_motor1_size)
-    t = (0:length(v_motor)-1)*tsim/(length(v_motor)-1);
-else
-    t = tempo;
+t = (0:length(v_motor)-1)*tsim/(length(v_motor)-1);
 end
 
 a=plot(t,v_motor);
@@ -47,9 +43,7 @@ end
 end
 
 if (tempo_size ~= roll_speed_size)
-    t = (0:length(roll_speed)-1)*tsim/(length(roll_speed)-1);
-else
-    t = tempo;
+t = (0:length(roll_speed)-1)*tsim/(length(roll_speed)-1);
 end
 
 
@@ -68,9 +62,7 @@ eval(['size' '=' 'num2str(v_motor' num2str(i) '_size -1);']);
 eval(['v_motor' '=' 'v_motor' num2str(i) '_0_' num2str(size) ';']);
 
 if (tempo_size ~= v_motor2_size)
-    t = (0:length(v_motor)-1)*tsim/(length(v_motor)-1);
-else
-    t = tempo;
+t = (0:length(v_motor)-1)*tsim/(length(v_motor)-1);
 end
 
 a=plot(t,v_motor);
@@ -80,9 +72,7 @@ end
 end
 
 if (tempo_size ~= pitch_speed_size)
-    t = (0:length(pitch_speed)-1)*tsim/(length(pitch_speed)-1);
-else
-    t = tempo;
+t = (0:length(pitch_speed)-1)*tsim/(length(pitch_speed)-1);
 end
 
 b=plot(t,pitch_speed);
@@ -94,3 +84,5 @@ ylabel('Velocidade (rad/s)');
 size = num2str(T_size-1);
 eval(['T' '=' 'T_0_' num2str(size) ';']);
 media_tempo = mean(T)
+figure
+plot(T);
