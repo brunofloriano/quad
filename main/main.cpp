@@ -44,9 +44,9 @@ void controle (union sigval sigval);
     double roll_medido, pitch_medido;
     double velocidade_roll, velocidade_pitch;
     double T = 0;
+    double tempo = 0.0;
     static double roll = 0, pitch = 0;
     static double v_1_roll = 0, v_1_pitch = 0;
-    volatile double tempo = 0.0;
 
     float angulos[2];
     float fc = 1;
