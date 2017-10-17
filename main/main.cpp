@@ -307,7 +307,8 @@ void controle(union sigval arg){
 }
 
 int main(){
-
+    int i;
+    int teste;
     char comando[256];
 
     //----------roll gains-------//
@@ -374,24 +375,24 @@ int main(){
     gDataLogger_DeclareVariable(&gDataLogger,(char*) "T",(char*) "s",1,1,1000);
     gDataLogger_DeclareVariable(&gDataLogger,(char*) "tempo",(char*) "s",1,1,1000);
 
-
-    printf("Pressione qualquer tecla para iniciar \n");
     modo_posicao();
     
-    cmd.write_pos(portHandler, packetHandler, 1, 505);
-    cmd.write_pos(portHandler, packetHandler, 2, 519);
-    cmd.write_pos(portHandler, packetHandler, 3, 504);
-    cmd.write_pos(portHandler, packetHandler, 4, 100);
-    cmd.write_pos(portHandler, packetHandler, 5, 510);
-    cmd.write_pos(portHandler, packetHandler, 6, 512);
-    cmd.write_pos(portHandler, packetHandler, 7, 534);
-    cmd.write_pos(portHandler, packetHandler, 8, 543);
-    cmd.write_pos(portHandler, packetHandler, 9, 356);
-    cmd.write_pos(portHandler, packetHandler, 10, 500);
-    cmd.write_pos(portHandler, packetHandler, 11, 509);
-    cmd.write_pos(portHandler, packetHandler, 12, 511);
 
     
+   	while(!kbhit()){
+        i = 1;
+        while(i<13){
+            teste = cmd.read_pos(portHandler, packetHandler, i);
+            printf("posicao de %d e %d",i,teste);
+            i++;         
+            }   
+	}
+
+    
+    
+
+
+    printf("Pressione qualquer tecla para iniciar \n");
     cmd.getch();
     modo_velocidade();
     USB = inicializacao();
