@@ -378,7 +378,7 @@ int main(){
     modo_posicao();
     
 
-    
+    cmd.write_torque_enable(portHandler, packetHandler, 254,0);
    	while(!kbhit()){
         i = 1;
         while(i<13){
@@ -390,7 +390,7 @@ int main(){
 
     
     
-
+    cmd.write_torque_enable(portHandler, packetHandler, 254, 1);
 
     printf("Pressione qualquer tecla para iniciar \n");
     cmd.getch();
