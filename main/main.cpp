@@ -163,7 +163,7 @@ int modo_velocidade(){
     
 int modo_posicao(){
     
-    cmd.write_cw_angle_limit(portHandler, packetHandler, 254, 1023);
+    cmd.write_cw_angle_limit(portHandler, packetHandler, 254, 1);
     cmd.write_ccw_angle_limit(portHandler, packetHandler, 254, 1023);
     
     return 0;
