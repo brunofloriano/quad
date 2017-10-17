@@ -377,7 +377,7 @@ int main(){
 
     printf("Pressione qualquer tecla para iniciar \n");
     modo_posicao();
-    cmd.write_pos(portHandler, packetHandler, 12, 1023);
+    cmd.read_pos(portHandler, packetHandler, 12);
     cmd.getch();
     USB = inicializacao();
     timer_start ();
