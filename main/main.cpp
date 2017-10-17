@@ -309,6 +309,7 @@ void controle(union sigval arg){
 int main(){
 
     int i;
+    int teste;
     char comando[256];
 
     //----------roll gains-------//
@@ -380,12 +381,13 @@ int main(){
     
     i = 1;
     while(i<13){
-    if(i != 1 && i != 4 && i != 7 && i != 10){
-        cmd.write_pos(portHandler, packetHandler, 3, 512);
-        }
-    else{
+    //if(i != 1 && i != 4 && i != 7 && i != 10){
+        teste = cmd.read_pos(portHandler, packetHandler, i);
+        printf("Posicao de %d e %d", i,teste);
+    //    }
+   // else{
         //cmd.write_pos(portHandler, packetHandler, i, 0);
-        }
+    //    }
 	i++;
     }
     
