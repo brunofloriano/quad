@@ -204,13 +204,13 @@ void controle(union sigval arg){
         if(i == 2 || i == 5 || i == 8 || i == 11){      //motores pitch up
             v_aplicada = 1.5*(v_desejada- v_medicao[i-1]);
             }
-    }
-    else{
+    
+        else{
         v_aplicada = v_desejada;
      //   if(abs(v_desejada)<0.001){v_aplicada = -2.2*v_medicao[i-1];}
     }
 
-
+    }
     cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(2.3*v_aplicada));
 
 	i++;
@@ -338,10 +338,10 @@ int main(){
     cmd.write_torque(portHandler, packetHandler, BROADCASTID, 0);
     printf("Sessao finalizada, exportando dados \n");
     sprintf(comando, "git add -A");
-    system(comando);
+    //system(comando);
     sprintf(comando, "git commit -m 'Aquisicao de Dados'");
-    system(comando);
+    //system(comando);
     sprintf(comando, "git push");
-    system(comando);
+    //system(comando);
 return 0;
 }
