@@ -378,7 +378,7 @@ int main(){
     modo_posicao();
     
 
-    cmd.write_torque_enable(portHandler, packetHandler, 254,0);
+    cmd.write_torque(portHandler, packetHandler, 254,0);
    	while(!kbhit()){
         i = 1;
         while(i<13){
@@ -388,9 +388,20 @@ int main(){
             }   
 	}
 
+    //cmd.write_pos(portHandler, packetHandler, 1, 505);
+    //cmd.write_pos(portHandler, packetHandler, 2, 519);
+    //cmd.write_pos(portHandler, packetHandler, 3, 504);
+    //cmd.write_pos(portHandler, packetHandler, 4, 100);
+    //cmd.write_pos(portHandler, packetHandler, 5, 510);
+    //cmd.write_pos(portHandler, packetHandler, 6, 512);
+    //cmd.write_pos(portHandler, packetHandler, 7, 534);
+    //cmd.write_pos(portHandler, packetHandler, 8, 543);
+    //cmd.write_pos(portHandler, packetHandler, 9, 356);
+    //cmd.write_pos(portHandler, packetHandler, 10, 500);
+    //cmd.write_pos(portHandler, packetHandler, 11, 509);
+    //cmd.write_pos(portHandler, packetHandler, 12, 511);
     
-    
-    cmd.write_torque_enable(portHandler, packetHandler, 254, 1);
+    cmd.write_torque(portHandler, packetHandler, 254, 1);
 
     printf("Pressione qualquer tecla para iniciar \n");
     cmd.getch();

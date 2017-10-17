@@ -195,25 +195,6 @@ void command::write_ccw_angle_limit(dynamixel::PortHandler *portHandler, dynamix
     //}
 }
 
-void command::write_torque_enable(dynamixel::PortHandler *portHandler, dynamixel::PacketHandler *packetHandler, uint8_t id, uint8_t value)
-{
-    uint8_t dxl_error = 0;
-    int dxl_comm_result = COMM_TX_FAIL;
-    do{
-        dxl_comm_result = packetHandler->write2ByteTxRx(portHandler, id, 24, value, &dxl_error);
-        if (dxl_comm_result == COMM_SUCCESS)
-        {
-            if (dxl_error != 0) packetHandler->printRxPacketError(dxl_error);
-            //fprintf(stderr, "\n Success to write\n\n");
-        }
-    }while(dxl_comm_result != COMM_SUCCESS);
-    //else
-    //{
-    //    packetHandler->printTxRxResult(dxl_comm_result);
-    //fprintf(stderr, "\n Fail to write! \n\n");
-    //}
-}
-
 void command::calibra(dynamixel::PortHandler *portHandler, dynamixel::PacketHandler *packetHandler, int *calibra)
 {
     for(int i=0; i<12;i++)
