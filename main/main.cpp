@@ -383,7 +383,7 @@ int main(){
     while(i<13){
     //if(i != 1 && i != 4 && i != 7 && i != 10){
         teste = cmd.read_pos(portHandler, packetHandler, i);
-        printf("Posicao de %d e %d", i,teste);
+        printf("Posicao de %d e %d \n", i,teste);
     //    }
    // else{
         //cmd.write_pos(portHandler, packetHandler, i, 0);
