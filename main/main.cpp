@@ -192,7 +192,7 @@ void controle(union sigval arg){
 
     if(velocidade_roll>0){
         queda_roll = ROLL_ESQUERDA;
-        K_roll_R = 1.501, K_roll_L = 1;
+        K_roll_R = 1, K_roll_L = 1.5;
         
         K[1-1] = K_roll_L;
         K[4-1] = K_roll_R;
@@ -201,7 +201,7 @@ void controle(union sigval arg){
         }
         else{
         queda_roll = ROLL_DIREITA;
-        K_roll_R = 1, K_roll_L = 1.5;
+        K_roll_R = 1.5, K_roll_L = 1;
         
         K[1-1] = K_roll_L;
         K[4-1] = K_roll_R;
