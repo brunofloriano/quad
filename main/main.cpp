@@ -381,7 +381,7 @@ int main(){
     i = 1;
     while(i<13){
     if(i != 1 && i != 4 && i != 7 && i != 10){
-        cmd.write_pos(portHandler, packetHandler, i, 512);
+        cmd.write_pos(portHandler, packetHandler, 3, 512);
         }
     else{
         //cmd.write_pos(portHandler, packetHandler, i, 0);
