@@ -382,13 +382,13 @@ int main(){
     cmd.write_pos(portHandler, packetHandler, 1, 505);
     cmd.write_pos(portHandler, packetHandler, 2, 519);
     cmd.write_pos(portHandler, packetHandler, 3, 504);
-    cmd.write_pos(portHandler, packetHandler, 4, 115);
+    cmd.write_pos(portHandler, packetHandler, 4, 120);
     cmd.write_pos(portHandler, packetHandler, 5, 510);
     cmd.write_pos(portHandler, packetHandler, 6, 512);
     cmd.write_pos(portHandler, packetHandler, 7, 534);
     cmd.write_pos(portHandler, packetHandler, 8, 543);
     cmd.write_pos(portHandler, packetHandler, 9, 356);
-    cmd.write_pos(portHandler, packetHandler, 10, 505);
+    cmd.write_pos(portHandler, packetHandler, 10, 515);
     cmd.write_pos(portHandler, packetHandler, 11, 509);
     cmd.write_pos(portHandler, packetHandler, 12, 511);
 
