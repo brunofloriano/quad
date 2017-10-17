@@ -51,7 +51,7 @@ void controle (union sigval sigval);
     float angulos[2];
     float fc = 1;
     float K_roll_R = 1.501, K_roll_L = 1.5;
-    float K_pitch_F = 1.51, K_pitch_R = 1.01;
+    float K_pitch_F = 1.41, K_pitch_R = 1.41;
     float K_UP = 1, K_DOWN = 0;//-0.4;
     float K[12];
     float threshold = 0;//0.0024;
@@ -202,7 +202,7 @@ void controle(union sigval arg){
         }
     else{
         if(i == 2 || i == 5 || i == 8 || i == 11){      //motores pitch up
-            v_aplicada = 1.5*(v_desejada- v_medicao[i-1]);
+            v_aplicada = 0.7*(v_desejada- v_medicao[i-1]);
             }
     
         else{
