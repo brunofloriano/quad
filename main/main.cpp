@@ -23,6 +23,10 @@
 #define BROADCASTID			            254
 #define TASK_PERIOD_US                  200000
 #define PI                              3.14159265
+#define ROLL_DIREITA                    1
+#define ROLL_ESQUERDA                   0
+#define PITCH_FRENTE                    1
+#define PITCH_TRAS                      0
 
 GDATALOGGER gDataLogger;
 
@@ -59,6 +63,7 @@ void controle (union sigval sigval);
 
     int i = 1;
     int v_medicao_int;
+    int queda_roll, queda_pitch;
     volatile int USB;
 
     struct termios tty;
@@ -185,6 +190,33 @@ void controle(union sigval arg){
     gDataLogger_InsertVariable(&gDataLogger,(char*) "roll_speed",&velocidade_roll);
     gDataLogger_InsertVariable(&gDataLogger,(char*) "pitch_speed",&velocidade_pitch);
 
+    if(velocidade_roll>0){
+        queda_roll = ROLL_ESQUERDA;
+        K_roll_R = 1.501, K_roll_L = 1;
+        
+        K[1-1] = K_roll_L;
+        K[4-1] = K_roll_R;
+        K[7-1] = K_roll_R*1.1;
+        K[10-1] = K_roll_L;
+        }
+        else{
+        queda_roll = ROLL_DIREITA;
+        K_roll_R = 1, K_roll_L = 1.5;
+        
+        K[1-1] = K_roll_L;
+        K[4-1] = K_roll_R;
+        K[7-1] = K_roll_R*1.1;
+        K[10-1] = K_roll_L;
+            }
+            
+    if(velocidade_pitch>0){
+        queda_pitch = PITCH_TRAS;        
+        }
+        else{
+        queda_pitch = PITCH_FRENTE;     
+            }
+            
+            
     i = 1;
     while(i<13){
     if(i == 1 || i == 4 || i == 7 || i == 10){
