@@ -384,7 +384,7 @@ int main(){
         cmd.write_pos(portHandler, packetHandler, i, 512);
         }
     else{
-        cmd.write_pos(portHandler, packetHandler, i, 0);
+        //cmd.write_pos(portHandler, packetHandler, i, 0);
         }
 	i++;
     }
