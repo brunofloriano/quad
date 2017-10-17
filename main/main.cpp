@@ -379,17 +379,19 @@ int main(){
     printf("Pressione qualquer tecla para iniciar \n");
     modo_posicao();
     
-    i = 1;
-    while(i<13){
-    //if(i != 1 && i != 4 && i != 7 && i != 10){
-        teste = cmd.read_pos(portHandler, packetHandler, i);
-        printf("Posicao de %d e %d \n", i,teste);
-    //    }
-   // else{
-        //cmd.write_pos(portHandler, packetHandler, i, 0);
-    //    }
-	i++;
-    }
+    cmd.write_pos(portHandler, packetHandler, 1, 505);
+    cmd.write_pos(portHandler, packetHandler, 2, 519);
+    cmd.write_pos(portHandler, packetHandler, 3, 504);
+    cmd.write_pos(portHandler, packetHandler, 4, 115);
+    cmd.write_pos(portHandler, packetHandler, 5, 510);
+    cmd.write_pos(portHandler, packetHandler, 6, 512);
+    cmd.write_pos(portHandler, packetHandler, 7, 534);
+    cmd.write_pos(portHandler, packetHandler, 8, 543);
+    cmd.write_pos(portHandler, packetHandler, 9, 356);
+    cmd.write_pos(portHandler, packetHandler, 10, 505);
+    cmd.write_pos(portHandler, packetHandler, 11, 509);
+    cmd.write_pos(portHandler, packetHandler, 12, 511);
+
     
     cmd.getch();
     modo_velocidade();
