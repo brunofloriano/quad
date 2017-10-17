@@ -201,8 +201,8 @@ void controle(union sigval arg){
         }
         else{
         queda_roll = ROLL_DIREITA;
-        //K_roll_R = 1.8, K_roll_L = 1.5;
-        K_roll_R = 0, K_roll_L = 0;
+        K_roll_R = 1.8, K_roll_L = 1.6;
+        
         K[1-1] = K_roll_L;
         K[4-1] = K_roll_R;
         K[7-1] = K_roll_R*1.1;
