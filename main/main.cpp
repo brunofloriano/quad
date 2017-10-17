@@ -56,7 +56,7 @@ void controle (union sigval sigval);
     float fc = 1;
     float K_roll_R = 1.501, K_roll_L = 1.5;
     float K_pitch_F = 1.41, K_pitch_R = 1.41;
-    float K_UP = 1, K_DOWN = 0;//-0.4;
+    float K_UP = 1, K_DOWN = -0.4;
     float K[12];
     float threshold = 0;//0.0024;
     float tam = TASK_PERIOD_US/1000; //tempo de amostragem em milisegundos
@@ -225,7 +225,7 @@ void controle(union sigval arg){
         }
         else{
         queda_pitch = PITCH_FRENTE;
-        K_pitch_F = 1.41, K_pitch_R = 1;
+        K_pitch_F = 1.8, K_pitch_R = 1;
 
         K[2-1] = K_pitch_R*K_UP;
         K[3-1] = K_pitch_R*K_DOWN;
@@ -251,7 +251,7 @@ void controle(union sigval arg){
     v_medicao[i-1] = ler_velocidade(v_medicao_int);
     
     if(i == 3 || i == 6 || i == 9 || i == 12){          //motores pitch down
-        v_aplicada = 2.2*(v_desejada- v_medicao[i-1]);
+        v_aplicada = 0.7*(v_desejada- v_medicao[i-1]);
         }
     else{
         if(i == 2 || i == 5 || i == 8 || i == 11){      //motores pitch up
@@ -391,10 +391,10 @@ int main(){
     cmd.write_torque(portHandler, packetHandler, BROADCASTID, 0);
     printf("Sessao finalizada, exportando dados \n");
     sprintf(comando, "git add -A");
-    system(comando);
+    //system(comando);
     sprintf(comando, "git commit -m 'Aquisicao de Dados'");
-    system(comando);
+    //system(comando);
     sprintf(comando, "git push");
-    system(comando);
+    //system(comando);
 return 0;
 }
