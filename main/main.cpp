@@ -153,6 +153,22 @@ return USB;
 }
 
 
+int modo_velocidade(){
+    
+    cmd.write_cw_angle_limit(portHandler, packetHandler, 254, 0);
+    cmd.write_ccw_angle_limit(portHandler, packetHandler, 254, 0);
+    
+    return 0;
+    }
+    
+int modo_posicao(){
+    
+    cmd.write_cw_angle_limit(portHandler, packetHandler, 254, 1023);
+    cmd.write_ccw_angle_limit(portHandler, packetHandler, 254, 1023);
+    
+    return 0;
+    }
+
 void controle(union sigval arg){
     
     T = time_gettime(&timestruct);
@@ -192,7 +208,7 @@ void controle(union sigval arg){
 
     if(velocidade_roll>0){
         queda_roll = ROLL_ESQUERDA;
-        K_roll_R = 1, K_roll_L = 1.5;
+        K_roll_R = 1.6, K_roll_L = 1.8;
         
         K[1-1] = K_roll_L;
         K[4-1] = K_roll_R;
@@ -211,7 +227,7 @@ void controle(union sigval arg){
             
     if(velocidade_pitch>0){
         queda_pitch = PITCH_TRAS;
-        K_pitch_F = 1, K_pitch_R = 1.41;
+        K_pitch_F = 1, K_pitch_R = 1.8;
 
         K[2-1] = K_pitch_R*K_UP;
         K[3-1] = K_pitch_R*K_DOWN;
@@ -244,7 +260,7 @@ void controle(union sigval arg){
         v_desejada = -K[i-1]*velocidade_roll;
     }
     else{
-            v_desejada = -K[i-1]*velocidade_pitch;
+        v_desejada = -K[i-1]*velocidade_pitch;
         }
 
     v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, i);
@@ -255,7 +271,7 @@ void controle(union sigval arg){
         }
     else{
         if(i == 2 || i == 5 || i == 8 || i == 11){      //motores pitch up
-            v_aplicada = 0.7*(v_desejada- v_medicao[i-1]);
+        v_aplicada = 0.7*(v_desejada- v_medicao[i-1]);
             }
     
         else{
@@ -326,11 +342,8 @@ int main(){
     }
 
     cmd.config_ram(portHandler, packetHandler);
+    cmd.write_mov_speed(portHandler, packetHandler, 254, 0);
 
-    for(i=0; i<12;i++)
-    {
-         cmd.write_mov_speed(portHandler, packetHandler, i+1, 0);
-    }
 
         //----------------------------Data logger-----------------------------------//
 	if(!gDataLogger_Init(&gDataLogger,(char*) "gdatalogger/matlabdatafiles/data.mat",NULL)){
@@ -363,6 +376,8 @@ int main(){
 
 
     printf("Pressione qualquer tecla para iniciar \n");
+    modo_posicao();
+    cmd.write_pos(portHandler, packetHandler, 12, 512);
     cmd.getch();
     USB = inicializacao();
     timer_start ();
