@@ -308,8 +308,6 @@ void controle(union sigval arg){
 
 int main(){
 
-    int i;
-    int teste;
     char comando[256];
 
     //----------roll gains-------//
@@ -343,6 +341,7 @@ int main(){
     }
 
     cmd.config_ram(portHandler, packetHandler);
+    modo_velocidade();
     cmd.write_mov_speed(portHandler, packetHandler, 254, 0);
 
 
@@ -382,13 +381,13 @@ int main(){
     cmd.write_pos(portHandler, packetHandler, 1, 505);
     cmd.write_pos(portHandler, packetHandler, 2, 519);
     cmd.write_pos(portHandler, packetHandler, 3, 504);
-    cmd.write_pos(portHandler, packetHandler, 4, 120);
+    cmd.write_pos(portHandler, packetHandler, 4, 100);
     cmd.write_pos(portHandler, packetHandler, 5, 510);
     cmd.write_pos(portHandler, packetHandler, 6, 512);
     cmd.write_pos(portHandler, packetHandler, 7, 534);
     cmd.write_pos(portHandler, packetHandler, 8, 543);
     cmd.write_pos(portHandler, packetHandler, 9, 356);
-    cmd.write_pos(portHandler, packetHandler, 10, 515);
+    cmd.write_pos(portHandler, packetHandler, 10, 500);
     cmd.write_pos(portHandler, packetHandler, 11, 509);
     cmd.write_pos(portHandler, packetHandler, 12, 511);
 
