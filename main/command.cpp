@@ -195,7 +195,7 @@ void command::write_ccw_angle_limit(dynamixel::PortHandler *portHandler, dynamix
     //}
 }
 
-void command::write_torque_enable(dynamixel::PortHandler *portHandler, dynamixel::PacketHandler *packetHandler, uint8_t id, uint16_t value)
+void command::write_torque_enable(dynamixel::PortHandler *portHandler, dynamixel::PacketHandler *packetHandler, uint8_t id, uint8_t value)
 {
     uint8_t dxl_error = 0;
     int dxl_comm_result = COMM_TX_FAIL;
