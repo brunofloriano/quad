@@ -377,8 +377,18 @@ int main(){
 
     printf("Pressione qualquer tecla para iniciar \n");
     modo_posicao();
-    cmd.write_pos(portHandler, packetHandler, 12, 512);
-    //printf("Posica e: %d \n", i);
+    
+    i = 1;
+    while(i<13){
+    if(i != 1 && i != 4 && i != 7 && i != 10){
+        cmd.write_pos(portHandler, packetHandler, i, 512);
+        }
+    else{
+        cmd.write_pos(portHandler, packetHandler, i, 0);
+        }
+	i++;
+    }
+    
     cmd.getch();
     USB = inicializacao();
     timer_start ();
@@ -397,12 +407,7 @@ int main(){
     timer_stop ();
 	gDataLogger_Close(&gDataLogger);
     close(USB);
-    
-    i = 1;
-    while(i<13){
-    cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(0));
-	i++;
-    }
+    cmd.write_mov_speed(portHandler, packetHandler, 254, velocidade(0));
     //----------------------------------Finalize---------------------------------------//
     cmd.write_torque(portHandler, packetHandler, BROADCASTID, 0);
     printf("Sessao finalizada, exportando dados \n");
