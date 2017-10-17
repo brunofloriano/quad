@@ -24,7 +24,7 @@ public:
     void write_torque_limit(dynamixel::PortHandler *portHandler, dynamixel::PacketHandler *packetHandler, uint8_t id, uint32_t value);
     void write_torque(dynamixel::PortHandler *portHandler, dynamixel::PacketHandler *packetHandler, uint8_t id, uint8_t value);
     void write_cw_angle_limit(dynamixel::PortHandler *portHandler, dynamixel::PacketHandler *packetHandler, uint8_t id, uint32_t value);
-    void write_ccw_angle_limit(dynamixel::PortHandler *portHandler, dynamixel::PacketHandler *packetHandler, uint8_t id, uint32_t value)
+    void write_ccw_angle_limit(dynamixel::PortHandler *portHandler, dynamixel::PacketHandler *packetHandler, uint8_t id, uint32_t value);
     void calibra(dynamixel::PortHandler *portHandler, dynamixel::PacketHandler *packetHandler, int *calibra);
     void config_ram(dynamixel::PortHandler *portHandler, dynamixel::PacketHandler *packetHandler);
     int getch();
