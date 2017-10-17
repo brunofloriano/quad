@@ -390,6 +390,7 @@ int main(){
     }
     
     cmd.getch();
+    modo_velocidade();
     USB = inicializacao();
     timer_start ();
     time_reset(&timestruct);
