@@ -268,7 +268,6 @@ void controle(union sigval arg){
 
     v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, i);
     v_medicao[i-1] = ler_velocidade(v_medicao_int);
-    posicao_atual = cmd.read_pos(portHandler, packetHandler, i);
     
     if(i == 3 || i == 6 || i == 9 || i == 12){          //motores pitch down
         v_aplicada = 0.7*(v_desejada- v_medicao[i-1]);
@@ -280,6 +279,7 @@ void controle(union sigval arg){
     
     if(v_desejada<0.01){
         modo_posicao(i);
+        posicao_atual = cmd.read_pos(portHandler, packetHandler, i);
         cmd.write_pos(portHandler, packetHandler, i, posicao_atual);
         
         }
@@ -414,7 +414,7 @@ int main(){
     printf("Pressione qualquer tecla para iniciar \n");
     cmd.getch();
     cmd.write_torque_limit(portHandler, packetHandler, BROADCASTID, MAX_TORQUE);
-    //modo_velocidade(BROADCASTID);
+    modo_velocidade(BROADCASTID);
     USB = inicializacao();
     
     timer_start ();
