@@ -155,18 +155,18 @@ return USB;
 }
 
 
-int modo_velocidade(){
+int modo_velocidade(uint8_t id){
     
-    cmd.write_cw_angle_limit(portHandler, packetHandler, BROADCASTID, 0);
-    cmd.write_ccw_angle_limit(portHandler, packetHandler, BROADCASTID, 0);
+    cmd.write_cw_angle_limit(portHandler, packetHandler, id, 0);
+    cmd.write_ccw_angle_limit(portHandler, packetHandler, id, 0);
     
     return 0;
     }
     
-int modo_posicao(){
+int modo_posicao(uint8_t id){
     
-    cmd.write_cw_angle_limit(portHandler, packetHandler, BROADCASTID, 1);
-    cmd.write_ccw_angle_limit(portHandler, packetHandler, BROADCASTID, 1023);
+    cmd.write_cw_angle_limit(portHandler, packetHandler, id, 1);
+    cmd.write_ccw_angle_limit(portHandler, packetHandler, id, 1023);
     
     return 0;
     }
@@ -272,20 +272,15 @@ void controle(union sigval arg){
         v_aplicada = 0.7*(v_desejada- v_medicao[i-1]);
         }
     else{
-        if(i == 2 || i == 5 || i == 8 || i == 11){      //motores pitch up
-        v_aplicada = 0.7*(v_desejada- v_medicao[i-1]);
-            }
-    
-        else{
         v_aplicada = v_desejada;
-     //   if(abs(v_desejada)<0.001){v_aplicada = -2.2*v_medicao[i-1];}
     }
-
-    }
+    
+    
+    
     cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(2.3*v_aplicada));
-    modo_posicao();
-    cmd.write_pos(portHandler, packetHandler, i, cmd.read_pos(portHandler, packetHandler, i));
-    modo_velocidade();
+    
+    
+
 	i++;
     }
 
@@ -381,7 +376,7 @@ int main(){
     gDataLogger_DeclareVariable(&gDataLogger,(char*) "T",(char*) "s",1,1,1000);
     gDataLogger_DeclareVariable(&gDataLogger,(char*) "tempo",(char*) "s",1,1,1000);
 
-    modo_posicao();
+    modo_posicao(BROADCASTID);
 
     //cmd.write_torque(portHandler, packetHandler, BROADCASTID,0);
    	//while(!kbhit()){
@@ -411,7 +406,7 @@ int main(){
     printf("Pressione qualquer tecla para iniciar \n");
     cmd.getch();
     cmd.write_torque_limit(portHandler, packetHandler, BROADCASTID, MAX_TORQUE);
-    modo_velocidade();
+    modo_velocidade(BROADCASTID);
     USB = inicializacao();
     
     timer_start ();
@@ -431,6 +426,8 @@ int main(){
 	gDataLogger_Close(&gDataLogger);
     close(USB);
     cmd.write_mov_speed(portHandler, packetHandler, BROADCASTID, 0);
+    
+    
     //----------------------------------Finalize---------------------------------------//
     cmd.write_torque(portHandler, packetHandler, BROADCASTID, 0);
     printf("Sessao finalizada, exportando dados \n");
