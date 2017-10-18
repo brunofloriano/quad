@@ -379,7 +379,6 @@ int main(){
     gDataLogger_DeclareVariable(&gDataLogger,(char*) "tempo",(char*) "s",1,1,1000);
 
     modo_posicao();
-    
 
     //cmd.write_torque(portHandler, packetHandler, BROADCASTID,0);
    	//while(!kbhit()){
@@ -408,8 +407,10 @@ int main(){
 
     printf("Pressione qualquer tecla para iniciar \n");
     cmd.getch();
+    cmd.write_pos(portHandler, packetHandler, BROADCASTID, MAX_TORQUE);
     modo_velocidade();
     USB = inicializacao();
+    
     timer_start ();
     time_reset(&timestruct);
     printf("Programa em andamento, pressione qualquer tecla para finalizar \n");
