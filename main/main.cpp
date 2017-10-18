@@ -415,7 +415,7 @@ int main(){
     printf("Pressione qualquer tecla para iniciar \n");
     cmd.getch();
     cmd.write_torque_limit(portHandler, packetHandler, BROADCASTID, MAX_TORQUE);
-    modo_velocidade(BROADCASTID);
+    //modo_velocidade(BROADCASTID);
     USB = inicializacao();
     
     timer_start ();
