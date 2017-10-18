@@ -285,7 +285,6 @@ void controle(union sigval arg){
    //     }
    // else{
    //     modo_velocidade(i);
-        cmd.write_torque(portHandler, packetHandler, i, 1);
         cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(2.3*v_aplicada));
     
    //     }
@@ -350,7 +349,6 @@ int main(){
     }
 
     cmd.config_ram(portHandler, packetHandler);
-    //modo_velocidade(BROADCASTID);
     cmd.write_mov_speed(portHandler, packetHandler, BROADCASTID, 0);
     cmd.write_torque(portHandler, packetHandler, BROADCASTID, 1);
     cmd.write_max_torque(portHandler, packetHandler, BROADCASTID, MAX_TORQUE);
@@ -415,7 +413,7 @@ int main(){
     printf("Pressione qualquer tecla para iniciar \n");
     cmd.getch();
     cmd.write_torque_limit(portHandler, packetHandler, BROADCASTID, MAX_TORQUE);
-    //modo_velocidade(BROADCASTID);
+    modo_velocidade(BROADCASTID);
     USB = inicializacao();
     
     timer_start ();
