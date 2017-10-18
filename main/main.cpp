@@ -268,7 +268,7 @@ void controle(union sigval arg){
     v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, i);
     v_medicao[i-1] = ler_velocidade(v_medicao_int);
     
-    if(i == 3 || i == 6 || i == 9 || i == 12){          //motores pitch down
+        if(i == 3 || i == 6 || i == 9 || i == 12){          //motores pitch down
         v_aplicada = 0.7*(v_desejada- v_medicao[i-1]);
         }
     else{
@@ -276,7 +276,7 @@ void controle(union sigval arg){
     }
     
     
-    if(v_medicao[i-1]<0.01){
+    if(v_desejada<0.01){
         modo_posicao(i);
         cmd.write_pos(portHandler, packetHandler, i, cmd.read_pos(portHandler, packetHandler, i));
         
