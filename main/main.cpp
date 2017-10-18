@@ -282,8 +282,10 @@ void controle(union sigval arg){
     }
 
     }
-    cmd.write_torque_limit(portHandler, packetHandler, i, MAX_TORQUE);
     cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(2.3*v_aplicada));
+    modo_posicao();
+    cmd.write_pos(portHandler, packetHandler, i, cmd.read_pos(portHandler, packetHandler, i));
+    modo_velocidade();
 	i++;
     }
 
