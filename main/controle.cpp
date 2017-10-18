@@ -24,8 +24,6 @@
 #define TASK_PERIOD                     dt*1e9
 #define BROADCASTID			            254
 #define MAX_SPEED                       1023
-#define MAX_TORQUE                      1024
-#define TORQUE_LIMIT                    1024
 #define V_MAX                           13.3
 #define PI                              3.14159265
 #define MAX_SPEED_RAD_S                 79.4*V_MAX/16*2*PI/60
