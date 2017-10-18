@@ -346,7 +346,7 @@ int main(){
     cmd.config_ram(portHandler, packetHandler);
     modo_velocidade();
     cmd.write_mov_speed(portHandler, packetHandler, BROADCASTID, 0);
-    cmd.write_max_torque(portHandler, packetHandler, BROADCASTID, MAX_STORQUE);
+    cmd.write_max_torque(portHandler, packetHandler, BROADCASTID, MAX_TORQUE);
 
 
         //----------------------------Data logger-----------------------------------//
