@@ -276,10 +276,16 @@ void controle(union sigval arg){
     }
     
     
+    if(v_medicao[i-1]<0.01){
+        modo_posicao(i);
+        cmd.write_pos(portHandler, packetHandler, i, cmd.read_pos(portHandler, packetHandler, i));
+        
+        }
+    else{
+        modo_velocidade(i);
+        cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(2.3*v_aplicada));
     
-    cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(2.3*v_aplicada));
-    
-    
+        }
 
 	i++;
     }
