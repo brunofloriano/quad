@@ -23,6 +23,8 @@
 #define BROADCASTID			            254
 #define TASK_PERIOD_US                  200000
 #define PI                              3.14159265
+#define MAX_TORQUE                      1023
+
 #define ROLL_DIREITA                    1
 #define ROLL_ESQUERDA                   0
 #define PITCH_FRENTE                    1
@@ -155,16 +157,16 @@ return USB;
 
 int modo_velocidade(){
     
-    cmd.write_cw_angle_limit(portHandler, packetHandler, 254, 0);
-    cmd.write_ccw_angle_limit(portHandler, packetHandler, 254, 0);
+    cmd.write_cw_angle_limit(portHandler, packetHandler, BROADCASTID, 0);
+    cmd.write_ccw_angle_limit(portHandler, packetHandler, BROADCASTID, 0);
     
     return 0;
     }
     
 int modo_posicao(){
     
-    cmd.write_cw_angle_limit(portHandler, packetHandler, 254, 1);
-    cmd.write_ccw_angle_limit(portHandler, packetHandler, 254, 1023);
+    cmd.write_cw_angle_limit(portHandler, packetHandler, BROADCASTID, 1);
+    cmd.write_ccw_angle_limit(portHandler, packetHandler, BROADCASTID, 1023);
     
     return 0;
     }
@@ -343,7 +345,8 @@ int main(){
 
     cmd.config_ram(portHandler, packetHandler);
     modo_velocidade();
-    cmd.write_mov_speed(portHandler, packetHandler, 254, 0);
+    cmd.write_mov_speed(portHandler, packetHandler, BROADCASTID, 0);
+    cmd.write_max_torque(portHandler, packetHandler, BROADCASTID, MAX_STORQUE);
 
 
         //----------------------------Data logger-----------------------------------//
@@ -378,7 +381,7 @@ int main(){
     modo_posicao();
     
 
-    //cmd.write_torque(portHandler, packetHandler, 254,0);
+    //cmd.write_torque(portHandler, packetHandler, BROADCASTID,0);
    	//while(!kbhit()){
     //    i = 1;
     //    while(i<13){
@@ -401,7 +404,7 @@ int main(){
     cmd.write_pos(portHandler, packetHandler, 11, 549);
     cmd.write_pos(portHandler, packetHandler, 12, 500);
     
-    //cmd.write_torque(portHandler, packetHandler, 254, 1);
+    //cmd.write_torque(portHandler, packetHandler, BROADCASTID, 1);
 
     printf("Pressione qualquer tecla para iniciar \n");
     cmd.getch();
@@ -423,7 +426,7 @@ int main(){
     timer_stop ();
 	gDataLogger_Close(&gDataLogger);
     close(USB);
-    cmd.write_mov_speed(portHandler, packetHandler, 254, velocidade(0));
+    cmd.write_mov_speed(portHandler, packetHandler, BROADCASTID, velocidade(0));
     //----------------------------------Finalize---------------------------------------//
     cmd.write_torque(portHandler, packetHandler, BROADCASTID, 0);
     printf("Sessao finalizada, exportando dados \n");
