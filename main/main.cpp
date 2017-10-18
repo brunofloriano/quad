@@ -277,17 +277,18 @@ void controle(union sigval arg){
     }
     
     
-    if(v_desejada<0.01){
-        modo_posicao(i);
-        posicao_atual = cmd.read_pos(portHandler, packetHandler, i);
-        cmd.write_pos(portHandler, packetHandler, i, posicao_atual);
-        
-        }
-    else{
-        modo_velocidade(i);
+   // if(v_desejada<0.01){
+   //     modo_posicao(i);
+   //     posicao_atual = cmd.read_pos(portHandler, packetHandler, i);
+   //     cmd.write_pos(portHandler, packetHandler, i, posicao_atual);
+   //     
+   //     }
+   // else{
+   //     modo_velocidade(i);
+        cmd.write_torque(portHandler, packetHandler, i, 1);
         cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(2.3*v_aplicada));
     
-        }
+   //     }
 
 	i++;
     }
@@ -387,27 +388,27 @@ int main(){
     modo_posicao(BROADCASTID);
 
     //cmd.write_torque(portHandler, packetHandler, BROADCASTID,0);
-   	while(!kbhit()){
-        i = 1;
-        while(i<13){
-            teste = cmd.read_pos(portHandler, packetHandler, i);
-            printf("posicao de %d e %d \n",i,teste);
-            i++;         
-            }   
-	}
+   	//while(!kbhit()){
+    //    i = 1;
+    //    while(i<13){
+    //        teste = cmd.read_pos(portHandler, packetHandler, i);
+    //        printf("posicao de %d e %d \n",i,teste);
+    //        i++;         
+    //        }   
+	//}
 
-    //cmd.write_pos(portHandler, packetHandler, 1, 497);
-  //  cmd.write_pos(portHandler, packetHandler, 2, 498);
-  //  cmd.write_pos(portHandler, packetHandler, 3, 503);
-  //  cmd.write_pos(portHandler, packetHandler, 4, 132);
-   // cmd.write_pos(portHandler, packetHandler, 5, 543);
-  //  cmd.write_pos(portHandler, packetHandler, 6, 521);
-   // cmd.write_pos(portHandler, packetHandler, 7, 540);
-  //  cmd.write_pos(portHandler, packetHandler, 8, 527);
-  //  cmd.write_pos(portHandler, packetHandler, 9, 347);
-  //  cmd.write_pos(portHandler, packetHandler, 10, 497);
-   // cmd.write_pos(portHandler, packetHandler, 11, 549);
- //   cmd.write_pos(portHandler, packetHandler, 12, 500);
+    cmd.write_pos(portHandler, packetHandler, 1, 497);
+    cmd.write_pos(portHandler, packetHandler, 2, 498);
+    cmd.write_pos(portHandler, packetHandler, 3, 503);
+    cmd.write_pos(portHandler, packetHandler, 4, 132);
+    cmd.write_pos(portHandler, packetHandler, 5, 543);
+    cmd.write_pos(portHandler, packetHandler, 6, 521);
+    cmd.write_pos(portHandler, packetHandler, 7, 540);
+    cmd.write_pos(portHandler, packetHandler, 8, 527);
+    cmd.write_pos(portHandler, packetHandler, 9, 347);
+    cmd.write_pos(portHandler, packetHandler, 10, 497);
+    cmd.write_pos(portHandler, packetHandler, 11, 549);
+    cmd.write_pos(portHandler, packetHandler, 12, 500);
     
     //cmd.write_torque(portHandler, packetHandler, BROADCASTID, 1);
 
