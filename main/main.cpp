@@ -346,6 +346,7 @@ int main(){
     cmd.config_ram(portHandler, packetHandler);
     modo_velocidade();
     cmd.write_mov_speed(portHandler, packetHandler, BROADCASTID, 0);
+    cmd.write_torque(portHandler, packetHandler, BROADCASTID, 1);
     cmd.write_max_torque(portHandler, packetHandler, BROADCASTID, MAX_TORQUE);
 
 
@@ -407,7 +408,7 @@ int main(){
 
     printf("Pressione qualquer tecla para iniciar \n");
     cmd.getch();
-    cmd.write_pos(portHandler, packetHandler, BROADCASTID, MAX_TORQUE);
+    cmd.write_torque_limit(portHandler, packetHandler, BROADCASTID, MAX_TORQUE);
     modo_velocidade();
     USB = inicializacao();
     
@@ -427,7 +428,7 @@ int main(){
     timer_stop ();
 	gDataLogger_Close(&gDataLogger);
     close(USB);
-    cmd.write_mov_speed(portHandler, packetHandler, BROADCASTID, velocidade(0));
+    cmd.write_mov_speed(portHandler, packetHandler, BROADCASTID, 0);
     //----------------------------------Finalize---------------------------------------//
     cmd.write_torque(portHandler, packetHandler, BROADCASTID, 0);
     printf("Sessao finalizada, exportando dados \n");
