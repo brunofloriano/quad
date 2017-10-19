@@ -30,6 +30,8 @@
 #define PITCH_FRENTE                    1
 #define PITCH_TRAS                      0
 
+#define EXPORTAR_DADOS                  0
+
 GDATALOGGER gDataLogger;
 
 int timer_nr;
@@ -435,11 +437,14 @@ int main(){
     //----------------------------------Finalize---------------------------------------//
     cmd.write_torque(portHandler, packetHandler, BROADCASTID, 0);
     printf("Sessao finalizada, exportando dados \n");
+    #if EXPORTAR_DADOS
     sprintf(comando, "git add -A");
     //system(comando);
     sprintf(comando, "git commit -m 'Aquisicao de Dados'");
     //system(comando);
     sprintf(comando, "git push");
     //system(comando);
+return 0;
+    #else
 return 0;
 }
