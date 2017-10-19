@@ -387,10 +387,10 @@ int main(){
     cmd.write_torque(portHandler, packetHandler, BROADCASTID, 0);
     printf("Sessao finalizada, exportando dados \n");
     sprintf(comando, "git add -A");
-    //system(comando);
+    system(comando);
     sprintf(comando, "git commit -m 'Aquisicao de Dados'");
-    //system(comando);
+    system(comando);
     sprintf(comando, "git push");
-    //system(comando);
+    system(comando);
 return 0;
 }
