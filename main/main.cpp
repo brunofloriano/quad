@@ -226,16 +226,11 @@ void controle(union sigval arg){
     
     posicao_atual[i-1] = cmd.read_pos(portHandler, packetHandler, i);
     posicao_atual_graus[i-1] = ler_posicao(posicao_atual[i-1]);
+    posicao_desejada_graus[i-1] = posicao_atual_graus[i-1] + (tam/1000)*v_desejada*(180/PI);
     
-    if(abs(v_desejada) == 0){
-        posicao_desejada_graus[i-1] = posicao_atual_graus[i-1] + (tam/1000)*v_desejada*(180/PI);
-        }
-    else{
-        posicao_desejada_graus[i-1] = posicao_atual_graus[i-1] + (tam/1000)*v_desejada*(180/PI);
+    if(abs(v_desejada) != 0){
         cmd.write_pos(portHandler, packetHandler, i, posicao(posicao_desejada_graus[i-1]));
-        
         }
-
 
 	i++;
     }
