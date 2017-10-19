@@ -323,18 +323,18 @@ int main(){
     K[12-1] = K_pitch_F*K_DOWN;
     
     //----------posicao inicial------------//
-    posicao_incial[0] = 497;
-    posicao_incial[1] = 498;
-    posicao_incial[2] = 503;
-    posicao_incial[3] = 132;
-    posicao_incial[4] = 543;
-    posicao_incial[5] = 521;
-    posicao_incial[6] = 540;
-    posicao_incial[7] = 527;
-    posicao_incial[8] = 347;
-    posicao_incial[9] = 497;
-    posicao_incial[10] = 549;
-    posicao_incial[11] = 500;
+    posicao_inicial[0] = 497;
+    posicao_inicial[1] = 498;
+    posicao_inicial[2] = 503;
+    posicao_inicial[3] = 132;
+    posicao_inicial[4] = 543;
+    posicao_inicial[5] = 521;
+    posicao_inicial[6] = 540;
+    posicao_inicial[7] = 527;
+    posicao_inicial[8] = 347;
+    posicao_inicial[9] = 497;
+    posicao_inicial[10] = 549;
+    posicao_inicial[11] = 500;
 
 
     //--------------------------Inicializacao------------------------------//
