@@ -28,7 +28,7 @@
 #define PI                              3.14159265
 #define MAX_SPEED_RAD_S                 79.4*V_MAX/16*2*PI/60
 
-int velocidade(float v){
+int velocidade(double v){
     int x = MAX_SPEED*abs(v)/(MAX_SPEED_RAD_S);
     int CCW;
 
@@ -42,9 +42,9 @@ return x + CCW;
 
 }
 
-float ler_velocidade(int x){
+double ler_velocidade(int x){
     int CCW;
-    float v;
+    double v;
 
     if (x < 1024){
         v = x*(MAX_SPEED_RAD_S)/(MAX_SPEED);
@@ -58,7 +58,18 @@ float ler_velocidade(int x){
 return v*CCW;
 
 }
-#endif
+
+int posicao(double graus){
+    int b;
+    b = graus*1023/300;
+    return b;
+    }
+
+double ler_posicao(int x){
+    double graus;
+    graus = x*300/1023;
+    return graus;
+    }
 
 int kbhit(void)
 {
@@ -100,3 +111,4 @@ int getch(void)
 	tcsetattr( STDIN_FILENO, TCSANOW, &oldt );
 	return ch;
 }
+#endif

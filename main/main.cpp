@@ -46,11 +46,13 @@ void controle (union sigval sigval);
 
 
     double out;
-    double v_medicao[12], v_desejada, v_aplicada;
+    double v_medicao[12], v_desejada;
     double roll_medido, pitch_medido;
     double velocidade_roll, velocidade_pitch;
     double T = 0;
     double tempo = 0.0;
+    double posicao_atual_graus[12];
+    double posicao_desejada_graus[12];
     static double roll = 0, pitch = 0;
     static double v_1_roll = 0, v_1_pitch = 0;
 
@@ -66,7 +68,8 @@ void controle (union sigval sigval);
     int i = 1;
     int v_medicao_int;
     int queda_roll, queda_pitch;
-    int posicao_atual;
+    int posicao_atual[12];
+    int posicao_inicial[12];
     volatile int USB;
 
     struct termios tty;
@@ -268,26 +271,12 @@ void controle(union sigval arg){
 
     v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, i);
     v_medicao[i-1] = ler_velocidade(v_medicao_int);
+    posicao_atual[i-1] = cmd.read_pos(portHandler, packetHandler, i);
+    posicao_atual_graus[i-1] = ler_posicao(posicao_atual[i-1]);
     
-    if(i == 3 || i == 6 || i == 9 || i == 12){          //motores pitch down
-        v_aplicada = 0.7*(v_desejada- v_medicao[i-1]);
-        }
-    else{
-        v_aplicada = v_desejada;
-    }
+    posicao_desejada_graus[i-1] = posicao_atual_graus[i-1] + (tam/1000)*v_desejada*(180/PI);
     
-    
-   // if(v_desejada<0.01){
-   //     modo_posicao(i);
-   //     posicao_atual = cmd.read_pos(portHandler, packetHandler, i);
-   //     cmd.write_pos(portHandler, packetHandler, i, posicao_atual);
-   //     
-   //     }
-   // else{
-   //     modo_velocidade(i);
-        cmd.write_mov_speed(portHandler, packetHandler, i, velocidade(2.3*v_aplicada));
-    
-   //     }
+    cmd.write_pos(portHandler, packetHandler, i, posicao(posicao_desejada_graus[i-1]));
 
 	i++;
     }
@@ -332,8 +321,23 @@ int main(){
     K[9-1] = -K_pitch_F*K_DOWN;
     K[11-1] = K_pitch_F*K_UP;
     K[12-1] = K_pitch_F*K_DOWN;
+    
+    //----------posicao inicial------------//
+    posicao_incial[0] = 497;
+    posicao_incial[1] = 498;
+    posicao_incial[2] = 503;
+    posicao_incial[3] = 132;
+    posicao_incial[4] = 543;
+    posicao_incial[5] = 521;
+    posicao_incial[6] = 540;
+    posicao_incial[7] = 527;
+    posicao_incial[8] = 347;
+    posicao_incial[9] = 497;
+    posicao_incial[10] = 549;
+    posicao_incial[11] = 500;
 
-        //--------------------------Inicializacao------------------------------//
+
+    //--------------------------Inicializacao------------------------------//
     if (portHandler->openPort())
     {
         printf("Succeeded to open the port!\n\n");
@@ -349,7 +353,7 @@ int main(){
     }
 
     cmd.config_ram(portHandler, packetHandler);
-    cmd.write_mov_speed(portHandler, packetHandler, BROADCASTID, 0);
+    //cmd.write_mov_speed(portHandler, packetHandler, BROADCASTID, 0);
     cmd.write_torque(portHandler, packetHandler, BROADCASTID, 1);
     cmd.write_max_torque(portHandler, packetHandler, BROADCASTID, MAX_TORQUE);
 
@@ -394,27 +398,20 @@ int main(){
     //        i++;         
     //        }   
 	//}
-
-    cmd.write_pos(portHandler, packetHandler, 1, 497);
-    cmd.write_pos(portHandler, packetHandler, 2, 498);
-    cmd.write_pos(portHandler, packetHandler, 3, 503);
-    cmd.write_pos(portHandler, packetHandler, 4, 132);
-    cmd.write_pos(portHandler, packetHandler, 5, 543);
-    cmd.write_pos(portHandler, packetHandler, 6, 521);
-    cmd.write_pos(portHandler, packetHandler, 7, 540);
-    cmd.write_pos(portHandler, packetHandler, 8, 527);
-    cmd.write_pos(portHandler, packetHandler, 9, 347);
-    cmd.write_pos(portHandler, packetHandler, 10, 497);
-    cmd.write_pos(portHandler, packetHandler, 11, 549);
-    cmd.write_pos(portHandler, packetHandler, 12, 500);
+    
+    i = 1;
+    while(i<13){
+        cmd.write_pos(portHandler, packetHandler, i, posicao_incial[i-1]);
+        i++;        
+    }
     
     //cmd.write_torque(portHandler, packetHandler, BROADCASTID, 1);
 
     printf("Pressione qualquer tecla para iniciar \n");
     cmd.getch();
     cmd.write_torque_limit(portHandler, packetHandler, BROADCASTID, MAX_TORQUE);
-    modo_velocidade(BROADCASTID);
     USB = inicializacao();
+    posicao_atual = posicao_inicial;
     
     timer_start ();
     time_reset(&timestruct);
