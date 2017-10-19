@@ -211,6 +211,25 @@ void controle(union sigval arg){
     gDataLogger_InsertVariable(&gDataLogger,(char*) "pitch_angle",&pitch_medido);
     gDataLogger_InsertVariable(&gDataLogger,(char*) "roll_speed",&velocidade_roll);
     gDataLogger_InsertVariable(&gDataLogger,(char*) "pitch_speed",&velocidade_pitch);
+    
+      if(velocidade_roll>0){
+        queda_roll = ROLL_ESQUERDA;
+        K_roll_R = 0, K_roll_L = 1.5;
+        
+        K[1-1] = K_roll_L;
+        K[4-1] = K_roll_R;
+        K[7-1] = K_roll_R*1.1;
+        K[10-1] = K_roll_L;
+        }
+        else{
+        queda_roll = ROLL_DIREITA;
+        K_roll_R = 1.5, K_roll_L = 0;
+        
+        K[1-1] = K_roll_L;
+        K[4-1] = K_roll_R;
+        K[7-1] = K_roll_R*1.1;
+        K[10-1] = K_roll_L;
+            }
             
     i = 1;
     while(i<13){
