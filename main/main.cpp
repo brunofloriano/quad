@@ -402,6 +402,7 @@ int main(){
     i = 1;
     while(i<13){
         cmd.write_pos(portHandler, packetHandler, i, posicao_inicial[i-1]);
+        posicao_atual[i-1] = posicao_inicial[i-1];
         i++;        
     }
     
@@ -411,7 +412,6 @@ int main(){
     cmd.getch();
     cmd.write_torque_limit(portHandler, packetHandler, BROADCASTID, MAX_TORQUE);
     USB = inicializacao();
-    posicao_atual = posicao_inicial;
     
     timer_start ();
     time_reset(&timestruct);
