@@ -382,9 +382,7 @@ int main(){
   //--------------------Fim da simulacao, parar os motores --------------------------------//
     timer_stop ();
 	gDataLogger_Close(&gDataLogger);
-    close(USB);
-    cmd.write_mov_speed(portHandler, packetHandler, BROADCASTID, 0);
-    
+    close(USB);    
     
     //----------------------------------Finalize---------------------------------------//
     cmd.write_torque(portHandler, packetHandler, BROADCASTID, 0);
