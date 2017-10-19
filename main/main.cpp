@@ -401,7 +401,7 @@ int main(){
     
     i = 1;
     while(i<13){
-        cmd.write_pos(portHandler, packetHandler, i, posicao_incial[i-1]);
+        cmd.write_pos(portHandler, packetHandler, i, posicao_inicial[i-1]);
         i++;        
     }
     
