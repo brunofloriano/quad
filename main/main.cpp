@@ -231,6 +231,35 @@ void controle(union sigval arg){
         K[10-1] = K_roll_L;
             }
             
+        if(velocidade_pitch>0){
+        queda_pitch = PITCH_TRAS;
+        K_pitch_F = 0, K_pitch_R = 1.5;
+
+        K[2-1] = K_pitch_R*K_UP;
+        K[3-1] = K_pitch_R*K_DOWN;
+        K[5-1] = -K_pitch_R*K_UP;
+        K[6-1] = -K_pitch_R*K_DOWN;
+        K[8-1] = -K_pitch_F*K_UP;
+        K[9-1] = -K_pitch_F*K_DOWN;
+        K[11-1] = K_pitch_F*K_UP;
+        K[12-1] = K_pitch_F*K_DOWN;
+        
+        }
+        else{
+        queda_pitch = PITCH_FRENTE;
+        K_pitch_F = 1.5, K_pitch_R = 0;
+
+        K[2-1] = K_pitch_R*K_UP;
+        K[3-1] = K_pitch_R*K_DOWN;
+        K[5-1] = -K_pitch_R*K_UP;
+        K[6-1] = -K_pitch_R*K_DOWN;
+        K[8-1] = -K_pitch_F*K_UP;
+        K[9-1] = -K_pitch_F*K_DOWN;
+        K[11-1] = K_pitch_F*K_UP;
+        K[12-1] = K_pitch_F*K_DOWN;
+            }
+            
+            
     i = 1;
     while(i<13){
     if(i == 1 || i == 4 || i == 7 || i == 10){
