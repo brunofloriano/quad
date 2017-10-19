@@ -211,54 +211,6 @@ void controle(union sigval arg){
     gDataLogger_InsertVariable(&gDataLogger,(char*) "pitch_angle",&pitch_medido);
     gDataLogger_InsertVariable(&gDataLogger,(char*) "roll_speed",&velocidade_roll);
     gDataLogger_InsertVariable(&gDataLogger,(char*) "pitch_speed",&velocidade_pitch);
-
-    if(velocidade_roll>0){
-        queda_roll = ROLL_ESQUERDA;
-        K_roll_R = 1.6, K_roll_L = 1.8;
-        
-        K[1-1] = K_roll_L;
-        K[4-1] = K_roll_R;
-        K[7-1] = K_roll_R*1.1;
-        K[10-1] = K_roll_L;
-        }
-        else{
-        queda_roll = ROLL_DIREITA;
-        K_roll_R = 1.8, K_roll_L = 1.6;
-        
-        K[1-1] = K_roll_L;
-        K[4-1] = K_roll_R;
-        K[7-1] = K_roll_R*1.1;
-        K[10-1] = K_roll_L;
-            }
-            
-    if(velocidade_pitch>0){
-        queda_pitch = PITCH_TRAS;
-        K_pitch_F = 1, K_pitch_R = 1.8;
-
-        K[2-1] = K_pitch_R*K_UP;
-        K[3-1] = K_pitch_R*K_DOWN;
-        K[5-1] = -K_pitch_R*K_UP;
-        K[6-1] = -K_pitch_R*K_DOWN;
-        K[8-1] = -K_pitch_F*K_UP;
-        K[9-1] = -K_pitch_F*K_DOWN;
-        K[11-1] = K_pitch_F*K_UP;
-        K[12-1] = K_pitch_F*K_DOWN;
-        
-        }
-        else{
-        queda_pitch = PITCH_FRENTE;
-        K_pitch_F = 1.8, K_pitch_R = 1;
-
-        K[2-1] = K_pitch_R*K_UP;
-        K[3-1] = K_pitch_R*K_DOWN;
-        K[5-1] = -K_pitch_R*K_UP;
-        K[6-1] = -K_pitch_R*K_DOWN;
-        K[8-1] = -K_pitch_F*K_UP;
-        K[9-1] = -K_pitch_F*K_DOWN;
-        K[11-1] = K_pitch_F*K_UP;
-        K[12-1] = K_pitch_F*K_DOWN;
-            }
-            
             
     i = 1;
     while(i<13){
