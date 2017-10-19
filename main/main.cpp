@@ -444,7 +444,6 @@ int main(){
     system(comando);
     sprintf(comando, "git push");
     system(comando);
-return 0;
-    #else
+    #endif
 return 0;
 }
