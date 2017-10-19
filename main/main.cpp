@@ -439,11 +439,11 @@ int main(){
     printf("Sessao finalizada, exportando dados \n");
     #if EXPORTAR_DADOS
     sprintf(comando, "git add -A");
-    //system(comando);
+    system(comando);
     sprintf(comando, "git commit -m 'Aquisicao de Dados'");
-    //system(comando);
+    system(comando);
     sprintf(comando, "git push");
-    //system(comando);
+    system(comando);
 return 0;
     #else
 return 0;
