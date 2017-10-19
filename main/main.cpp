@@ -378,6 +378,7 @@ int main(){
         i++;        
     }
     
+    
     //cmd.write_torque(portHandler, packetHandler, BROADCASTID, 1);
 
     printf("Pressione qualquer tecla para iniciar \n");
