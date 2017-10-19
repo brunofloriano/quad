@@ -280,7 +280,12 @@ void controle(union sigval arg){
     
     if(abs(v_desejada) != 0){
         cmd.write_pos(portHandler, packetHandler, i, posicao(posicao_desejada_graus[i-1]));
-        }
+    }
+        
+        
+    if(roll_medido>6 && pitch_medido>6 && v_desejada<0.01){
+        cmd.write_pos(portHandler, packetHandler, i, posicao_inicial[i-1]);
+    }
 
 	i++;
     }
