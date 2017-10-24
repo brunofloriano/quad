@@ -182,6 +182,14 @@ int modo_posicao(uint8_t id){
     
     return 0;
     }
+    
+double controlador(double Kd){
+    double B;
+    B = d_k*(Kd*tau_p/(tam/1000)^2 + Kd/(tam/1000)) + d_k1*(-2*Kd*tau_p/(tam/1000)^2 - Kd/(tam/1000)) + pd_k*(tau_d/(tam/1000) + 1) - pd_k1*(tau_d/(tam/1000));
+    p_k = (B - p_k2*(tau_d*tau_p/(tam/1000)^2) - p_k1*(-2*tau_d*tau_p/(tam/1000)^2 - (tau_d + tau_p)/(tam/1000) )) / (tau_d*tau_p/(tam/1000)^2 + (tau_d + tau_p)/(tam/1000) +1);
+    
+    return p_k;
+    }
 
 void controle(union sigval arg){
     
@@ -323,14 +331,6 @@ void controle(union sigval arg){
     time_reset(&timestruct);
 
 }
-
-double controlador(double Kd){
-    double B;
-    B = d_k*(Kd*tau_p/(tam/1000)^2 + Kd/(tam/1000)) + d_k1*(-2*Kd*tau_p/(tam/1000)^2 - Kd/(tam/1000)) + pd_k*(tau_d/(tam/1000) + 1) - pd_k1*(tau_d/(tam/1000));
-    p_k = (B - p_k2*(tau_d*tau_p/(tam/1000)^2) - p_k1*(-2*tau_d*tau_p/(tam/1000)^2 - (tau_d + tau_p)/(tam/1000) )) / (tau_d*tau_p/(tam/1000)^2 + (tau_d + tau_p)/(tam/1000) +1);
-    
-    return p_k;
-    }
 
 
 int main(){
