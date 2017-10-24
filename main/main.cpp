@@ -275,12 +275,12 @@ void controle(union sigval arg){
     i = 1;
     while(i<13){
         if(i == 1 || i == 4 || i == 7 || i == 10){      //Roll
-        d_k = -roll_medido;
-        d_k1 = -roll;
+        d_k = roll_medido;
+        d_k1 = roll;
         }
         else{                                           //Pitch
-        d_k = -pitch_medido;
-        d_k1 = -pitch;
+        d_k = pitch_medido;
+        d_k1 = pitch;
         }
 
     #if MARCHA
