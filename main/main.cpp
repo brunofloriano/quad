@@ -203,17 +203,14 @@ void controle(union sigval arg){
     roll_medido = (double)angulos[0];
     pitch_medido = (double)angulos[1];
 
+    filtro(tam, fc, roll_medido, roll, &out);
+    roll_medido = out;
+
+    filtro(tam, fc, pitch_medido, pitch, &out);
+    pitch_medido = out;
+    
     velocidade_roll = (roll_medido - roll)*(PI/180)/(tam/1000);
     velocidade_pitch = (pitch_medido - pitch)*(PI/180)/(tam/1000);
-
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "roll_speed_sf",&velocidade_roll);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "pitch_speed_sf",&velocidade_pitch);
-
-    filtro(tam, fc, velocidade_roll, v_1_roll, &out);
-    velocidade_roll = out;
-
-    filtro(tam, fc, velocidade_pitch, v_1_pitch, &out);
-    velocidade_pitch = out;
 
    if(abs(velocidade_roll)<threshold){velocidade_roll = 0;}
    if(abs(velocidade_pitch)<threshold){velocidade_pitch = 0;}
