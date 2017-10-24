@@ -61,9 +61,9 @@ void controle (union sigval sigval);
     static double roll = 0, pitch = 0;
     static double v_1_roll = 0, v_1_pitch = 0;
     
-    double d_k, d_k1;           //disturbios
-    double p_k, p_k1, p_k2;     //posicao
-    double pd_k, pd_k1;         //posicao desejada
+    double d_k, d_k1;                       //disturbios
+    double p_k[12], p_k1[12], p_k2[12];     //posicao
+    double pd_k, pd_k1;                     //posicao desejada
 
     float angulos[2];
     float fc = 1;
@@ -187,7 +187,7 @@ int modo_posicao(uint8_t id){
 double controlador(double Kd){
     double B;
     B = d_k*(Kd*tau_p/pow(tam/1000,2) + Kd/(tam/1000)) + d_k1*(-2*Kd*tau_p/pow(tam/1000,2) - Kd/(tam/1000)) + pd_k*(tau_d/(tam/1000) + 1) - pd_k1*(tau_d/(tam/1000));
-    p_k = (B - p_k2*(tau_d*tau_p/pow(tam/1000,2)) - p_k1*(-2*tau_d*tau_p/pow(tam/1000,2) - (tau_d + tau_p)/(tam/1000) )) / (tau_d*tau_p/pow(tam/1000,2) + (tau_d + tau_p)/(tam/1000) +1);
+    p_k[i-1] = (B - p_k2[i-1]*(tau_d*tau_p/pow(tam/1000,2)) - p_k1[i-1]*(-2*tau_d*tau_p/pow(tam/1000,2) - (tau_d + tau_p)/(tam/1000) )) / (tau_d*tau_p/pow(tam/1000,2) + (tau_d + tau_p)/(tam/1000) +1);
     
     return p_k;
     }
@@ -275,12 +275,12 @@ void controle(union sigval arg){
     i = 1;
     while(i<13){
         if(i == 1 || i == 4 || i == 7 || i == 10){      //Roll
-        d_k = roll_medido;
-        d_k1 = roll;
+        d_k = -roll_medido;
+        d_k1 = -roll;
         }
         else{                                           //Pitch
-        d_k = pitch_medido;
-        d_k1 = pitch;
+        d_k = -pitch_medido;
+        d_k1 = -pitch;
         }
 
     #if MARCHA
@@ -289,6 +289,7 @@ void controle(union sigval arg){
     pd_k = ler_posicao(posicao_inicial[i-1]);
     pd_k1 = ler_posicao(posicao_inicial[i-1]);
     #endif
+    
         
     //---------------------- Leituras dos Motores --------------------------//
     v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, i);
@@ -301,7 +302,8 @@ void controle(union sigval arg){
     posicao_desejada_graus[i-1] = controlador(K[i-1]);
     cmd.write_pos(portHandler, packetHandler, i, posicao(posicao_desejada_graus[i-1]));
 
-
+    p_k2[i-1] = p_k1[i-1];
+    p_k1[i-1] = p_k[i-1];
 	i++;
     }
     
@@ -434,6 +436,8 @@ int main(){
     while(i<13){
         cmd.write_pos(portHandler, packetHandler, i, posicao_inicial[i-1]);
         posicao_atual[i-1] = posicao_inicial[i-1];
+        p_k2[i-1] = ler_posicao(posicao_inicial[i-1]);
+        p_k1[i-1] = ler_posicao(posicao_inicial[i-1]);
         i++;        
     }
     
