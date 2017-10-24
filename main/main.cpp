@@ -71,7 +71,7 @@ void controle (union sigval sigval);
     float K_UP = 1, K_DOWN = -0.4;
     float K[12];
     float threshold = 0; //0.04;
-    float tam = TASK_PERIOD_US/1000; //tempo de amostragem em milisegundos
+    double tam = TASK_PERIOD_US/1000; //tempo de amostragem em milisegundos
 
     int i = 1;
     int v_medicao_int;
