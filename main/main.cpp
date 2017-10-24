@@ -31,6 +31,7 @@
 #define PITCH_TRAS                      0
 
 #define EXPORTAR_DADOS                  0
+#define MARCHA                          0
 
 GDATALOGGER gDataLogger;
 
@@ -55,8 +56,13 @@ void controle (union sigval sigval);
     double tempo = 0.0;
     double posicao_atual_graus[12];
     double posicao_desejada_graus[12];
+    double tau_d = 1, tau_p = 1;
     static double roll = 0, pitch = 0;
     static double v_1_roll = 0, v_1_pitch = 0;
+    
+    double d_k, d_k1;           //disturbios
+    double p_k, p_k1, p_k2;     //posicao
+    double pd_k, pd_k1;         //posicao desejada
 
     float angulos[2];
     float fc = 1;
@@ -196,14 +202,9 @@ void controle(union sigval arg){
 
     filtro(tam, fc, velocidade_roll, v_1_roll, &out);
     velocidade_roll = out;
-    v_1_roll = out;
 
     filtro(tam, fc, velocidade_pitch, v_1_pitch, &out);
     velocidade_pitch = out;
-    v_1_pitch = out;
-
-    roll = roll_medido;
-    pitch = pitch_medido;
 
    if(abs(velocidade_roll)<threshold){velocidade_roll = 0;}
    if(abs(velocidade_pitch)<threshold){velocidade_pitch = 0;}
@@ -261,30 +262,47 @@ void controle(union sigval arg){
         K[12-1] = K_pitch_F*K_DOWN;
             }
             
-            
+    
     i = 1;
     while(i<13){
-    if(i == 1 || i == 4 || i == 7 || i == 10){
-        v_desejada = -K[i-1]*velocidade_roll;
-    }
-    else{
-        v_desejada = -K[i-1]*velocidade_pitch;
+        if(i == 1 || i == 4 || i == 7 || i == 10){      //Roll
+        d_k = roll_medido;
+        d_k1 = roll;
+        }
+        else{                                           //Pitch
+        d_k = pitch_medido;
+        d_k1 = pitch;
         }
 
+    #if MARCHA
+    //definir pd_k e pd_k1 com o movimento balistico
+    #else
+    pd_k = posicao_inicial[i-1];
+    pd_k1 = posicao_inicial[i-1];
+    #endif
+        
+    //---------------------- Leituras dos Motores --------------------------//
     v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, i);
     v_medicao[i-1] = ler_velocidade(v_medicao_int);
     
     posicao_atual[i-1] = cmd.read_pos(portHandler, packetHandler, i);
     posicao_atual_graus[i-1] = ler_posicao(posicao_atual[i-1]);
-    posicao_desejada_graus[i-1] = posicao_atual_graus[i-1] + (tam/1000)*v_desejada*(180/PI);
     
-    if(abs(v_desejada) != 0){
-        cmd.write_pos(portHandler, packetHandler, i, posicao(posicao_desejada_graus[i-1]));
-    }
+    //----------------------- Controlador -----------------------------//
+    posicao_desejada_graus[i-1] = controlador(K[i-1]);
+    cmd.write_pos(portHandler, packetHandler, i, posicao(posicao_desejada_graus[i-1]));
+
 
 	i++;
     }
-
+    
+    roll = roll_medido;
+    pitch = pitch_medido;
+    v_1_roll = velocidade_roll;
+    v_1_pitch = velocidade_pitch;
+    
+    
+    //----------------------- Atualizacao de Medicoes ----------------------//
     gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor1",&v_medicao[0]);
     gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor2",&v_medicao[1]);
     gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor3",&v_medicao[2]);
@@ -305,6 +323,15 @@ void controle(union sigval arg){
     time_reset(&timestruct);
 
 }
+
+double controlador(double Kd){
+    double B;
+    B = d_k*(Kd*tau_p/(tam/1000)^2 + Kd/(tam/1000)) + d_k1*(-2*Kd*tau_p/(tam/1000)^2 - Kd/(tam/1000)) + pd_k*(tau_d/(tam/1000) + 1) - pd_k1*(tau_d/(tam/1000));
+    p_k = (B - p_k2*(tau_d*tau_p/(tam/1000)^2) - p_k1*(-2*tau_d*tau_p/(tam/1000)^2 - (tau_d + tau_p)/(tam/1000) )) / (tau_d*tau_p/(tam/1000)^2 + (tau_d + tau_p)/(tam/1000) +1);
+    
+    return p_k;
+    }
+
 
 int main(){
     int i;
