@@ -286,8 +286,8 @@ void controle(union sigval arg){
     #if MARCHA
     //definir pd_k e pd_k1 com o movimento balistico
     #else
-    pd_k = posicao_inicial[i-1];
-    pd_k1 = posicao_inicial[i-1];
+    pd_k = ler_posicao(posicao_inicial[i-1]);
+    pd_k1 = ler_posicao(posicao_inicial[i-1]);
     #endif
         
     //---------------------- Leituras dos Motores --------------------------//
