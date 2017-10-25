@@ -2,7 +2,7 @@ clear all
 close all
 load('data.mat');
 
-ver_sem_filtro = 0;
+ver_sem_filtro = 1;
 
 size = (tempo_size - 1);
 eval(['tsim' '=' 'tempo_0_' num2str(size) '(' num2str(size) ')' ';']);
@@ -19,12 +19,7 @@ else
 end
 plot(t,pitch_angle_sf);
 hold on
-plot(t,roll_angle_sf);
-title('Angulos sem Filtro x Tempo');
-xlabel('Tempo (s)');
-ylabel('Angulo (grau)');
-legend('Arfagem','Rolagem')
-figure
+plot(t,roll_angle_)
 else
 end
 
@@ -94,7 +89,7 @@ else
     t = tempo;
 end
 
-b=plot(t,-pitch_angle);
+b=plot(t,pitch_angle);
 set(b,'Color','red');
 title('Posicao dos Motores Pitch x Tempo');
 xlabel('Tempo (s)');

@@ -31,7 +31,7 @@
 #define PITCH_FRENTE                    1
 #define PITCH_TRAS                      0
 
-#define EXPORTAR_DADOS                  1
+#define EXPORTAR_DADOS                  0
 #define MARCHA                          0
 
 GDATALOGGER gDataLogger;
@@ -57,7 +57,7 @@ void controle (union sigval sigval);
     double tempo = 0.0;
     double posicao_atual_graus[12];
     double posicao_desejada_graus[12];
-    double tau_d = 0.01, tau_p = 0.5;
+    double tau_d = 0.05, tau_p = 0.5;
     static double roll = 0, pitch = 0;
     
     double d_k, d_k1,d_k2;                                      //disturbios
