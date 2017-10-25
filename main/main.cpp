@@ -33,7 +33,7 @@
 
 #define EXPORTAR_DADOS                  1
 #define MARCHA                          0
-#define CONTROLE                        0
+#define CONTROLE                        1
 
 GDATALOGGER gDataLogger;
 
