@@ -206,7 +206,7 @@ double controlador(double Kd){
     
 int marcha_quadrupede(int j){
 
-    uint8_t param_goal_position[2];
+   // uint8_t param_goal_position[2];
     
     int lido[12] = {0,0,0,0,0,0,0,0,0,0,0,0};           //buffer leitura
     int atual[12];
@@ -226,7 +226,7 @@ int marcha_quadrupede(int j){
             //param_goal_position[1] = DXL_HIBYTE(anguloscor[j-1]);
             //dxl_addparam_result = groupSyncWrite.addParam(j, param_goal_position);
     
-    return param_goal_position;
+    return lido[j-1];
     }
 
 void controle(union sigval arg){
