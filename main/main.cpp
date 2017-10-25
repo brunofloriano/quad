@@ -91,7 +91,7 @@ void controle (union sigval sigval);
     
     static timestruct_t timestruct;
     
-    string marcha = "marcha2.txt";
+    string marcha = "marcha1.txt";
     ifstream arq(marcha.c_str());
     
 void timer_start (void)
