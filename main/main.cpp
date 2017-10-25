@@ -87,6 +87,8 @@ void controle (union sigval sigval);
     struct termios tty_old;
     
     static timestruct_t timestruct;
+    
+using namespace std;
 
 void timer_start (void)
 {
