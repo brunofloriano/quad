@@ -32,8 +32,8 @@
 #define PITCH_TRAS                      0
 
 #define EXPORTAR_DADOS                  0
-#define MARCHA                          1
-#define CONTROLE                        0
+#define MARCHA                          0
+#define CONTROLE                        1
 
 GDATALOGGER gDataLogger;
 
