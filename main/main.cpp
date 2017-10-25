@@ -225,6 +225,14 @@ int marcha_quadrupede(int j){
             //param_goal_position[0] = DXL_LOBYTE(anguloscor[j-1]);
             //param_goal_position[1] = DXL_HIBYTE(anguloscor[j-1]);
             //dxl_addparam_result = groupSyncWrite.addParam(j, param_goal_position);
+            
+            do
+        {
+
+                atual[j-1]=cmd.read_pos(portHandler,packetHandler,j);
+
+        }while(abs(atual[j-1]-anguloscor[j-1])>10);
+
     
     return anguloscor[j-1];
     }
