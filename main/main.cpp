@@ -32,7 +32,7 @@
 #define PITCH_TRAS                      0
 
 #define EXPORTAR_DADOS                  0
-#define MARCHA                          0
+#define MARCHA                          1
 #define CONTROLE                        1
 
 GDATALOGGER gDataLogger;
@@ -197,6 +197,50 @@ double controlador(double Kd){
     
     return p_k[i-1];
     }
+    
+int marcha(int j){
+    string marcha = "marcha2.txt";
+    ifstream arq(marcha.c_str());
+    fstream arq2("calibra.txt");
+    
+    uint8_t param_goal_position[2];
+    
+    int vetor_centro[12];
+    int lido[12] = {0,0,0,0,0,0,0,0,0,0,0,0};           //buffer leitura
+    int atual[12];
+    int anguloscor[12];
+    int cor_fat[12]={0,0,0,0,0,0,0,0,0,0,0,0};
+    
+    arq2>>vetor_centro[0]>>vetor_centro[1]>>vetor_centro[2];
+    arq2>>vetor_centro[3]>>vetor_centro[4]>>vetor_centro[5];
+    arq2>>vetor_centro[6]>>vetor_centro[7]>>vetor_centro[8];
+    arq2>>vetor_centro[9]>>vetor_centro[10]>>vetor_centro[11];
+    arq2.close();
+    
+    
+        arq>>lido[0]>>lido[1]>>lido[2];
+        arq>>lido[3]>>lido[4]>>lido[5];
+        arq>>lido[6]>>lido[7]>>lido[8];
+        arq>>lido[9]>>lido[10]>>lido[11];
+
+            anguloscor[j-1]=lido[j-1]+vetor_centro[j-1]+cor_fat[j-1];
+            if(lido[j-1]+cor_fat[j-1]>280)anguloscor[j-1]=vetor_centro[j-1]+280;
+            else if(lido[j-1]+cor_fat[j-1]<-280)anguloscor[j-1]=vetor_centro[j-1]-280;
+            cmd.write_torque(portHandler,packetHandler,j,1);
+            param_goal_position[0] = DXL_LOBYTE(anguloscor[j-1]);
+            param_goal_position[1] = DXL_HIBYTE(anguloscor[j-1]);
+            //dxl_addparam_result = groupSyncWrite.addParam(j, param_goal_position);
+
+        do
+        {
+
+                atual[j-1]=cmd.read_pos(portHandler,packetHandler,j);
+                
+        }while(abs(atual[j-1]-anguloscor[j-1])>10);
+    
+    return anguloscor[j-1];
+    arq.close();
+    }
 
 void controle(union sigval arg){
     
@@ -295,6 +339,7 @@ void controle(union sigval arg){
 
     #if MARCHA
     //definir pd_k com o movimento balistico
+    pd_k[i-1] = ler_posicao(marcha(i));
     #else
     pd_k[i-1] = ler_posicao(posicao_inicial[i-1]);
     #endif
