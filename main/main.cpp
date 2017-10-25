@@ -84,6 +84,7 @@ void controle (union sigval sigval);
     int posicao_atual[12];
     int posicao_inicial[12];
     int vetor_centro[12];
+    int anguloscor[12];
     volatile int USB;
 
     struct termios tty;
@@ -204,20 +205,20 @@ double controlador(double Kd){
     return p_k[i-1];
     }
     
-int marcha_quadrupede(int j){
+int marcha_quadrupede(){
 
    // uint8_t param_goal_position[2];
     
     int lido[12] = {0,0,0,0,0,0,0,0,0,0,0,0};           //buffer leitura
     int atual[12];
-    int anguloscor[12];
     int cor_fat[12]={0,0,0,0,0,0,0,0,0,0,0,0};
     
         arq>>lido[0]>>lido[1]>>lido[2];
         arq>>lido[3]>>lido[4]>>lido[5];
         arq>>lido[6]>>lido[7]>>lido[8];
         arq>>lido[9]>>lido[10]>>lido[11];
-
+        for(j=1; j<13; j++)
+        {
             anguloscor[j-1]=lido[j-1]+vetor_centro[j-1]+cor_fat[j-1];
             if(lido[j-1]+cor_fat[j-1]>280)anguloscor[j-1]=vetor_centro[j-1]+280;
             else if(lido[j-1]+cor_fat[j-1]<-280)anguloscor[j-1]=vetor_centro[j-1]-280;
@@ -225,8 +226,8 @@ int marcha_quadrupede(int j){
             //param_goal_position[0] = DXL_LOBYTE(anguloscor[j-1]);
             //param_goal_position[1] = DXL_HIBYTE(anguloscor[j-1]);
             //dxl_addparam_result = groupSyncWrite.addParam(j, param_goal_position);
-    
-    return anguloscor[j-1];
+        }
+    return 0;
     }
 
 void controle(union sigval arg){
@@ -310,6 +311,7 @@ void controle(union sigval arg){
     
     d_roll_k = -roll_medido;
     d_pitch_k = -pitch_medido;
+    marcha_quadrupede();
     
     i = 1;
     while(i<13){
@@ -326,7 +328,7 @@ void controle(union sigval arg){
 
     #if MARCHA
     //definir pd_k com o movimento balistico
-    pd_k[i-1] = ler_posicao(marcha_quadrupede(i));
+    pd_k[i-1] = ler_posicao(anguloscor[i-1]);
     #else
     pd_k[i-1] = ler_posicao(posicao_inicial[i-1]);
     #endif
