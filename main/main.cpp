@@ -226,7 +226,7 @@ int marcha_quadrupede(int j){
             //param_goal_position[1] = DXL_HIBYTE(anguloscor[j-1]);
             //dxl_addparam_result = groupSyncWrite.addParam(j, param_goal_position);
     
-    return lido[j-1];
+    return anguloscor[j-1];
     }
 
 void controle(union sigval arg){
