@@ -71,7 +71,7 @@ void controle (union sigval sigval);
     float K_pitch_F = 1, K_pitch_R = 1;
     float K_UP = 1, K_DOWN = -0.4;
     float K[12];
-    float threshold = 0; //0.04;
+    float threshold = 1.5;
     double tam = TASK_PERIOD_US/1000; //tempo de amostragem em milisegundos
 
     int i = 1;
@@ -208,12 +208,12 @@ void controle(union sigval arg){
 
     filtro(tam, fc, pitch_medido, pitch, &out);
     pitch_medido = out;
-    
+
+   if(abs(roll_medido)<threshold){roll_medido = 0;}
+   if(abs(pitch_medido)<threshold){pitch_medido = 0;}
+   
     velocidade_roll = (roll_medido - roll)*(PI/180)/(tam/1000);
     velocidade_pitch = (pitch_medido - pitch)*(PI/180)/(tam/1000);
-
-   if(abs(velocidade_roll)<threshold){velocidade_roll = 0;}
-   if(abs(velocidade_pitch)<threshold){velocidade_pitch = 0;}
 
 
     gDataLogger_InsertVariable(&gDataLogger,(char*) "roll_angle",&roll_medido);
