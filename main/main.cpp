@@ -265,7 +265,7 @@ void controle(union sigval arg){
         K[6-1] = -K_pitch_R*K_DOWN;
         K[8-1] = -K_pitch_F*K_UP;
         K[9-1] = -K_pitch_F*K_DOWN;
-        K[11-1] = K_pitch_F*K_UP;roll
+        K[11-1] = K_pitch_F*K_UP;
         K[12-1] = K_pitch_F*K_DOWN;
             }
     
