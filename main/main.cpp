@@ -59,11 +59,12 @@ void controle (union sigval sigval);
     double posicao_desejada_graus[12];
     double tau_d = 0.1, tau_p = 0.5;
     static double roll = 0, pitch = 0;
-    static double v_1_roll = 0, v_1_pitch = 0;
     
-    double d_k, d_k1;                       //disturbios
-    double p_k[12], p_k1[12], p_k2[12];     //posicao
-    double pd_k, pd_k1;                     //posicao desejada
+    double d_k, d_k1,d_k2;                                      //disturbios
+    double d_roll_k, d_roll_k1 = 0 ,d_roll_k2 = 0;              //disturbios roll
+    double d_pitch_k, d_pitch_k1 = 0,d_pitch_k2 = 0;            //disturbios pitch
+    double p_k[12], p_k1[12], p_k2[12];                         //posicao motores
+    double pd_k[12], pd_k1[12];                                 //posicao desejada
 
     float angulos[2];
     float fc = 1;
@@ -186,7 +187,7 @@ int modo_posicao(uint8_t id){
     
 double controlador(double Kd){
     double B;
-    B = d_k*(Kd*tau_p/pow(tam/1000,2) + Kd/(tam/1000)) + d_k1*(-2*Kd*tau_p/pow(tam/1000,2) - Kd/(tam/1000)) + pd_k*(tau_d/(tam/1000) + 1) - pd_k1*(tau_d/(tam/1000));
+    B = d_k*(Kd*tau_p/pow(tam/1000,2) + Kd/(tam/1000)) + d_k1*(-2*Kd*tau_p/pow(tam/1000,2) - Kd/(tam/1000)) + d_k2*(2*Kd*tau_p/pow(tam/1000,2)) + pd_k*(tau_d/(tam/1000) + 1) - pd_k1*(tau_d/(tam/1000));
     p_k[i-1] = (B - p_k2[i-1]*(tau_d*tau_p/pow(tam/1000,2)) - p_k1[i-1]*(-2*tau_d*tau_p/pow(tam/1000,2) - (tau_d + tau_p)/(tam/1000) )) / (tau_d*tau_p/pow(tam/1000,2) + (tau_d + tau_p)/(tam/1000) +1);
     
     return p_k[i-1];
@@ -264,27 +265,30 @@ void controle(union sigval arg){
         K[6-1] = -K_pitch_R*K_DOWN;
         K[8-1] = -K_pitch_F*K_UP;
         K[9-1] = -K_pitch_F*K_DOWN;
-        K[11-1] = K_pitch_F*K_UP;
+        K[11-1] = K_pitch_F*K_UP;roll
         K[12-1] = K_pitch_F*K_DOWN;
             }
-            
+    
+    d_roll_k = -roll_medido;
+    d_pitch_k = -pitch_medido;
     
     i = 1;
     while(i<13){
         if(i == 1 || i == 4 || i == 7 || i == 10){      //Roll
-        d_k = -roll_medido;
-        d_k1 = -roll;
+        d_k = d_roll_k;
+        d_k1 = d_roll_k1;
+        d_k2 = d_roll_k2;
         }
         else{                                           //Pitch
-        d_k = -pitch_medido;
-        d_k1 = -pitch;
+        d_k = d_pitch_k;
+        d_k1 = d_pitch_k1;
+        d_k2 = d_pitch_k2;
         }
 
     #if MARCHA
-    //definir pd_k e pd_k1 com o movimento balistico
+    //definir pd_k com o movimento balistico
     #else
-    pd_k = ler_posicao(posicao_inicial[i-1]);
-    pd_k1 = ler_posicao(posicao_inicial[i-1]);
+    pd_k[i-1] = ler_posicao(posicao_inicial[i-1]);
     #endif
     
         
@@ -301,13 +305,18 @@ void controle(union sigval arg){
 
     p_k2[i-1] = p_k1[i-1];
     p_k1[i-1] = p_k[i-1];
+    pd_k1[i-1] = pd_k[i-1];
 	i++;
     }
     
     roll = roll_medido;
     pitch = pitch_medido;
-    v_1_roll = velocidade_roll;
-    v_1_pitch = velocidade_pitch;
+    
+    d_roll_k1 = d_roll_k;
+    d_pitch_k1 = d_pitch_k;
+    
+    d_roll_k2 = d_roll_k1;
+    d_pitch_k2 = d_pitch_k1;
     
     
     //----------------------- Atualizacao de Medicoes ----------------------//
@@ -435,6 +444,7 @@ int main(){
         posicao_atual[i-1] = posicao_inicial[i-1];
         p_k2[i-1] = ler_posicao(posicao_inicial[i-1]);
         p_k1[i-1] = ler_posicao(posicao_inicial[i-1]);
+        pd_k1[i-1] = ler_posicao(posicao_inicial[i-1]);
         i++;        
     }
     
