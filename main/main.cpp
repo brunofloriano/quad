@@ -296,7 +296,7 @@ void controle(union sigval arg){
     posicao_atual_graus[i-1] = ler_posicao(posicao_atual[i-1]);
     
     //----------------------- Controlador -----------------------------//
-    posicao_desejada_graus[i-1] = controlador(K[i-1]);
+    posicao_desejada_graus[i-1] = controlador(K[i-1]*(tam/1000));
     cmd.write_pos(portHandler, packetHandler, i, posicao(posicao_desejada_graus[i-1]));
 
     p_k2[i-1] = p_k1[i-1];
