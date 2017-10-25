@@ -208,7 +208,7 @@ double controlador(double Kd){
 int marcha_quadrupede(){
 
    // uint8_t param_goal_position[2];
-    
+    int j;
     int lido[12] = {0,0,0,0,0,0,0,0,0,0,0,0};           //buffer leitura
     int atual[12];
     int cor_fat[12]={0,0,0,0,0,0,0,0,0,0,0,0};
