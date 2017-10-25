@@ -57,7 +57,7 @@ void controle (union sigval sigval);
     double tempo = 0.0;
     double posicao_atual_graus[12];
     double posicao_desejada_graus[12];
-    double tau_d = 1, tau_p = 1;
+    double tau_d = 0.5, tau_p = 0.5;
     static double roll = 0, pitch = 0;
     static double v_1_roll = 0, v_1_pitch = 0;
     
