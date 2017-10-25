@@ -37,6 +37,8 @@
 
 GDATALOGGER gDataLogger;
 
+using namespace std;
+
 int timer_nr;
 timer_t timer;
 void timer_start (void);
@@ -81,6 +83,7 @@ void controle (union sigval sigval);
     int queda_roll, queda_pitch;
     int posicao_atual[12];
     int posicao_inicial[12];
+    int vetor_centro[12];
     volatile int USB;
 
     struct termios tty;
@@ -88,8 +91,6 @@ void controle (union sigval sigval);
     
     static timestruct_t timestruct;
     
-using namespace std;
-
 void timer_start (void)
 {
     struct itimerspec itimer = { { 1, 0 }, { 1, 0 } };
@@ -203,22 +204,13 @@ double controlador(double Kd){
 int marcha(int j){
     string marcha = "marcha2.txt";
     ifstream arq(marcha.c_str());
-    fstream arq2("calibra.txt");
+
+   // uint8_t param_goal_position[2];
     
-    uint8_t param_goal_position[2];
-    
-    int vetor_centro[12];
     int lido[12] = {0,0,0,0,0,0,0,0,0,0,0,0};           //buffer leitura
     int atual[12];
     int anguloscor[12];
     int cor_fat[12]={0,0,0,0,0,0,0,0,0,0,0,0};
-    
-    arq2>>vetor_centro[0]>>vetor_centro[1]>>vetor_centro[2];
-    arq2>>vetor_centro[3]>>vetor_centro[4]>>vetor_centro[5];
-    arq2>>vetor_centro[6]>>vetor_centro[7]>>vetor_centro[8];
-    arq2>>vetor_centro[9]>>vetor_centro[10]>>vetor_centro[11];
-    arq2.close();
-    
     
         arq>>lido[0]>>lido[1]>>lido[2];
         arq>>lido[3]>>lido[4]>>lido[5];
@@ -234,7 +226,6 @@ int marcha(int j){
             //dxl_addparam_result = groupSyncWrite.addParam(j, param_goal_position);
     
     return anguloscor[j-1];
-    arq.close();
     }
 
 void controle(union sigval arg){
@@ -443,7 +434,13 @@ int main(){
     cmd.config_ram(portHandler, packetHandler);
     cmd.write_torque(portHandler, packetHandler, BROADCASTID, 1);
     cmd.write_max_torque(portHandler, packetHandler, BROADCASTID, MAX_TORQUE);
-
+    fstream arq2("calibra.txt");
+    
+    arq2>>vetor_centro[0]>>vetor_centro[1]>>vetor_centro[2];
+    arq2>>vetor_centro[3]>>vetor_centro[4]>>vetor_centro[5];
+    arq2>>vetor_centro[6]>>vetor_centro[7]>>vetor_centro[8];
+    arq2>>vetor_centro[9]>>vetor_centro[10]>>vetor_centro[11];
+    arq2.close();
 
         //----------------------------Data logger-----------------------------------//
 	if(!gDataLogger_Init(&gDataLogger,(char*) "gdatalogger/matlabdatafiles/data.mat",NULL)){
@@ -517,7 +514,8 @@ int main(){
   //--------------------Fim da simulacao, parar os motores --------------------------------//
     timer_stop ();
 	gDataLogger_Close(&gDataLogger);
-    close(USB);    
+    close(USB);
+    arq.close();    
     
     //----------------------------------Finalize---------------------------------------//
     cmd.write_torque(portHandler, packetHandler, BROADCASTID, 0);
