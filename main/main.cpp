@@ -228,17 +228,10 @@ int marcha(int j){
             anguloscor[j-1]=lido[j-1]+vetor_centro[j-1]+cor_fat[j-1];
             if(lido[j-1]+cor_fat[j-1]>280)anguloscor[j-1]=vetor_centro[j-1]+280;
             else if(lido[j-1]+cor_fat[j-1]<-280)anguloscor[j-1]=vetor_centro[j-1]-280;
-            cmd.write_torque(portHandler,packetHandler,j,1);
-            param_goal_position[0] = DXL_LOBYTE(anguloscor[j-1]);
-            param_goal_position[1] = DXL_HIBYTE(anguloscor[j-1]);
+            //cmd.write_torque(portHandler,packetHandler,j,1);
+            //param_goal_position[0] = DXL_LOBYTE(anguloscor[j-1]);
+            //param_goal_position[1] = DXL_HIBYTE(anguloscor[j-1]);
             //dxl_addparam_result = groupSyncWrite.addParam(j, param_goal_position);
-
-        do
-        {
-
-                atual[j-1]=cmd.read_pos(portHandler,packetHandler,j);
-                
-        }while(abs(atual[j-1]-anguloscor[j-1])>10);
     
     return anguloscor[j-1];
     arq.close();
