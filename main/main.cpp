@@ -204,7 +204,7 @@ double controlador(double Kd){
     return p_k[i-1];
     }
     
-int marcha(int j){
+int marcha_quadrupede(int j){
 
    // uint8_t param_goal_position[2];
     
@@ -326,7 +326,7 @@ void controle(union sigval arg){
 
     #if MARCHA
     //definir pd_k com o movimento balistico
-    pd_k[i-1] = ler_posicao(marcha(i));
+    pd_k[i-1] = ler_posicao(marcha_quadrupede(i));
     #else
     pd_k[i-1] = ler_posicao(posicao_inicial[i-1]);
     #endif
