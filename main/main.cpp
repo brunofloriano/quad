@@ -187,7 +187,7 @@ int modo_posicao(uint8_t id){
     
 double controlador(double Kd){
     double B;
-    B = d_k*(Kd*tau_p/pow(tam/1000,2) + Kd/(tam/1000)) + d_k1*(-2*Kd*tau_p/pow(tam/1000,2) - Kd/(tam/1000)) + d_k2*(2*Kd*tau_p/pow(tam/1000,2)) + pd_k*(tau_d/(tam/1000) + 1) - pd_k1*(tau_d/(tam/1000));
+    B = d_k*(Kd*tau_p/pow(tam/1000,2) + Kd/(tam/1000)) + d_k1*(-2*Kd*tau_p/pow(tam/1000,2) - Kd/(tam/1000)) + d_k2*(2*Kd*tau_p/pow(tam/1000,2)) + pd_k[i-1]*(tau_d/(tam/1000) + 1) - pd_k1[i-1]*(tau_d/(tam/1000));
     p_k[i-1] = (B - p_k2[i-1]*(tau_d*tau_p/pow(tam/1000,2)) - p_k1[i-1]*(-2*tau_d*tau_p/pow(tam/1000,2) - (tau_d + tau_p)/(tam/1000) )) / (tau_d*tau_p/pow(tam/1000,2) + (tau_d + tau_p)/(tam/1000) +1);
     
     return p_k[i-1];
