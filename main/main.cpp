@@ -91,6 +91,9 @@ void controle (union sigval sigval);
     
     static timestruct_t timestruct;
     
+    string marcha = "marcha2.txt";
+    ifstream arq(marcha.c_str());
+    
 void timer_start (void)
 {
     struct itimerspec itimer = { { 1, 0 }, { 1, 0 } };
@@ -202,8 +205,6 @@ double controlador(double Kd){
     }
     
 int marcha(int j){
-    string marcha = "marcha2.txt";
-    ifstream arq(marcha.c_str());
 
    // uint8_t param_goal_position[2];
     
