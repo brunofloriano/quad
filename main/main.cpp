@@ -31,7 +31,7 @@
 #define PITCH_FRENTE                    1
 #define PITCH_TRAS                      0
 
-#define EXPORTAR_DADOS                  0
+#define EXPORTAR_DADOS                  1
 #define MARCHA                          0
 #define CONTROLE                        1
 
