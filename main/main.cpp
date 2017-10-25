@@ -204,6 +204,10 @@ void controle(union sigval arg){
     roll_medido = (double)angulos[0];
     pitch_medido = (double)angulos[1];
 
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "roll_angle_sf",&roll_medido);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "pitch_angle_sf",&pitch_medido);
+
+
     filtro(tam, fc, roll_medido, roll, &out);
     roll_medido = out;
 
@@ -219,8 +223,7 @@ void controle(union sigval arg){
 
     gDataLogger_InsertVariable(&gDataLogger,(char*) "roll_angle",&roll_medido);
     gDataLogger_InsertVariable(&gDataLogger,(char*) "pitch_angle",&pitch_medido);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "roll_speed",&velocidade_roll);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "pitch_speed",&velocidade_pitch);
+
     
       if(velocidade_roll>0){
         queda_roll = ROLL_ESQUERDA;
@@ -293,8 +296,8 @@ void controle(union sigval arg){
     
         
     //---------------------- Leituras dos Motores --------------------------//
-    v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, i);
-    v_medicao[i-1] = ler_velocidade(v_medicao_int);
+    //v_medicao_int = cmd.read_mov_speed(portHandler, packetHandler, i);
+    //v_medicao[i-1] = ler_velocidade(v_medicao_int);
     
     posicao_atual[i-1] = cmd.read_pos(portHandler, packetHandler, i);
     posicao_atual_graus[i-1] = ler_posicao(posicao_atual[i-1]);
@@ -320,18 +323,18 @@ void controle(union sigval arg){
     
     
     //----------------------- Atualizacao de Medicoes ----------------------//
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor1",&v_medicao[0]);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor2",&v_medicao[1]);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor3",&v_medicao[2]);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor4",&v_medicao[3]);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor5",&v_medicao[4]);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor6",&v_medicao[5]);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor7",&v_medicao[6]);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor8",&v_medicao[7]);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor9",&v_medicao[8]);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor10",&v_medicao[9]);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor11",&v_medicao[10]);
-    gDataLogger_InsertVariable(&gDataLogger,(char*) "v_motor12",&v_medicao[11]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "p_motor1",&posicao_atual_graus[0]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "p_motor2",&posicao_atual_graus[1]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "p_motor3",&posicao_atual_graus[2]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "p_motor4",&posicao_atual_graus[3]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "p_motor5",&posicao_atual_graus[4]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "p_motor6",&posicao_atual_graus[5]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "p_motor7",&posicao_atual_graus[6]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "p_motor8",&posicao_atual_graus[7]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "p_motor9",&posicao_atual_graus[8]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "p_motor10",&posicao_atual_graus[9]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "p_motor11",&posicao_atual_graus[10]);
+    gDataLogger_InsertVariable(&gDataLogger,(char*) "p_motor12",&posicao_atual_graus[11]);
 
     T = time_gettime(&timestruct);
     tempo += T;
@@ -405,23 +408,21 @@ int main(){
 
     gDataLogger_DeclareVariable(&gDataLogger,(char*) "roll_angle",(char*) "deg",1,1,1000);
     gDataLogger_DeclareVariable(&gDataLogger,(char*) "pitch_angle",(char*) "deg",1,1,1000);
-    gDataLogger_DeclareVariable(&gDataLogger,(char*) "roll_speed",(char*) "rad/s",1,1,1000);
-    gDataLogger_DeclareVariable(&gDataLogger,(char*) "pitch_speed",(char*) "rad/s",1,1,1000);
-    gDataLogger_DeclareVariable(&gDataLogger,(char*) "roll_speed_sf",(char*) "rad/s",1,1,1000);
-    gDataLogger_DeclareVariable(&gDataLogger,(char*) "pitch_speed_sf",(char*) "rad/s",1,1,1000);
+    gDataLogger_DeclareVariable(&gDataLogger,(char*) "roll_angle_sf",(char*) "deg",1,1,1000);
+    gDataLogger_DeclareVariable(&gDataLogger,(char*) "pitch_angle_sf",(char*) "deg",1,1,1000);
 
-    gDataLogger_DeclareVariable(&gDataLogger,(char*) "v_motor1",(char*) "rad/s",1,1,1000);
-    gDataLogger_DeclareVariable(&gDataLogger,(char*) "v_motor2",(char*) "rad/s",1,1,1000);
-    gDataLogger_DeclareVariable(&gDataLogger,(char*) "v_motor3",(char*) "rad/s",1,1,1000);
-    gDataLogger_DeclareVariable(&gDataLogger,(char*) "v_motor4",(char*) "rad/s",1,1,1000);
-    gDataLogger_DeclareVariable(&gDataLogger,(char*) "v_motor5",(char*) "rad/s",1,1,1000);
-    gDataLogger_DeclareVariable(&gDataLogger,(char*) "v_motor6",(char*) "rad/s",1,1,1000);
-    gDataLogger_DeclareVariable(&gDataLogger,(char*) "v_motor7",(char*) "rad/s",1,1,1000);
-    gDataLogger_DeclareVariable(&gDataLogger,(char*) "v_motor8",(char*) "rad/s",1,1,1000);
-    gDataLogger_DeclareVariable(&gDataLogger,(char*) "v_motor9",(char*) "rad/s",1,1,1000);
-    gDataLogger_DeclareVariable(&gDataLogger,(char*) "v_motor10",(char*) "rad/s",1,1,1000);
-    gDataLogger_DeclareVariable(&gDataLogger,(char*) "v_motor11",(char*) "rad/s",1,1,1000);
-    gDataLogger_DeclareVariable(&gDataLogger,(char*) "v_motor12",(char*) "rad/s",1,1,1000);
+    gDataLogger_DeclareVariable(&gDataLogger,(char*) "p_motor1",(char*) "deg",1,1,1000);
+    gDataLogger_DeclareVariable(&gDataLogger,(char*) "p_motor2",(char*) "deg",1,1,1000);
+    gDataLogger_DeclareVariable(&gDataLogger,(char*) "p_motor3",(char*) "deg",1,1,1000);
+    gDataLogger_DeclareVariable(&gDataLogger,(char*) "p_motor4",(char*) "deg",1,1,1000);
+    gDataLogger_DeclareVariable(&gDataLogger,(char*) "p_motor5",(char*) "deg",1,1,1000);
+    gDataLogger_DeclareVariable(&gDataLogger,(char*) "p_motor6",(char*) "deg",1,1,1000);
+    gDataLogger_DeclareVariable(&gDataLogger,(char*) "p_motor7",(char*) "deg",1,1,1000);
+    gDataLogger_DeclareVariable(&gDataLogger,(char*) "p_motor8",(char*) "deg",1,1,1000);
+    gDataLogger_DeclareVariable(&gDataLogger,(char*) "p_motor9",(char*) "deg",1,1,1000);
+    gDataLogger_DeclareVariable(&gDataLogger,(char*) "p_motor10",(char*) "deg",1,1,1000);
+    gDataLogger_DeclareVariable(&gDataLogger,(char*) "p_motor11",(char*) "deg",1,1,1000);
+    gDataLogger_DeclareVariable(&gDataLogger,(char*) "p_motor12",(char*) "deg",1,1,1000);
     
     gDataLogger_DeclareVariable(&gDataLogger,(char*) "T",(char*) "s",1,1,1000);
     gDataLogger_DeclareVariable(&gDataLogger,(char*) "tempo",(char*) "s",1,1,1000);
