@@ -31,8 +31,8 @@
 #define PITCH_FRENTE                    1
 #define PITCH_TRAS                      0
 
-#define EXPORTAR_DADOS                  1
-#define MARCHA                          0
+#define EXPORTAR_DADOS                  0
+#define MARCHA                          1
 #define CONTROLE                        1
 
 GDATALOGGER gDataLogger;
@@ -386,9 +386,10 @@ void controle(union sigval arg){
 
 int main(){
     int i;
-    int teste;
+    //int teste;
+    #if EXPORTAR_DADOS
     char comando[256];
-
+    #endif
     //----------roll gains-------//
     K[1-1] = K_roll_L;
     K[4-1] = K_roll_R;
