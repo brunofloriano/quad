@@ -523,8 +523,9 @@ int main(){
     
     //----------------------------------Finalize---------------------------------------//
     cmd.write_torque(portHandler, packetHandler, BROADCASTID, 0);
-    printf("Sessao finalizada, exportando dados \n");
+    printf("Sessao finalizada \n");
     #if EXPORTAR_DADOS
+    printf("Exportando dados \n");
     sprintf(comando, "git add -A");
     system(comando);
     sprintf(comando, "git commit -m 'Aquisicao de Dados'");
